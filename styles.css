@@ -235,6 +235,12 @@ nav {
 .palette-item .icon { color: var(--accent); width: 18px; text-align: center; }
 .palette-item .val { color: var(--text); margin-left: auto; }
 
+/* ---- hero stats ---- */
+.hero-stats { display: flex; gap: 40px; margin-top: 44px; flex-wrap: wrap; }
+.hero-stat { display: flex; flex-direction: column; gap: 4px; }
+.hero-stat .num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+.hero-stat .lbl { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+
 /* =================== ABOUT =================== */
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
 .about-grid p { color: var(--muted); margin-bottom: 18px; font-size: 1.05rem; }
