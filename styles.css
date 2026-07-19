@@ -236,10 +236,40 @@ nav {
 .palette-item .val { color: var(--text); margin-left: auto; }
 
 /* ---- hero stats ---- */
-.hero-stats { display: flex; gap: 40px; margin-top: 44px; flex-wrap: wrap; }
-.hero-stat { display: flex; flex-direction: column; gap: 4px; }
-.hero-stat .num { font-family: var(--font-display); font-size: 2rem; font-weight: 700; background: linear-gradient(120deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
-.hero-stat .lbl { font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); }
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 44px;
+  max-width: 460px;
+  background: linear-gradient(160deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line-2);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px -30px rgba(0,0,0,0.6);
+}
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 20px 18px;
+  border-right: 1px solid var(--line);
+}
+.hero-stat:last-child { border-right: 0; }
+.hero-stat .num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+.hero-stat .lbl {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
 
 /* =================== ABOUT =================== */
 .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; align-items: start; }
