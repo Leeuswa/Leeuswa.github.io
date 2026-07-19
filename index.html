@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>이수환 — 백엔드 개발자</title>
-<meta name="description" content="Java와 Spring Boot로 안정적인 서버와 REST API를 설계하는 백엔드 개발자 이수환의 포트폴리오." />
+<meta name="description" content="안정적인 서버와 API를 고민하는 백엔드 개발자 이수환의 포트폴리오." />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="이수환 — 백엔드 개발자" />
-<meta property="og:description" content="예약 동시성 제어, JWT/OAuth2 인증, SSE 실시간 알림을 구현한 백엔드 개발자 이수환의 포트폴리오입니다." />
+<meta property="og:description" content="Java와 Spring Boot로 안정적인 서버와 REST API를 설계하는 백엔드 개발자 이수환의 포트폴리오입니다." />
 <meta property="og:image" content="/og-image.png" />
 <meta property="og:url" content="https://leeuswa.github.io/" />
 
@@ -17,231 +17,244 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@latest/devicon.min.css" />
 
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<a class="skip-link" href="#main">본문으로 건너뛰기</a>
-
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="brand">이수환 <em>·</em> Backend</a>
+    <a href="#top" class="brand">leeuswa<span>.dev</span></a>
     <div class="nav-links" id="navLinks">
-      <a href="#about">소개</a>
-      <a href="#projects">프로젝트</a>
-      <a href="#skills">기술</a>
-      <a href="#experience">경력·활동</a>
-      <a href="#contact">연락</a>
-      <a class="nav-cta" href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener">이력서 PDF</a>
+      <a href="#about" data-num="01">about</a>
+      <a href="#skills" data-num="02">skills</a>
+      <a href="#projects" data-num="03">projects</a>
+      <a href="#experience" data-num="04">experience</a>
+      <a href="#credentials" data-num="05">credentials</a>
+      <a href="#contact" data-num="06">contact</a>
     </div>
-    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">[ menu ]</button>
   </div>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 </nav>
 
 <header class="hero wrap" id="top">
-  <p class="hero-kicker">BACKEND ENGINEER — SUWON / YANGJU, 2026</p>
-  <h1>안정적인 서버를<br /><em>조용히, 단단하게</em> 설계합니다.</h1>
-  <p class="hero-desc">Java와 Spring Boot로 REST API를 만드는 백엔드 개발자 이수환입니다. 팀 프로젝트에서 <b>예약 동시성 제어, JWT/OAuth2 인증, SSE 실시간 알림</b>을 설계·구현했고, 최근에는 Spring AI와 LLM/RAG 구조로 역량을 넓히고 있습니다.</p>
+  <p class="hero-greeting"><b>$</b> 안녕하세요, 반갑습니다 👋</p>
+  <h1>안정적인 서버를 만드는<br /><span class="accent">백엔드 개발자</span></h1>
+  <div class="hero-role" id="role" aria-live="polite"></div>
+  <p class="hero-desc">Java와 Spring Boot로 REST API를 설계하고, 동시성·인증·데이터 정합성 같은 서비스의 안정성 문제를 고민합니다. 최근에는 Spring AI와 LLM/RAG 구조로 역량을 넓히고 있습니다.</p>
 
   <div class="cta-row">
-    <a href="#projects" class="btn btn-primary">프로젝트 보기</a>
-    <a href="https://github.com/Leeuswa" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
-    <a href="mailto:leeco6578@naver.com" class="btn btn-text">leeco6578@naver.com</a>
+    <a href="#projects" class="btn btn-primary">프로젝트 보기 →</a>
+    <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" class="btn btn-ghost">이력서 (Resume)</a>
   </div>
 
-  <div class="metrics reveal" aria-label="핵심 요약">
-    <div class="metric"><div class="k">팀 프로젝트</div><div class="v">2<small>건</small></div></div>
-    <div class="metric"><div class="k">개인 프로젝트</div><div class="v">6<small>건</small></div></div>
-    <div class="metric"><div class="k">학점</div><div class="v">4.33<small>/ 4.5</small></div></div>
-    <div class="metric"><div class="k">수상</div><div class="v">4<small>회</small></div></div>
+  <div class="palette" aria-hidden="true">
+    <div class="palette-bar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="palette-search"><span>⌘</span> 무엇이든 검색하세요… <kbd style="margin-left:auto">⌘K</kbd></span>
+    </div>
+    <div class="palette-body">
+      <div class="palette-item"><span class="icon">◈</span> 이름 <span class="val">이수환</span></div>
+      <div class="palette-item"><span class="icon">▷</span> 역할 <span class="val">백엔드 개발자</span></div>
+      <div class="palette-item"><span class="icon">◇</span> 경력 <span class="val">신입</span></div>
+      <div class="palette-item"><span class="icon">◆</span> 위치 <span class="val">경기 양주</span></div>
+      <div class="palette-item"><span class="icon">●</span> 상태 <span class="val" style="color:var(--accent)">채용 중 · 협업 가능</span></div>
+    </div>
   </div>
 </header>
 
-<main id="main">
-
 <section id="about" class="wrap">
-  <div class="section-head reveal">
-    <span class="section-num">01</span>
+  <div class="reveal">
+    <span class="eyebrow">01 · about</span>
     <h2 class="section-title">소개</h2>
   </div>
   <div class="about-grid reveal">
     <div>
-      <p><b>Java와 Spring Boot 기반 백엔드 개발</b>을 중심으로 REST API 설계, JPA, MariaDB를 활용한 웹 서비스 개발 경험을 쌓아왔습니다. Controller–Service–Repository 계층 구조를 이해하며 기능을 구현하고, 인증/인가 처리와 데이터 흐름을 설계하는 데 관심이 많습니다.</p>
-      <p>화면을 만드는 것보다 <b>데이터가 안전하게 흐르는 구조</b>를 만드는 일에 재미를 느낍니다. 순수 PHP로 쇼핑몰을 바닥부터 만들며 웹의 동작 원리를 익혔고, Laravel을 거쳐 지금은 Spring Boot에서 동시성 제어와 인증 설계 같은 문제를 풀고 있습니다.</p>
-      <p>최근에는 <b>Spring AI, LLM/RAG 구조</b>를 학습하며 AI 서비스 개발로 역량을 넓히는 중입니다. 새로운 기술을 배우는 것을 두려워하지 않으며, 코드 리뷰와 문서화로 지식을 나누는 문화를 지향합니다.</p>
+      <p>안녕하세요, <b>Java와 Spring Boot 기반 백엔드 개발</b>을 중심으로 REST API 설계, JPA, MariaDB를 활용한 웹 서비스 개발 경험을 쌓아온 이수환입니다. Controller–Service–Repository 계층 구조로 관심사를 분리하고, 인증/인가 처리와 데이터 흐름을 설계하는 데 관심이 많습니다.</p>
+      <p>단순히 기능을 구현하는 것을 넘어 <b>동시성·인증·데이터 정합성</b> 같은 '보이지 않는 안정성'을 고민합니다. 팀 프로젝트에서 예약 시스템의 동시 요청 문제를 비관적 락으로 해결하고, JWT·OAuth2 인증과 SSE 실시간 알림을 직접 구현했습니다. 최근에는 <b>Spring AI, OpenAI API, RAG 구조</b>를 학습하며 AI 서비스 개발로 역량을 넓히고 있습니다.</p>
     </div>
     <div class="facts">
       <div class="fact"><span class="k">이름</span><span class="v">이수환</span></div>
       <div class="fact"><span class="k">직무</span><span class="v">Backend Engineer</span></div>
-      <div class="fact"><span class="k">경력</span><span class="v">신입 · 즉시 합류 가능</span></div>
+      <div class="fact"><span class="k">경력</span><span class="v">신입</span></div>
       <div class="fact"><span class="k">위치</span><span class="v">경기 양주</span></div>
       <div class="fact"><span class="k">주력</span><span class="v">Java · Spring Boot</span></div>
-      <div class="fact"><span class="k">학력</span><span class="v">인덕대 컴퓨터소프트웨어학과</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="wrap">
-  <div class="section-head reveal">
-    <span class="section-num">02</span>
-    <h2 class="section-title">프로젝트</h2>
-  </div>
-  <p class="section-lede reveal">기능 나열보다, 어떤 문제를 왜 그렇게 풀었는지를 남기려고 합니다.</p>
-
-  <article class="case reveal">
-    <div class="case-top">
-      <span class="case-index">CASE STUDY — P.01</span>
-      <div class="case-links">
-        <a href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-    <h3>펫밀리데이 — 반려동물 통합 케어 플랫폼</h3>
-    <p class="case-meta">4인 팀 프로젝트 · Spring Boot 3.5 모놀리식 · 2026.05 – 2026.06 · 동물병원·예약·인증·알림·AI 도메인 담당</p>
-
-    <div class="case-body">
-      <div class="case-desc">
-        <p>동물병원 예약·진료기록부터 쇼핑몰, 중고거래, 커뮤니티, AI 자가진단까지 제공하는 통합 플랫폼입니다. 저는 <b>동물병원·예약 도메인을 중심으로 인증(JWT/OAuth2), SSE 실시간 알림, 카카오맵 연동, Claude 기반 AI 사료추천</b> 등 서비스 전반의 공통 기능을 담당했습니다.</p>
-        <p>QueryDSL <code style="font-family:var(--mono);font-size:0.85em;">BooleanExpression</code>으로 null 조건이 자동 무시되는 동적 병원 검색을 만들고, 하버사인 거리 계산으로 가까운 병원 순 정렬을 구현했습니다. 소셜 로그인 성공 시 JWT를 HttpOnly 쿠키로 저장하는 흐름과, 사용자별 다중 SSE 연결을 동시성 안전하게 관리하는 구조도 설계했습니다.</p>
-      </div>
-      <div class="psr">
-        <div class="psr-row psr-problem">
-          <span class="label">문제</span>
-          <p>동일 예약 슬롯에 동시 요청이 몰리면 중복 예약이 발생할 수 있는 구조</p>
-        </div>
-        <div class="psr-row psr-solution">
-          <span class="label">해결</span>
-          <p>비관적 락(PESSIMISTIC_WRITE)으로 병원 엔티티를 잠근 뒤 예약을 등록하도록 설계</p>
-        </div>
-        <div class="psr-row psr-result">
-          <span class="label">결과</span>
-          <p>동시 요청 경합에서도 슬롯 정합성 보장 — 중복 예약 0건</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-foot">
-      <div class="tags">
-        <span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">JPA · QueryDSL</span><span class="tag">Spring Security</span><span class="tag">MariaDB</span><span class="tag">SSE</span><span class="tag">Spring AI</span>
-      </div>
-      <a class="case-more" href="projects/petmilyday.html">상세 보기 →</a>
-    </div>
-  </article>
-
-  <article class="case reveal">
-    <div class="case-top">
-      <span class="case-index">CASE STUDY — P.02</span>
-      <div class="case-links">
-        <a href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub</a>
-      </div>
-    </div>
-    <h3>LMS — 학습 관리 시스템 백엔드 API</h3>
-    <p class="case-meta">팀 프로젝트 (타닥타닥 동아리) · 백엔드 · 2025.05 – 2025.12 · 관리자·교사 파트 담당</p>
-
-    <div class="case-body">
-      <div class="case-desc">
-        <p>학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템의 REST API입니다. <b>회원가입·로그인, 강의 관리, 수강 신청, 학습 진행도, 과제 등록·제출·채점, 게시판·댓글</b>을 구현했고, Controller–Service–Repository 계층을 분리해 React 프론트엔드와 연동 가능한 구조를 설계했습니다.</p>
-        <p>역할마다 보유 속성이 달라 사용자 엔티티를 Admin·Instructor·Student로 분리했고, 학생–강의의 다대다 관계는 수강일·진행 상태를 담는 매핑 엔티티로 풀었습니다.</p>
-      </div>
-      <div class="psr">
-        <div class="psr-row psr-problem">
-          <span class="label">문제</span>
-          <p>역할별로 접근 범위와 데이터 속성이 달라 단일 User 테이블로는 책임이 뒤섞이는 구조</p>
-        </div>
-        <div class="psr-row psr-solution">
-          <span class="label">해결</span>
-          <p>역할별 엔티티 분리 + 다대다 관계를 매핑 엔티티로 해소, DTO 계층으로 엔티티 노출 차단</p>
-        </div>
-        <div class="psr-row psr-result">
-          <span class="label">결과</span>
-          <p>역할별 기능 추가 시 영향 범위가 좁아진 구조 — 프론트엔드와 병렬 개발 가능</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="case-foot">
-      <div class="tags">
-        <span class="tag">Java 17</span><span class="tag">Spring Boot 3.3</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">REST API</span><span class="tag">H2</span>
-      </div>
-      <a class="case-more" href="projects/lms.html">상세 보기 →</a>
-    </div>
-  </article>
-
-  <h3 class="sub-title reveal">기타 프로젝트</h3>
-  <div class="mini-list reveal">
-    <div class="mini">
-      <h4><a href="https://github.com/Leeuswa/laravel-sales-inventory" target="_blank" rel="noopener">Laravel 판매·재고 관리 시스템</a></h4>
-      <span class="date">개인 · 2025.09 – 2025.11 · 경진대회 최우수상</span>
-      <p>입고/출고 장부, 기간별 매출 집계, 크로스탭 통계, 차트 시각화, 엑셀 리포트 출력.</p>
-    </div>
-    <div class="mini">
-      <h4><a href="https://github.com/Leeuswa/laravel-used-marketplace" target="_blank" rel="noopener">Laravel 중고거래 플랫폼</a></h4>
-      <span class="date">개인 · 2025.10 – 2025.12</span>
-      <p>채팅방–메시지 1:N 설계의 거래 채팅, 위시리스트, 리뷰·신고, 대상별 분리된 관리자 페이지.</p>
-    </div>
-    <div class="mini">
-      <h4><a href="https://github.com/Leeuswa/php-shoppingmall" target="_blank" rel="noopener">순수 PHP 의류 쇼핑몰</a></h4>
-      <span class="date">개인 · 2025.03 – 2025.06 · 경진대회 최우수상</span>
-      <p>프레임워크 없이 쿠키 장바구니, 주문 흐름, 2단계 옵션 구조, 관리자 상품·주문 관리까지 직접 구현.</p>
-    </div>
-    <div class="mini">
-      <h4><a href="https://github.com/Leeuswa/subway-congestion-analysis-r" target="_blank" rel="noopener">서울 지하철 혼잡도 분석·예측</a></h4>
-      <span class="date">개인 · 2026.05 – 2026.06</span>
-      <p>K-means 군집, 다중회귀, KNN으로 혼잡 패턴을 분류·예측하고 MySQL에 결과 저장 (R).</p>
-    </div>
-    <div class="mini">
-      <h4><a href="https://github.com/Leeuswa/traffic-accident-python-analysis" target="_blank" rel="noopener">교통사고 통계 분석</a></h4>
-      <span class="date">개인 · Python</span>
-      <p>상관분석·회귀·PCA·ARIMA 시계열 예측을 하나의 데이터셋에 적용한 분석 노트북.</p>
-    </div>
-    <div class="mini">
-      <h4>Spring AI · RAG 문서 질의응답 실습</h4>
-      <span class="date">2026.04 – 2026.05</span>
-      <p>PDF 로딩, 임베딩, VectorStore, 검색 기반 응답 생성 구조 실습.</p>
+      <div class="fact"><span class="k">학력</span><span class="v">인덕대 컴퓨터소프트웨어학과 (4.33/4.5)</span></div>
     </div>
   </div>
 </section>
 
 <section id="skills" class="wrap">
-  <div class="section-head reveal">
-    <span class="section-num">03</span>
+  <div class="reveal">
+    <span class="eyebrow">02 · stack</span>
     <h2 class="section-title">기술 스택</h2>
   </div>
   <div class="skills-grid reveal">
-    <div class="skill-card span-3">
-      <h3>BACKEND — 주력</h3>
-      <div class="chiprow">
-        <span class="chip hot">Java</span><span class="chip hot">Spring Boot</span><span class="chip hot">Spring Data JPA</span><span class="chip hot">Spring Security</span><span class="chip">QueryDSL</span><span class="chip">REST API</span><span class="chip">PHP · Laravel</span>
+    <div class="skill-card">
+      <h3><span class="num">A</span>Languages</h3>
+      <div class="tags">
+        <span class="tag"><i class="devicon-java-plain colored"></i>Java</span>
+        <span class="tag"><i class="devicon-python-plain colored"></i>Python</span>
+        <span class="tag"><i class="devicon-javascript-plain colored"></i>JavaScript</span>
+        <span class="tag"><i class="devicon-php-plain colored"></i>PHP</span>
+        <span class="tag">SQL</span>
       </div>
-      <p class="primary-note">동시성 제어, JWT/OAuth2 인증, SSE 실시간 알림 구현 경험</p>
     </div>
-    <div class="skill-card span-3">
-      <h3>AI</h3>
-      <div class="chiprow">
-        <span class="chip">Spring AI</span><span class="chip">Anthropic Claude</span><span class="chip">OpenAI API</span><span class="chip">LLM</span><span class="chip">RAG</span>
+    <div class="skill-card">
+      <h3><span class="num">B</span>Backend</h3>
+      <div class="tags">
+        <span class="tag"><i class="devicon-spring-plain colored"></i>Spring Boot</span>
+        <span class="tag"><i class="devicon-spring-plain colored"></i>Spring Data JPA</span>
+        <span class="tag"><i class="devicon-spring-plain colored"></i>Spring Security</span>
+        <span class="tag">QueryDSL</span>
+        <span class="tag">REST API</span>
+        <span class="tag"><i class="devicon-laravel-plain colored"></i>Laravel</span>
       </div>
-      <p class="primary-note">Claude 기반 추천 기능 구현, RAG 문서 질의응답 실습</p>
     </div>
-    <div class="skill-card span-2">
-      <h3>DATABASE</h3>
-      <div class="chiprow"><span class="chip">MariaDB</span><span class="chip">MySQL</span><span class="chip">H2</span></div>
+    <div class="skill-card">
+      <h3><span class="num">C</span>AI</h3>
+      <div class="tags"><span class="tag">Spring AI</span><span class="tag">OpenAI API</span><span class="tag">LLM</span><span class="tag">RAG</span></div>
     </div>
-    <div class="skill-card span-2">
-      <h3>LANGUAGES</h3>
-      <div class="chiprow"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">SQL</span></div>
+    <div class="skill-card">
+      <h3><span class="num">D</span>Database</h3>
+      <div class="tags">
+        <span class="tag"><i class="devicon-mariadb-plain colored"></i>MariaDB</span>
+        <span class="tag"><i class="devicon-mysql-plain colored"></i>MySQL</span>
+        <span class="tag">H2</span>
+      </div>
     </div>
-    <div class="skill-card span-2">
-      <h3>TOOLS</h3>
-      <div class="chiprow"><span class="chip">Git · GitHub</span><span class="chip">IntelliJ IDEA</span><span class="chip">Postman</span><span class="chip">Gradle</span></div>
+    <div class="skill-card">
+      <h3><span class="num">E</span>Tools</h3>
+      <div class="tags">
+        <span class="tag"><i class="devicon-git-plain colored"></i>Git</span>
+        <span class="tag"><i class="devicon-github-original"></i>GitHub</span>
+        <span class="tag"><i class="devicon-postman-plain colored"></i>Postman</span>
+        <span class="tag"><i class="devicon-intellij-plain colored"></i>IntelliJ IDEA</span>
+        <span class="tag"><i class="devicon-gradle-plain colored"></i>Gradle</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <h3><span class="num">F</span>Frontend (보조)</h3>
+      <div class="tags">
+        <span class="tag"><i class="devicon-html5-plain colored"></i>HTML5</span>
+        <span class="tag"><i class="devicon-css3-plain colored"></i>CSS3</span>
+        <span class="tag">Thymeleaf</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="wrap">
+  <div class="reveal">
+    <span class="eyebrow">03 · work</span>
+    <h2 class="section-title">프로젝트</h2>
+  </div>
+  <div class="projects-grid reveal">
+    <article class="project">
+      <div class="project-top">
+        <span class="project-index">P.01</span>
+        <div class="project-links">
+          <a href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <a class="project-body-link" href="projects/petmilyday.html">
+        <div class="project-media">
+          <img src="assets/projects/petmilyday/01-main.png" alt="petmilyday-project 스크린샷" loading="lazy" onerror="this.remove()" />
+        </div>
+        <h3>펫밀리데이 — 반려동물 통합 케어 플랫폼</h3>
+        <p class="project-meta">팀 프로젝트 (4인) · 2026.05 – 2026.06</p>
+        <div class="feat-chips">
+          <span class="feat-chip">동시성 제어 (비관적 락)</span>
+          <span class="feat-chip">JWT · OAuth2</span>
+          <span class="feat-chip">SSE 실시간 알림</span>
+        </div>
+        <p>동물병원 검색·예약부터 쇼핑·중고거래·커뮤니티·AI 자가진단까지 제공하는 통합 케어 플랫폼입니다. <b>동물병원·예약 도메인</b>을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능을 담당했습니다. 예약 슬롯 동시성은 비관적 락으로, 병원 검색은 QueryDSL 동적 쿼리로 해결했습니다.</p>
+        <div class="tags"><span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">Spring Data JPA</span><span class="tag">QueryDSL</span><span class="tag">MariaDB</span><span class="tag">Spring AI</span></div>
+      </a>
+    </article>
+
+    <article class="project">
+      <div class="project-top">
+        <span class="project-index">P.02</span>
+        <div class="project-links">
+          <a href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+      <a class="project-body-link" href="projects/lms.html">
+        <div class="project-media">
+          <img src="assets/projects/lms-backend-springboot.png" alt="lms-backend-springboot 스크린샷" loading="lazy" onerror="this.remove()" />
+        </div>
+        <h3>lms-backend-springboot — LMS 학습 관리 시스템</h3>
+        <p class="project-meta">팀 프로젝트 · 백엔드 · 2025.05 – 2025.12</p>
+        <div class="feat-chips">
+          <span class="feat-chip">REST API 설계</span>
+          <span class="feat-chip">계층 분리</span>
+        </div>
+        <p>학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API입니다. <b>관리자·교사 파트</b>를 담당하여 회원가입·로그인, 강의 관리, 수강 신청, 학습 진행도 관리, 과제 등록·제출·채점, 게시판·댓글 기능을 구현했습니다. Controller–Service–Repository 계층을 분리해 프론트엔드와 연동 가능한 REST API 구조를 설계했습니다.</p>
+        <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">H2</span><span class="tag">REST API</span><span class="tag">Gradle</span></div>
+      </a>
+    </article>
+  </div>
+
+  <h3 class="sub-title reveal">기타 프로젝트</h3>
+  <div class="mini-projects reveal">
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>Spring Boot 게시판 웹 애플리케이션</h4>
+        <span class="mini-project-date">개인 · 2025.12 – 2026.03</span>
+      </div>
+      <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링 기반 게시판 애플리케이션. Controller–Service–Repository 계층을 분리해 구조적으로 개발했습니다.</p>
+      <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">Thymeleaf</span><span class="tag">MariaDB</span></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>서울 지하철 혼잡도 분석 및 예측</h4>
+        <span class="mini-project-date">개인 · 2026.05 – 2026.06</span>
+      </div>
+      <p>서울교통공사 혼잡도 데이터로 K-Means 군집분석, 다중회귀분석, KNN을 활용해 시간대·요일별 혼잡도 패턴을 분석하고 등급을 분류했습니다.</p>
+      <div class="tags"><span class="tag">RStudio</span><span class="tag">MySQL</span><span class="tag">Python</span></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>Laravel 중고마켓 시스템</h4>
+        <span class="mini-project-date">개인 · 2025.10 – 2025.12</span>
+      </div>
+      <p>상품 등록·검색·필터, 찜·거래 채팅·리뷰, 신고, 관리자 페이지를 갖춘 중고거래 플랫폼.</p>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MariaDB</span><span class="tag">JavaScript</span></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>Laravel 판매관리 시스템</h4>
+        <span class="mini-project-date">개인 · 2025.09 – 2025.11</span>
+      </div>
+      <p>상품·재고·입출고 관리, 기간별 매출 분석, 월별 교차표, 차트 시각화 기능을 갖춘 판매관리 시스템.</p>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MariaDB</span><span class="tag">Bootstrap</span></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>PHP 의류 쇼핑몰</h4>
+        <span class="mini-project-date">개인 · 2025.03 – 2025.06</span>
+      </div>
+      <p>프레임워크 없이 회원·장바구니·주문·결제와 관리자 상품/주문 관리를 직접 구현한 쇼핑몰. 요청 처리와 DB 연동 원리를 익혔습니다.</p>
+      <div class="tags"><span class="tag">PHP</span><span class="tag">MariaDB</span><span class="tag">Bootstrap</span></div>
+    </div>
+    <div class="mini-project">
+      <div class="mini-project-top">
+        <h4>Spring AI · RAG 문서 질의응답 실습</h4>
+        <span class="mini-project-date">2026.04 – 2026.05</span>
+      </div>
+      <p>PDF 로딩, 임베딩, VectorStore, 검색 기반 응답 생성 구조 실습.</p>
+      <div class="tags"><span class="tag">Spring AI</span><span class="tag">OpenAI API</span></div>
     </div>
   </div>
 </section>
 
 <section id="experience" class="wrap">
-  <div class="section-head reveal">
-    <span class="section-num">04</span>
+  <div class="reveal">
+    <span class="eyebrow">04 · path</span>
     <h2 class="section-title">경력 · 활동</h2>
   </div>
   <div class="timeline reveal">
@@ -249,26 +262,26 @@
       <div class="tl-date">2025.11 — 2026.08</div>
       <h3>대우능력개발원</h3>
       <div class="tl-role">Java/Spring Boot 백엔드 웹 개발 과정</div>
-      <p>Java와 Spring Boot 기반 백엔드 개발 과정을 이수하며 4인 팀 프로젝트(펫밀리데이)를 진행했습니다.</p>
+      <p>Java, Spring Boot, JPA, Spring Security, REST API 설계를 학습하며 인증/인가·DB 연동 기능을 구현했고, 4인 팀 프로젝트 '펫밀리데이'를 수행했습니다.</p>
     </div>
     <div class="tl-item">
-      <div class="tl-date">2025.01 — 2025.12</div>
+      <div class="tl-date">2025.05 — 2025.12</div>
       <h3>인덕대학교 타닥타닥 동아리</h3>
       <div class="tl-role">팀 프로젝트 활동</div>
-      <p>Spring Boot와 React를 활용한 LMS(학습 관리 시스템) 팀 프로젝트를 진행했습니다.</p>
+      <p>Spring Boot와 React를 활용한 LMS(학습 관리 시스템) 팀 프로젝트에서 백엔드 파트를 맡아 API 설계와 협업 개발 흐름을 익혔습니다.</p>
     </div>
     <div class="tl-item">
       <div class="tl-date">졸업예정</div>
       <h3>인덕대학교</h3>
-      <div class="tl-role">컴퓨터소프트웨어학과</div>
-      <p>학점 4.33/4.5로 졸업 예정입니다.</p>
+      <div class="tl-role">컴퓨터소프트웨어학과 (2·3년제)</div>
+      <p>학점 4.33/4.5로 졸업 예정이며, 최우수 성적장학금을 받았습니다.</p>
     </div>
   </div>
 </section>
 
 <section id="credentials" class="wrap">
-  <div class="section-head reveal">
-    <span class="section-num">05</span>
+  <div class="reveal">
+    <span class="eyebrow">05 · credentials</span>
     <h2 class="section-title">자격증 · 수상</h2>
   </div>
   <div class="credentials-grid reveal">
@@ -280,65 +293,93 @@
       </ul>
     </div>
     <div class="credential-card">
-      <h3>수상</h3>
+      <h3>수상 · 위촉</h3>
       <ul>
-        <li><span>Laravel 웹 솔루션 경진대회</span><span class="medal">최우수상</span></li>
-        <li><span>PHP 쇼핑몰 경진대회</span><span class="medal">최우수상</span></li>
-        <li><span>React 웹 프론트엔드</span><span class="medal">우수상</span></li>
-        <li><span>성적장학금</span><span class="medal">최우수</span></li>
+        <li><span>React 웹 프론트엔드 (우수상)</span><span class="date">2026.06</span></li>
+        <li><span>자바프로그래밍 전공멘토 위촉</span><span class="date">2026.03</span></li>
+        <li><span>성적장학금 (최우수)</span><span class="date">2026.02</span></li>
+        <li><span>Laravel 웹 솔루션 경진대회 (최우수상)</span><span class="date">2025.12</span></li>
+        <li><span>PHP 쇼핑몰 경진대회 (최우수상)</span><span class="date">2025.06</span></li>
       </ul>
     </div>
   </div>
 </section>
 
-<section id="contact" class="wrap">
-  <div class="contact-panel reveal">
-    <h2>함께 <em>만들어요.</em></h2>
+<section id="contact" class="contact wrap">
+  <div class="reveal">
+    <span class="eyebrow">06 · contact</span>
+    <h2>함께 <span class="accent">만들어요.</span></h2>
     <p>새로운 기회나 협업 제안은 언제든 환영합니다. 편하게 연락 주세요.</p>
     <div class="contact-links">
       <a href="mailto:leeco6578@naver.com" class="btn btn-primary">이메일 보내기</a>
       <a href="https://github.com/Leeuswa" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
-      <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" class="btn btn-ghost">이력서 PDF</a>
     </div>
   </div>
 </section>
 
-</main>
-
 <footer>
   <div class="footer-inner">
-    <span>© 2026 이수환</span>
-    <span><a href="https://github.com/Leeuswa/Leeuswa.github.io" target="_blank" rel="noopener">Source on GitHub</a> · Deployed on GitHub Pages</span>
+    <span>© 2026 이수환. Built with ♥ &amp; code.</span>
+    <span>Deployed on GitHub Pages</span>
   </div>
 </footer>
 
 <script>
+  const roles = [
+    "백엔드 개발자",
+    "Java & Spring Boot",
+    "REST API 설계",
+    "Spring AI · LLM/RAG"
+  ];
+  const roleEl = document.getElementById('role');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (roleEl) {
+    if (prefersReduced) {
+      roleEl.textContent = roles[0];
+    } else {
+      let ri = 0, ci = 0, deleting = false;
+      const cursor = '<span class="cursor"></span>';
+      function tick() {
+        const word = roles[ri];
+        if (!deleting) {
+          ci++;
+          if (ci > word.length) { deleting = true; setTimeout(tick, 1600); return; }
+        } else {
+          ci--;
+          if (ci === 0) { deleting = false; ri = (ri + 1) % roles.length; }
+        }
+        roleEl.innerHTML = word.slice(0, ci) + cursor;
+        setTimeout(tick, deleting ? 45 : 90);
+      }
+      tick();
+    }
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
   toggle?.addEventListener('click', () => {
     const open = links.classList.toggle('open');
-    toggle.textContent = open ? 'close' : 'menu';
+    toggle.textContent = open ? '[ close ]' : '[ menu ]';
   });
   links?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     links.classList.remove('open');
-    toggle.textContent = 'menu';
+    toggle.textContent = '[ menu ]';
   }));
 
-  const sections = document.querySelectorAll('section[id]');
-  const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
-  const spy = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        navAnchors.forEach(a => a.setAttribute('aria-current', a.getAttribute('href') === '#' + e.target.id));
-      }
-    });
-  }, { rootMargin: '-40% 0px -55% 0px' });
-  sections.forEach(s => spy.observe(s));
+  const scrollBar = document.getElementById('scrollProgress');
+  function updateScrollProgress() {
+    const scrollable = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const pct = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+    if (scrollBar) scrollBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateScrollProgress, { passive: true });
+  updateScrollProgress();
 </script>
 </body>
 </html>
