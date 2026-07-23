@@ -8,34 +8,33 @@
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
 <a class="skip" href="#context">본문으로 건너뛰기</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <nav>
-  <div class="nav-inner">
-    <a href="../index.html#top" class="brand">이수환<em>.</em></a>
+  <div class="nav-pill" id="navPill">
+    <a href="../index.html#top" class="brand"><span class="blob"></span>이수환</a>
     <div class="nav-links" id="navLinks">
-      <a href="../index.html#work"><span class="n">01</span>work</a>
-      <a href="../index.html#approach"><span class="n">02</span>approach</a>
-      <a href="../index.html#toolkit"><span class="n">03</span>toolkit</a>
-      <a href="../index.html#profile"><span class="n">04</span>profile</a>
-      <a href="../index.html#connect"><span class="n">05</span>connect</a>
+      <a href="../index.html#work">work</a>
+      <a href="../index.html#approach">approach</a>
+      <a href="../index.html#toolkit">toolkit</a>
+      <a href="../index.html#profile">profile</a>
     </div>
+    <a href="../index.html#connect" class="nav-cta">연락하기</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
   </div>
-  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 </nav>
 
 <div class="wrap">
-  <a class="cs-back" href="../index.html#work">← 작업 목록으로</a>
+  <a class="cs-back" href="../index.html#work" data-cursor>← 작업 목록으로</a>
 </div>
 
-<!-- CASE STUDY HERO -->
 <header class="wrap cs-hero">
-  <span class="idx">P.01 — Case Study · 팀 4인 · 2026.05–2026.06</span>
+  <span class="idx">P.01 — CASE STUDY · 팀 4인 · 2026.05–2026.06</span>
   <h1>펫밀리데이</h1>
   <p class="lede">동물병원 예약·진료기록부터 쇼핑·중고거래·커뮤니티·AI 자가진단까지 하나로 묶은 <b>반려동물 통합 케어 플랫폼</b>. 저는 동물병원·예약 도메인과 인증·알림·AI 같은 서비스 공통 기능을 맡았습니다.</p>
   <div class="tags">
@@ -45,25 +44,23 @@
     <div class="f"><div class="k">Role</div><div class="v">동물병원·예약 / 인증·알림·AI</div></div>
     <div class="f"><div class="k">Team</div><div class="v">백엔드 4인 · 모놀리식</div></div>
     <div class="f"><div class="k">Period</div><div class="v">2026.05 – 2026.06</div></div>
-    <div class="f"><div class="k">Repo</div><div class="v"><a class="tlink" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+    <div class="f"><div class="k">Repo</div><div class="v"><a class="tlink" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener" data-cursor>GitHub ↗</a></div></div>
   </div>
 </header>
 
-<!-- CONTEXT -->
 <section id="context" class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">01</span><div class="lname">Context</div></div>
+    <div class="label reveal"><span class="kicker acc">01</span><div class="lname">Context</div></div>
     <div class="cs-prose reveal" data-d="1">
       <p>반려동물 보호자는 병원 예약, 진료기록, 용품 구매, 정보 공유를 서로 다른 서비스에서 처리합니다. 펫밀리데이는 이 흐름을 <b>하나의 플랫폼</b>으로 합치는 것을 목표로 한 팀 프로젝트입니다.</p>
-      <p>Spring Boot 기반 모놀리식 웹 애플리케이션으로, 계층형 아키텍처로 관심사를 분리하고 서비스는 인터페이스와 구현체를 나누어 결합도를 낮췄습니다. 저는 그중 <b class="muted">동물병원·예약 도메인을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능</b>을 담당했습니다.</p>
+      <p class="muted">Spring Boot 기반 모놀리식 웹 애플리케이션으로, 계층형 아키텍처로 관심사를 분리하고 서비스는 인터페이스와 구현체를 나누어 결합도를 낮췄습니다. 저는 그중 <b>동물병원·예약 도메인을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능</b>을 담당했습니다.</p>
     </div>
   </div>
 </section>
 
-<!-- PROBLEM -->
 <section class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">02</span><div class="lname">Problem</div></div>
+    <div class="label reveal"><span class="kicker acc">02</span><div class="lname">Problem</div></div>
     <div class="cs-prose reveal" data-d="1">
       <p>예약 도메인에는 조용히 무너지는 지점들이 있었습니다.</p>
       <ul>
@@ -76,20 +73,18 @@
   </div>
 </section>
 
-<!-- APPROACH -->
 <section class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">03</span><div class="lname">Approach</div></div>
+    <div class="label reveal"><span class="kicker acc">03</span><div class="lname">Approach</div></div>
     <div class="cs-prose reveal" data-d="1">
       <p>기능마다 "언제 깨지는가"를 먼저 정하고, 그에 맞는 안전장치를 함께 설계했습니다. 중복 예약은 비관적 락으로, 인증은 Stateless JWT + HttpOnly 쿠키로, 실시간성은 SSE로, 유연한 검색은 QueryDSL 동적 쿼리로 접근했습니다. AI 추천은 기존 로직을 Anthropic Claude 모델로 교체해 품질을 끌어올렸습니다.</p>
     </div>
   </div>
 </section>
 
-<!-- ARCHITECTURE / IMPLEMENTATION -->
 <section class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">04</span><div class="lname">Implementation</div></div>
+    <div class="label reveal"><span class="kicker acc">04</span><div class="lname">Implementation</div></div>
     <div class="cs-prose reveal" data-d="1">
       <div class="feat">
         <h3><span class="fn">01</span>동물병원 검색 · QueryDSL 동적 쿼리</h3>
@@ -148,10 +143,9 @@
   </div>
 </section>
 
-<!-- SCREENS -->
 <section class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">05</span><div class="lname">Screens</div></div>
+    <div class="label reveal"><span class="kicker acc">05</span><div class="lname">Screens</div></div>
     <div class="reveal" data-d="1" style="min-width:0;">
       <div class="cs-gallery">
         <figure class="shot"><div class="shot-frame" data-label="메인 페이지"><img src="../assets/projects/petmilyday/01-main.png" alt="펫밀리데이 메인 페이지" loading="lazy" onerror="this.remove()" /></div><figcaption>메인 페이지</figcaption></figure>
@@ -166,15 +160,14 @@
   </div>
 </section>
 
-<!-- RESULT / STACK / TEAM -->
 <section class="cs-section">
   <div class="wrap cs-layout">
-    <div class="label reveal"><span class="eyebrow">06</span><div class="lname">Result</div></div>
+    <div class="label reveal"><span class="kicker acc">06</span><div class="lname">Result</div></div>
     <div class="cs-prose reveal" data-d="1">
       <p>하나의 서비스 안에서 회원·인증부터 병원 예약, 커뮤니티, 쇼핑, 중고거래, AI 기능까지 동작하는 통합 플랫폼을 팀으로 완성했습니다. 제가 맡은 예약 도메인은 비관적 락으로 중복 예약을 막고, SSE로 상태 변화를 실시간 전달하도록 마무리했습니다.</p>
 
       <h3>기술 스택</h3>
-      <table class="spec-table">
+      <table class="spec">
         <tr><td>Language</td><td>Java 21</td></tr>
         <tr><td>Framework</td><td>Spring Boot 3.5.14 (Web MVC, Data JPA, Validation)</td></tr>
         <tr><td>Persistence</td><td>Spring Data JPA, QueryDSL, MariaDB, HikariCP</td></tr>
@@ -186,7 +179,7 @@
       </table>
 
       <h3>팀 구성</h3>
-      <table class="spec-table">
+      <table class="spec">
         <tr><td class="you">Leeuswa (본인)</td><td>동물병원·예약·진료기록, 인증(JWT/OAuth2), SSE 알림, 카카오맵, AI 사료추천, 관리자</td></tr>
         <tr><td>endy</td><td>회원가입/로그인, 커뮤니티 게시판, 댓글·좋아요, 반려동물 프로필, 신고</td></tr>
         <tr><td>n1mppp</td><td>쇼핑몰(상품·장바구니·주문·정기구독·리뷰·QnA·위시리스트), KakaoPay 결제</td></tr>
@@ -194,8 +187,8 @@
       </table>
 
       <div class="cs-links">
-        <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub <span class="ic">↗</span></a>
-        <a class="btn btn-ghost" href="lms.html">다음 작업 <span class="ic">→</span></a>
+        <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener" data-cursor>GitHub <span class="ic">↗</span></a>
+        <a class="btn btn-ghost" href="lms.html" data-cursor>다음 작업 <span class="ic">→</span></a>
       </div>
     </div>
   </div>
@@ -214,12 +207,13 @@
 </footer>
 
 <script>
-  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
+  const cur=document.getElementById('cursor');
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(cur&&fine){let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y;addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});(function loop(){x+=(tx-x)*.2;y+=(ty-y)*.2;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();document.querySelectorAll('[data-cursor]').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});}else if(cur){cur.remove();}
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const tg=document.getElementById('navToggle'),lk=document.getElementById('navLinks');
-  tg?.addEventListener('click',()=>{const o=lk.classList.toggle('open');tg.textContent=o?'close':'menu';});
-  const bar=document.getElementById('scrollProgress');
-  addEventListener('scroll',()=>{const sc=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(bar)bar.style.width=(sc>0?(scrollY/sc)*100:0)+'%';},{passive:true});
+  const tg=document.getElementById('navToggle'),pill=document.getElementById('navPill');
+  tg?.addEventListener('click',()=>{const o=pill.classList.toggle('open');tg.textContent=o?'close':'menu';});
 </script>
 </body>
 </html>
