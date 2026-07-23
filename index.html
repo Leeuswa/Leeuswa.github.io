@@ -4,162 +4,173 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>이수환 — 서버를 설계하는 백엔드 개발자</title>
-<meta name="description" content="Java와 Spring Boot로 인증·동시성·실시간 알림 같은 서버의 어려운 부분을 설계하는 백엔드 개발자 이수환의 작업 모음." />
+<title>이수환 — 백엔드 개발자</title>
+<meta name="description" content="인증, 동시성 제어, 실시간 알림, AI 연동까지. 서버의 어려운 부분을 직접 설계하는 백엔드 개발자 이수환의 작업 모음." />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="이수환 — 백엔드 개발자" />
-<meta property="og:description" content="인증, 동시성 제어, 실시간 알림, AI 연동까지 — 서버의 어려운 부분을 직접 설계하는 백엔드 개발자." />
+<meta property="og:description" content="서버의 어려운 부분을 직접 설계하는 백엔드 개발자." />
 <meta property="og:image" content="/og-image.png" />
 <meta property="og:url" content="https://leeuswa.github.io/" />
 
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 <a class="skip" href="#work">본문으로 건너뛰기</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
 
 <nav>
-  <div class="nav-inner">
-    <a href="#top" class="brand">이수환<em>.</em></a>
+  <div class="nav-pill" id="navPill">
+    <a href="#top" class="brand"><span class="blob"></span>이수환</a>
     <div class="nav-links" id="navLinks">
-      <a href="#work"><span class="n">01</span>work</a>
-      <a href="#approach"><span class="n">02</span>approach</a>
-      <a href="#toolkit"><span class="n">03</span>toolkit</a>
-      <a href="#profile"><span class="n">04</span>profile</a>
-      <a href="#connect"><span class="n">05</span>connect</a>
+      <a href="#work">work</a>
+      <a href="#approach">approach</a>
+      <a href="#toolkit">toolkit</a>
+      <a href="#profile">profile</a>
     </div>
+    <a href="#connect" class="nav-cta">연락하기</a>
     <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
   </div>
-  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
 </nav>
 
-<!-- ============ HOME / SIGNAL ============ -->
+<!-- ============ HERO ============ -->
 <header class="hero wrap" id="top">
-  <div class="hero-eyebrow eyebrow reveal">Backend Engineer · 경기 양주</div>
-  <div class="hero-headline">
-    <h1 class="display reveal" data-d="1">
-      <span>서버의 <em>어려운</em></span>
-      <span class="line-2">부분을 설계합니다</span>
-    </h1>
-    <div class="hero-rotator reveal" data-d="2" id="rotator" aria-live="polite"></div>
+  <div class="hero-top">
+    <span class="hero-avail"><span class="pulse"></span>채용 중 · 협업 가능 · 경기 양주</span>
+    <span class="mono" style="color:var(--fg-faint);font-size:.78rem;">BACKEND ENGINEER — 2026</span>
   </div>
 
+  <h1>
+    <span class="l"><span>서버의 <em>어려운</em></span></span>
+    <span class="l"><span class="out">부분을</span> 설계</span>
+    <span class="l"><span>합니다</span></span>
+  </h1>
+
   <div class="hero-lower">
-    <div class="reveal" data-d="1">
-      <p class="hero-desc">인증과 <b>동시성 제어</b>, 실시간 알림, AI 연동처럼 눈에 잘 안 보이지만 무너지면 서비스 전체가 멈추는 지점을 Java와 Spring Boot로 다룹니다.</p>
+    <div>
+      <p class="hero-desc">인증과 <b>동시성 제어</b>, 실시간 알림, AI 연동. 눈에 잘 안 보이지만 무너지면 서비스 전체가 멈추는 지점을 Java와 Spring Boot로 다룹니다.</p>
       <div class="hero-cta">
-        <a href="#work" class="btn btn-primary">작업 보기 <span class="ic">↓</span></a>
-        <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" class="btn btn-ghost">이력서 <span class="ic">↗</span></a>
+        <a href="#work" class="btn btn-primary" data-cursor>작업 보기 <span class="ic">↓</span></a>
+        <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" class="btn btn-ghost" data-cursor>이력서 <span class="ic">↗</span></a>
       </div>
     </div>
-    <aside class="hero-side reveal" data-d="2">
-      <dl>
-        <div class="row"><dt>Focus</dt><dd>Java · Spring Boot</dd></div>
-        <div class="row"><dt>확장 중</dt><dd>Spring AI · RAG</dd></div>
-        <div class="row"><dt>학력</dt><dd>인덕대 · 4.33/4.5</dd></div>
-        <div class="row"><dt>상태</dt><dd class="avail">채용 중 · 협업 가능</dd></div>
-      </dl>
-    </aside>
+    <div class="hero-stats">
+      <div class="s"><div class="n">8<span class="u">+</span></div><div class="k">Projects</div></div>
+      <div class="s"><div class="n">3<span class="u">×</span></div><div class="k">수상</div></div>
+      <div class="s"><div class="n">4.33</div><div class="k">GPA / 4.5</div></div>
+    </div>
   </div>
 </header>
 
-<!-- ============ WORK / ARCHIVE ============ -->
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Spring Boot</span><span>동시성 제어</span><span>JWT · OAuth2</span><span>SSE 실시간 알림</span><span>QueryDSL</span><span>Spring AI · RAG</span><span>REST API</span><span>MariaDB</span>
+    <span>Spring Boot</span><span>동시성 제어</span><span>JWT · OAuth2</span><span>SSE 실시간 알림</span><span>QueryDSL</span><span>Spring AI · RAG</span><span>REST API</span><span>MariaDB</span>
+  </div>
+</div>
+
+<!-- ============ WORK ============ -->
 <section id="work" class="wrap">
   <div class="sec-head reveal">
-    <span class="idx">01 / work</span>
+    <span class="num">01</span>
     <div>
       <h2>Selected Work</h2>
-      <p class="sub">기능 목록이 아니라, 어떤 문제를 어떻게 풀었는지로 정리한 프로젝트 아카이브입니다. 행을 누르면 케이스 스터디로 이어집니다.</p>
+      <p class="sub">기능 목록이 아니라, 어떤 문제를 어떻게 풀었는지로 정리한 프로젝트. 행을 누르면 케이스 스터디로 이어집니다.</p>
     </div>
   </div>
 
-  <div class="work-index reveal" data-d="1">
-    <a class="work-row" href="projects/petmilyday.html">
-      <span class="no">P.01</span>
-      <h3>펫밀리데이<span class="yr">2026</span></h3>
-      <span class="role">동물병원·예약 도메인 / 인증·SSE 알림·AI 공통 기능</span>
-      <span class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">동시성 제어</span><span class="tag">SSE</span></span>
-      <span class="arrow" aria-hidden="true">→</span>
+  <div class="work reveal" data-d="1">
+    <a class="work-item" href="projects/petmilyday.html" data-cursor>
+      <span class="no">(01)</span>
+      <span class="mid">
+        <h3>펫밀리데이</h3>
+        <span class="meta"><span class="yr">2026</span><span>동물병원·예약 도메인</span><span>인증 · SSE · AI</span></span>
+        <span class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">동시성 제어</span><span class="tag">SSE</span></span>
+      </span>
+      <span class="go" aria-hidden="true">↗</span>
+      <span class="preview"><span class="ph">preview</span><img src="assets/projects/petmilyday/01-main.png" alt="" loading="lazy" onerror="this.remove()" /></span>
     </a>
-    <a class="work-row" href="projects/lms.html">
-      <span class="no">P.02</span>
-      <h3>LMS 학습 관리 시스템<span class="yr">2025</span></h3>
-      <span class="role">관리자·교사 파트 / 강의·수강·과제·채점 API</span>
-      <span class="tags"><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">REST API</span></span>
-      <span class="arrow" aria-hidden="true">→</span>
+    <a class="work-item" href="projects/lms.html" data-cursor>
+      <span class="no">(02)</span>
+      <span class="mid">
+        <h3>LMS 학습 관리</h3>
+        <span class="meta"><span class="yr">2025</span><span>관리자·교사 파트</span><span>강의·수강·과제·채점</span></span>
+        <span class="tags"><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">REST API</span></span>
+      </span>
+      <span class="go" aria-hidden="true">↗</span>
+      <span class="preview"><span class="ph">preview</span><img src="assets/projects/lms-backend-springboot.png" alt="" loading="lazy" onerror="this.remove()" /></span>
     </a>
   </div>
 
-  <h3 class="other-head reveal">그 외 작업</h3>
-  <div class="mini-grid reveal" data-d="1">
-    <div class="mini">
-      <div class="mini-top"><h4>Spring Boot 게시판</h4><span class="date">2025.12–2026.03</span></div>
-      <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링 기반 게시판 애플리케이션.</p>
-      <div class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">Thymeleaf</span></div>
-    </div>
-    <div class="mini">
-      <div class="mini-top"><h4>Laravel 판매관리</h4><span class="date">2025.09–2025.11</span></div>
-      <p>상품·재고·입출고 관리와 매출 분석·차트 시각화를 갖춘 판매관리 시스템. <em>경진대회 최우수상.</em></p>
+  <div class="other-title reveal">그 외 작업 / experiments</div>
+  <div class="bento reveal" data-d="1">
+    <div class="cell w3">
+      <div class="top"><h4>Laravel 판매관리 시스템</h4><span class="date">2025.09–11</span></div>
+      <p>상품·재고·입출고 관리와 매출 분석·차트 시각화. <em>경진대회 최우수상.</em></p>
       <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MariaDB</span></div>
     </div>
-    <div class="mini">
-      <div class="mini-top"><h4>Laravel 중고마켓</h4><span class="date">2025.10–2025.12</span></div>
-      <p>상품 등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지를 갖춘 중고거래 플랫폼.</p>
-      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">JavaScript</span></div>
-    </div>
-    <div class="mini">
-      <div class="mini-top"><h4>PHP 의류 쇼핑몰</h4><span class="date">2025.03–2025.06</span></div>
-      <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리를 구현한 쇼핑몰. <em>경진대회 최우수상.</em></p>
+    <div class="cell w3">
+      <div class="top"><h4>PHP 의류 쇼핑몰</h4><span class="date">2025.03–06</span></div>
+      <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리. <em>경진대회 최우수상.</em></p>
       <div class="tags"><span class="tag">PHP</span><span class="tag">MariaDB</span></div>
     </div>
-    <div class="mini">
-      <div class="mini-top"><h4>지하철 혼잡도 예측</h4><span class="date">2026.05–2026.06</span></div>
-      <p>K-Means·다중회귀·KNN으로 지하철 혼잡도 패턴을 분석하고 예측한 데이터 프로젝트.</p>
-      <div class="tags"><span class="tag">RStudio</span><span class="tag">Python</span><span class="tag">MySQL</span></div>
+    <div class="cell w2">
+      <div class="top"><h4>Spring Boot 게시판</h4><span class="date">2025.12–2026.03</span></div>
+      <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링.</p>
+      <div class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span></div>
     </div>
-    <div class="mini">
-      <div class="mini-top"><h4>RAG 문서 QA 실습</h4><span class="date">2026.04–2026.05</span></div>
-      <p>PDF 로딩·임베딩·VectorStore·검색 기반 응답 생성까지 RAG 파이프라인 구조 실습.</p>
-      <div class="tags"><span class="tag">Spring AI</span><span class="tag">OpenAI API</span></div>
+    <div class="cell w2">
+      <div class="top"><h4>Laravel 중고마켓</h4><span class="date">2025.10–12</span></div>
+      <p>등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지.</p>
+      <div class="tags"><span class="tag">Laravel</span><span class="tag">JS</span></div>
+    </div>
+    <div class="cell w2">
+      <div class="top"><h4>지하철 혼잡도 예측</h4><span class="date">2026.05–06</span></div>
+      <p>K-Means·다중회귀·KNN 기반 패턴 분석·예측.</p>
+      <div class="tags"><span class="tag">RStudio</span><span class="tag">Python</span></div>
+    </div>
+    <div class="cell w6">
+      <div class="top"><h4>Spring AI · RAG 문서 질의응답 실습</h4><span class="date">2026.04–05</span></div>
+      <p>PDF 로딩 → 임베딩 → VectorStore → 검색 기반 응답 생성까지 RAG 파이프라인 구조를 직접 구성하며 <em>AI 서비스 개발</em>로 역량을 확장 중.</p>
+      <div class="tags"><span class="tag">Spring AI</span><span class="tag">OpenAI API</span><span class="tag">RAG</span></div>
     </div>
   </div>
 </section>
 
-<!-- ============ APPROACH / METHOD ============ -->
-<section id="approach" class="band">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="idx">02 / approach</span>
-      <div>
-        <h2>일하는 방식</h2>
-        <p class="sub">기능을 바로 짜기 전에, 어디서 무너질지를 먼저 찾습니다. 아래는 프로젝트를 진행할 때 실제로 거치는 순서입니다.</p>
-      </div>
+<!-- ============ APPROACH ============ -->
+<section id="approach" class="wrap">
+  <div class="sec-head reveal">
+    <span class="num">02</span>
+    <div>
+      <h2>Approach</h2>
+      <p class="sub">기능을 바로 짜기 전에, 어디서 무너질지를 먼저 찾습니다. 프로젝트를 진행할 때 실제로 거치는 순서.</p>
     </div>
-    <div class="approach-grid reveal" data-d="1">
-      <div class="step">
-        <span class="n">01 — Understand</span>
-        <h3>어디서 무너질지 먼저 본다</h3>
-        <p>동일 슬롯 중복 예약처럼 "동시에 요청이 몰리면?"을 요구사항 단계에서 미리 짚습니다.</p>
-      </div>
-      <div class="step">
-        <span class="n">02 — Design</span>
-        <h3>데이터와 계층을 설계한다</h3>
-        <p>회원·병원·예약·리뷰의 연관관계를 JPA로 모델링하고 Controller-Service-Repository로 관심사를 나눕니다.</p>
-      </div>
-      <div class="step">
-        <span class="n">03 — Build</span>
-        <h3>정합성을 코드로 보장한다</h3>
-        <p>비관적 락, HttpOnly 쿠키 기반 JWT, 동시성 안전한 컬렉션처럼 안전장치를 기능과 함께 구현합니다.</p>
-      </div>
-      <div class="step">
-        <span class="n">04 — Verify</span>
-        <h3>경계값과 권한을 검증한다</h3>
-        <p>과거 날짜 예약 차단, 병원 소유권 검증 등 예외 흐름을 확인하고 버그를 정리합니다.</p>
-      </div>
+  </div>
+  <div class="approach reveal" data-d="1">
+    <div class="step" data-n="01">
+      <span class="st-k">UNDERSTAND</span>
+      <h3>어디서 무너질지 먼저 본다</h3>
+      <p>동일 슬롯 중복 예약처럼 "동시에 요청이 몰리면?"을 요구사항 단계에서 미리 짚습니다.</p>
+    </div>
+    <div class="step" data-n="02">
+      <span class="st-k">DESIGN</span>
+      <h3>데이터와 계층을 설계한다</h3>
+      <p>회원·병원·예약·리뷰의 연관관계를 JPA로 모델링하고 Controller-Service-Repository로 관심사를 나눕니다.</p>
+    </div>
+    <div class="step" data-n="03">
+      <span class="st-k">BUILD</span>
+      <h3>정합성을 코드로 보장한다</h3>
+      <p>비관적 락, HttpOnly 쿠키 기반 JWT, 동시성 안전한 컬렉션처럼 안전장치를 기능과 함께 구현합니다.</p>
+    </div>
+    <div class="step" data-n="04">
+      <span class="st-k">VERIFY</span>
+      <h3>경계값과 권한을 검증한다</h3>
+      <p>과거 날짜 예약 차단, 병원 소유권 검증 등 예외 흐름을 확인하고 버그를 정리합니다.</p>
     </div>
   </div>
 </section>
@@ -167,95 +178,84 @@
 <!-- ============ TOOLKIT ============ -->
 <section id="toolkit" class="wrap">
   <div class="sec-head reveal">
-    <span class="idx">03 / toolkit</span>
+    <span class="num">03</span>
     <div>
-      <h2>도구와 쓰임새</h2>
-      <p class="sub">아이콘 나열 대신, 각 기술을 실제로 어떤 문제를 푸는 데 썼는지로 적었습니다.</p>
+      <h2>Toolkit</h2>
+      <p class="sub">아이콘 나열 대신, 각 기술을 실제로 어떤 문제를 푸는 데 썼는지로.</p>
     </div>
   </div>
   <div class="toolkit reveal" data-d="1">
-    <div class="tool-row"><div class="name"><span class="k">Language / Framework</span>Java · Spring Boot</div><div class="use">REST API와 서버 구조 설계. 계층형 아키텍처로 <b>관심사를 분리</b>하고 모놀리식 서비스의 뼈대를 잡는다.</div></div>
-    <div class="tool-row"><div class="name"><span class="k">Persistence</span>Spring Data JPA · QueryDSL</div><div class="use"><b>관계형 데이터 모델링</b>과 동적 쿼리. null 조건이 자동 무시되는 검색과 연관관계 매핑을 다룬다.</div></div>
-    <div class="tool-row"><div class="name"><span class="k">Auth</span>Spring Security · JWT · OAuth2</div><div class="use"><b>Stateless 인증</b>과 역할별 접근제어. 소셜 로그인 성공 시 JWT를 HttpOnly 쿠키로 발급한다.</div></div>
-    <div class="tool-row"><div class="name"><span class="k">Concurrency / Realtime</span>비관적 락 · SSE · WebSocket</div><div class="use">동일 슬롯 <b>중복 예약을 막는 동시성 제어</b>와 사용자별 다중 연결 실시간 알림.</div></div>
-    <div class="tool-row"><div class="name"><span class="k">Database</span>MariaDB · MySQL · H2</div><div class="use">운영·테스트 환경에 맞춘 <b>관계형 데이터 저장</b>과 HikariCP 커넥션 풀 운용.</div></div>
-    <div class="tool-row"><div class="name"><span class="k">AI</span>Spring AI · LLM · RAG</div><div class="use">Anthropic Claude 기반 <b>맞춤 추천·자가진단</b> 연동. 최근 임베딩·VectorStore 구조로 확장 중.</div></div>
+    <div class="tool"><div class="nm"><span class="k">Language / Framework</span>Java · Spring Boot</div><div class="use">REST API와 서버 구조 설계. 계층형 아키텍처로 <b>관심사를 분리</b>하고 모놀리식 서비스의 뼈대를 잡는다.</div></div>
+    <div class="tool"><div class="nm"><span class="k">Persistence</span>JPA · QueryDSL</div><div class="use"><b>관계형 데이터 모델링</b>과 동적 쿼리. null 조건이 자동 무시되는 검색과 연관관계 매핑을 다룬다.</div></div>
+    <div class="tool"><div class="nm"><span class="k">Auth</span>Spring Security · JWT · OAuth2</div><div class="use"><b>Stateless 인증</b>과 역할별 접근제어. 소셜 로그인 성공 시 JWT를 HttpOnly 쿠키로 발급한다.</div></div>
+    <div class="tool"><div class="nm"><span class="k">Concurrency / Realtime</span>비관적 락 · SSE · WebSocket</div><div class="use">동일 슬롯 <b>중복 예약을 막는 동시성 제어</b>와 사용자별 다중 연결 실시간 알림.</div></div>
+    <div class="tool"><div class="nm"><span class="k">Database</span>MariaDB · MySQL · H2</div><div class="use">운영·테스트 환경에 맞춘 <b>관계형 데이터 저장</b>과 HikariCP 커넥션 풀 운용.</div></div>
+    <div class="tool"><div class="nm"><span class="k">AI</span>Spring AI · LLM · RAG</div><div class="use">Anthropic Claude 기반 <b>맞춤 추천·자가진단</b> 연동. 최근 임베딩·VectorStore 구조로 확장 중.</div></div>
   </div>
 </section>
 
-<!-- ============ PROFILE / IDENTITY ============ -->
-<section id="profile" class="band">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="idx">04 / profile</span>
-      <div>
-        <h2>이수환에 대해</h2>
-        <p class="sub">긴 자기소개 대신, 지금 어디에 집중하고 어떻게 일하는지를 짧게 적었습니다.</p>
+<!-- ============ PROFILE ============ -->
+<section id="profile" class="wrap">
+  <div class="sec-head reveal">
+    <span class="num">04</span>
+    <div>
+      <h2>Profile</h2>
+      <p class="sub">긴 자기소개 대신, 지금 어디에 집중하고 어떻게 일하는지.</p>
+    </div>
+  </div>
+
+  <div class="profile-grid">
+    <div class="reveal">
+      <p class="profile-lead">눈에 잘 안 보이는 <em>인증·동시성·정합성</em>이 결국 서비스의 신뢰를 만든다고 믿는 백엔드 개발자입니다.</p>
+      <div class="profile-body">
+        <p>Java와 Spring Boot 기반으로 REST API 설계, JPA, MariaDB를 활용한 웹 서비스를 만들어 왔습니다. Controller-Service-Repository 계층을 나누어 기능을 구현하고, 인증·인가와 데이터 흐름을 설계하는 데 관심이 많습니다.</p>
+        <p>최근에는 Spring AI, OpenAI API, RAG 구조를 학습하며 AI 서비스 개발로 역량을 넓히고 있습니다. 코드 리뷰와 문서화로 지식을 나누는 문화를 지향합니다.</p>
       </div>
     </div>
-
-    <div class="profile-grid">
-      <div class="reveal">
-        <p class="profile-lead">눈에 잘 안 보이는 <em>인증·동시성·정합성</em>이 결국 서비스의 신뢰를 만든다고 믿는 백엔드 개발자입니다.</p>
-        <div class="profile-body">
-          <p>Java와 Spring Boot 기반으로 REST API 설계, JPA, MariaDB를 활용한 웹 서비스를 만들어 왔습니다. Controller-Service-Repository 계층을 나누어 기능을 구현하고, 인증·인가와 데이터 흐름을 설계하는 데 관심이 많습니다.</p>
-          <p>최근에는 Spring AI, OpenAI API, RAG 구조를 학습하며 AI 서비스 개발로 역량을 넓히고 있습니다. 코드 리뷰와 문서화로 지식을 나누는 문화를 지향합니다.</p>
-        </div>
-      </div>
-      <div class="profile-card reveal" data-d="1">
-        <div class="ph">at a glance</div>
-        <div class="prow"><span>직무</span><span>Backend Engineer</span></div>
-        <div class="prow"><span>경력</span><span>신입</span></div>
-        <div class="prow"><span>위치</span><span>경기 양주</span></div>
-        <div class="prow"><span>학력</span><span>인덕대 컴퓨터소프트웨어 (4.33/4.5)</span></div>
-        <div class="prow"><span>주력</span><span>Java · Spring Boot</span></div>
-      </div>
+    <div class="side-card reveal" data-d="1">
+      <div class="h">at a glance</div>
+      <div class="r"><span>직무</span><span>Backend Engineer</span></div>
+      <div class="r"><span>경력</span><span>신입</span></div>
+      <div class="r"><span>위치</span><span>경기 양주</span></div>
+      <div class="r"><span>학력</span><span>인덕대 · 4.33/4.5</span></div>
+      <div class="r"><span>주력</span><span>Java · Spring Boot</span></div>
     </div>
+  </div>
 
-    <div class="timeline reveal" data-d="1" style="margin-top:64px;">
-      <div class="tl-item">
-        <div class="tl-date">2025.11 — 2026.08</div>
-        <div>
-          <h3>대우능력개발원</h3>
-          <div class="tl-role">Java / Spring Boot 백엔드 웹 개발 과정</div>
-          <p>백엔드 개발 과정을 이수하며 실무형 팀 프로젝트 경험을 쌓았습니다.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">2025.01 — 2025.12</div>
-        <div>
-          <h3>인덕대 타닥타닥 동아리</h3>
-          <div class="tl-role">팀 프로젝트 활동</div>
-          <p>Spring Boot와 React를 활용한 LMS 팀 프로젝트를 진행했습니다.</p>
-        </div>
-      </div>
-      <div class="tl-item">
-        <div class="tl-date">졸업예정</div>
-        <div>
-          <h3>인덕대학교</h3>
-          <div class="tl-role">컴퓨터소프트웨어학과 (2·3년제)</div>
-          <p>학점 4.33/4.5로 졸업 예정입니다.</p>
-        </div>
-      </div>
+  <div class="timeline reveal" data-d="1">
+    <div class="tl">
+      <div class="d">2025.11 — 2026.08</div>
+      <div><h3>대우능력개발원</h3><div class="role">Java / Spring Boot 백엔드 웹 개발 과정</div><p>백엔드 개발 과정을 이수하며 실무형 팀 프로젝트 경험을 쌓았습니다.</p></div>
+      <span class="tag">교육</span>
     </div>
+    <div class="tl">
+      <div class="d">2025.01 — 2025.12</div>
+      <div><h3>인덕대 타닥타닥 동아리</h3><div class="role">팀 프로젝트 활동</div><p>Spring Boot와 React를 활용한 LMS 팀 프로젝트를 진행했습니다.</p></div>
+      <span class="tag">동아리</span>
+    </div>
+    <div class="tl">
+      <div class="d">졸업예정</div>
+      <div><h3>인덕대학교</h3><div class="role">컴퓨터소프트웨어학과 (2·3년제)</div><p>학점 4.33/4.5로 졸업 예정입니다.</p></div>
+      <span class="tag">학력</span>
+    </div>
+  </div>
 
-    <div class="cred-split reveal" data-d="1">
-      <div>
-        <h4>자격증</h4>
-        <ul>
-          <li><span>정보처리산업기사</span><span class="date">2026.06</span></li>
-          <li><span>네트워크관리사 2급</span><span class="date">2024.12</span></li>
-        </ul>
-      </div>
-      <div>
-        <h4>수상</h4>
-        <ul>
-          <li><span>Laravel 웹 솔루션 경진대회 최우수상</span></li>
-          <li><span>PHP 쇼핑몰 경진대회 최우수상</span></li>
-          <li><span>React 웹 프론트엔드 우수상</span></li>
-          <li><span>성적장학금 최우수</span></li>
-        </ul>
-      </div>
+  <div class="cred reveal" data-d="1">
+    <div>
+      <h4>자격증</h4>
+      <ul>
+        <li><span>정보처리산업기사</span><span class="date">2026.06</span></li>
+        <li><span>네트워크관리사 2급</span><span class="date">2024.12</span></li>
+      </ul>
+    </div>
+    <div>
+      <h4>수상</h4>
+      <ul>
+        <li><span>Laravel 웹 솔루션 경진대회 최우수상</span></li>
+        <li><span>PHP 쇼핑몰 경진대회 최우수상</span></li>
+        <li><span>React 웹 프론트엔드 우수상</span></li>
+        <li><span>성적장학금 최우수</span></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -263,30 +263,21 @@
 <!-- ============ CONNECT ============ -->
 <section id="connect" class="wrap connect">
   <div class="sec-head reveal">
-    <span class="idx">05 / connect</span>
-    <div><h2>같이 만들 사람을 찾습니다</h2></div>
+    <span class="num">05</span>
+    <div><h2>Connect</h2></div>
   </div>
 
-  <h3 class="connect-lead reveal" data-d="1">서버가 조용히<br>제 일을 하게 <em>만듭니다.</em></h3>
+  <h3 class="connect-huge reveal" data-d="1">같이 만들<br><span class="out">사람을</span> <em>찾습니다</em></h3>
 
   <div class="connect-grid reveal" data-d="1">
-    <div class="connect-cell">
-      <div class="h">What I build</div>
-      <p>인증·예약·알림처럼 정합성이 중요한 도메인의 백엔드 API와 서버 구조.</p>
-    </div>
-    <div class="connect-cell">
-      <div class="h">How I work</div>
-      <p>무너질 지점을 먼저 찾고, 계층을 나누고, 안전장치를 기능과 함께 구현합니다.</p>
-    </div>
-    <div class="connect-cell">
-      <div class="h">Interested in</div>
-      <p>Spring AI·RAG 기반 AI 서비스, 동시성/실시간 처리, 코드 리뷰 문화.</p>
-    </div>
+    <div class="connect-cell"><div class="h">What I build</div><p>인증·예약·알림처럼 정합성이 중요한 도메인의 백엔드 API와 서버 구조.</p></div>
+    <div class="connect-cell"><div class="h">How I work</div><p>무너질 지점을 먼저 찾고, 계층을 나누고, 안전장치를 기능과 함께 구현합니다.</p></div>
+    <div class="connect-cell"><div class="h">Interested in</div><p>Spring AI·RAG 기반 AI 서비스, 동시성/실시간 처리, 코드 리뷰 문화.</p></div>
   </div>
 
   <div class="connect-cta reveal" data-d="2">
-    <a href="mailto:leeco6578@naver.com" class="btn btn-primary">이메일 보내기 <span class="ic">↗</span></a>
-    <a href="https://github.com/Leeuswa" target="_blank" rel="noopener" class="tlink">GitHub / Leeuswa →</a>
+    <a href="mailto:leeco6578@naver.com" class="btn btn-primary" data-cursor>이메일 보내기 <span class="ic">↗</span></a>
+    <a href="https://github.com/Leeuswa" target="_blank" rel="noopener" class="tlink" data-cursor>GitHub / Leeuswa →</a>
   </div>
 </section>
 
@@ -303,56 +294,36 @@
 </footer>
 
 <script>
-  // ---- 히어로 로테이터 ----
-  const roles = ["동시성 제어", "JWT · OAuth2 인증", "SSE 실시간 알림", "Spring AI · RAG"];
-  const el = document.getElementById('rotator');
-  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (el) {
-    if (reduce) { el.textContent = '지금 다루는 것 — ' + roles[0]; }
-    else {
-      let ri = 0, ci = 0, del = false;
-      const cur = '<span class="cur"></span>';
-      const pre = '지금 다루는 것 — ';
-      (function tick(){
-        const w = roles[ri];
-        if (!del) { ci++; if (ci > w.length) { del = true; setTimeout(tick, 1500); return; } }
-        else { ci--; if (ci === 0) { del = false; ri = (ri + 1) % roles.length; } }
-        el.innerHTML = pre + w.slice(0, ci) + cur;
-        setTimeout(tick, del ? 40 : 85);
-      })();
-    }
-  }
+  // ---- custom cursor (magnetic-ish) ----
+  const cur = document.getElementById('cursor');
+  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if (cur && fine) {
+    let x=innerWidth/2, y=innerHeight/2, tx=x, ty=y;
+    addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
+    (function loop(){ x+=(tx-x)*.2; y+=(ty-y)*.2; cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`; requestAnimationFrame(loop); })();
+    document.querySelectorAll('[data-cursor]').forEach(el=>{
+      el.addEventListener('mouseenter',()=>cur.classList.add('big'));
+      el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
+    });
+  } else if (cur) { cur.remove(); }
 
   // ---- reveal ----
-  const io = new IntersectionObserver((es) => {
-    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.14 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // ---- 모바일 메뉴 ----
-  const tg = document.getElementById('navToggle');
-  const lk = document.getElementById('navLinks');
-  tg?.addEventListener('click', () => {
-    const open = lk.classList.toggle('open');
-    tg.textContent = open ? 'close' : 'menu';
-  });
-  lk?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-    lk.classList.remove('open'); tg.textContent = 'menu';
-  }));
+  // ---- mobile menu ----
+  const tg=document.getElementById('navToggle'), pill=document.getElementById('navPill');
+  tg?.addEventListener('click',()=>{const o=pill.classList.toggle('open');tg.textContent=o?'close':'menu';});
+  document.querySelectorAll('.nav-links a, .nav-cta').forEach(a=>a.addEventListener('click',()=>{pill.classList.remove('open');if(tg)tg.textContent='menu';}));
 
-  // ---- 스크롤 진행바 + 활성 링크 ----
-  const bar = document.getElementById('scrollProgress');
-  const navItems = [...document.querySelectorAll('.nav-links a')];
-  const secs = navItems.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  function onScroll() {
-    const sc = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    if (bar) bar.style.width = (sc > 0 ? (scrollY / sc) * 100 : 0) + '%';
-    let cur = secs[0];
-    for (const s of secs) { if (s.getBoundingClientRect().top <= 120) cur = s; }
-    navItems.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur?.id));
-  }
-  addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  // ---- active nav link ----
+  const items=[...document.querySelectorAll('.nav-links a')];
+  const secs=items.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  addEventListener('scroll',()=>{
+    let cr=secs[0];
+    for(const s of secs){ if(s.getBoundingClientRect().top<=140) cr=s; }
+    items.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+cr?.id));
+  },{passive:true});
 </script>
 </body>
 </html>
