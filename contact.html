@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Reach Out — 이수환</title>
+<meta name="description" content="봇, API, 대시보드, 자동화, AI 연동 — 만들고 싶은 걸 알려주세요. 백엔드 개발자 이수환에게 연락하세요." />
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+<style>
+  /* ---- contact page: palette shift (amber) + page-specific layout ---- */
+  :root{
+    --acc:     #F5C542;   /* warm amber — this page's single accent */
+    --acc-ink: #0C0C0D;
+    --acc-soft: rgba(245,197,66,.12);
+  }
+
+  .c-hero{ min-height:auto; padding:150px 0 40px; }
+  .c-eyebrow{ display:flex; gap:14px; flex-wrap:wrap; font-family:var(--mono); font-size:.74rem; letter-spacing:.2em; text-transform:uppercase; color:var(--fg-faint); margin-bottom:34px; }
+  .c-eyebrow b{ color:var(--acc); font-weight:500; }
+  .c-hero h1{ font-size:clamp(3.4rem,15vw,13rem); line-height:0.82; letter-spacing:-0.05em; }
+  .c-hero h1 em{ font-style:normal; color:var(--acc); }
+  .c-ping{ font-family:var(--mono); font-size:clamp(.9rem,2vw,1.15rem); color:var(--fg-dim); letter-spacing:.06em; margin-top:24px; }
+  .c-ping b{ color:var(--acc); font-weight:500; }
+
+  /* main split: left copy+cards / right meta+form */
+  .c-grid{ display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:start; margin-top:20px; }
+  .c-lead h2{ font-size:clamp(1.8rem,3.6vw,2.8rem); letter-spacing:-0.03em; line-height:1.1; }
+  .c-lead p{ color:var(--fg-dim); font-size:1.05rem; margin-top:20px; max-width:48ch; line-height:1.55; }
+
+  .c-cards{ display:flex; flex-direction:column; gap:12px; margin-top:40px; }
+  .c-card{ background:var(--bg-2); border:1px solid var(--line); border-radius:18px; padding:26px 28px; display:grid; grid-template-columns:auto 1fr; gap:22px; align-items:start; transition:transform .5s var(--ease), border-color .4s var(--ease), background .4s var(--ease); }
+  .c-card:hover{ transform:translateY(-4px); border-color:var(--acc); background:var(--bg-3); }
+  .c-card .ix{ font-family:var(--mono); font-size:.8rem; color:var(--acc); padding-top:4px; }
+  .c-card h3{ font-size:1.3rem; letter-spacing:-0.02em; }
+  .c-card p{ color:var(--fg-dim); font-size:.95rem; margin-top:8px; }
+
+  /* right column */
+  .c-meta{ background:var(--bg-2); border:1px solid var(--line); border-radius:20px; overflow:hidden; margin-bottom:16px; }
+  .c-meta .row{ display:flex; justify-content:space-between; gap:16px; padding:18px 24px; border-bottom:1px solid var(--line); }
+  .c-meta .row:last-child{ border-bottom:0; }
+  .c-meta .k{ font-family:var(--mono); font-size:.7rem; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-faint); }
+  .c-meta .v{ font-weight:500; text-align:right; font-size:.95rem; }
+  .c-meta .v.acc{ color:var(--acc); }
+
+  .c-form{ background:var(--bg-2); border:1px solid var(--line); border-radius:20px; padding:30px 28px; }
+  .c-form .h{ font-family:var(--mono); font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--acc); margin-bottom:22px; }
+  .field{ display:flex; flex-direction:column; gap:8px; margin-bottom:18px; }
+  .field label{ font-family:var(--mono); font-size:.74rem; letter-spacing:.06em; color:var(--fg-dim); }
+  .field input, .field textarea{
+    background:var(--bg); border:1px solid var(--line-2); border-radius:12px;
+    padding:13px 16px; color:var(--fg); font-family:var(--sans); font-size:.98rem; width:100%;
+    transition:border-color .3s var(--ease), background .3s var(--ease);
+  }
+  .field input::placeholder, .field textarea::placeholder{ color:var(--fg-faint); }
+  .field input:focus, .field textarea:focus{ outline:none; border-color:var(--acc); background:var(--bg-3); }
+  .field textarea{ resize:vertical; min-height:130px; }
+  .field .err{ font-family:var(--mono); font-size:.72rem; color:#F0837A; display:none; }
+  .field.invalid input, .field.invalid textarea{ border-color:#F0837A; }
+  .field.invalid .err{ display:block; }
+  .c-submit{ width:100%; justify-content:center; margin-top:6px; }
+  .c-note{ font-family:var(--mono); font-size:.72rem; color:var(--fg-faint); margin-top:14px; text-align:center; }
+  .c-note.ok{ color:var(--acc); }
+
+  /* workflow marquee */
+  .wf{ margin-top:20px; }
+  .wf-title{ font-family:var(--mono); font-size:.8rem; letter-spacing:.16em; text-transform:uppercase; color:var(--fg-faint); margin-bottom:22px; }
+  .wf-marquee{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); overflow:hidden; padding:26px 0; }
+  .wf-track{ display:flex; width:max-content; white-space:nowrap; animation:scroll 26s linear infinite; }
+  .wf-marquee:hover .wf-track{ animation-play-state:paused; }
+  .wf-track .step{ display:inline-flex; align-items:center; gap:22px; padding:0 26px; font-size:1.8rem; font-weight:500; letter-spacing:-0.02em; color:var(--fg); }
+  .wf-track .step .n{ font-family:var(--mono); font-size:.8rem; color:var(--acc); }
+  .wf-track .step::after{ content:"→"; color:var(--fg-faint); margin-left:4px; }
+  @media (prefers-reduced-motion: reduce){ .wf-track{ animation:none; } }
+
+  /* hit me up */
+  .hmu{ padding:clamp(70px,10vh,120px) 0; }
+  .hmu h2{ font-size:clamp(2.4rem,8vw,6rem); letter-spacing:-0.045em; line-height:0.9; }
+  .hmu h2 em{ font-style:normal; color:var(--acc); }
+  .hmu-links{ display:flex; gap:12px; flex-wrap:wrap; margin-top:40px; }
+  .hmu-link{ font-family:var(--mono); font-size:.9rem; padding:14px 22px; border:1px solid var(--line-2); border-radius:999px; display:inline-flex; align-items:center; gap:10px; transition:transform .4s var(--ease), border-color .4s var(--ease), color .4s var(--ease); }
+  .hmu-link:hover{ transform:translateY(-3px); border-color:var(--acc); color:var(--acc); }
+
+  @media (max-width:960px){
+    .c-grid{ grid-template-columns:1fr; gap:36px; }
+  }
+  @media (max-width:720px){
+    .c-card{ grid-template-columns:1fr; gap:10px; }
+    .wf-track .step{ font-size:1.4rem; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#reach">본문으로 건너뛰기</a>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-pill" id="navPill">
+    <a href="index.html#top" class="brand"><span class="blob"></span>이수환</a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#work">work</a>
+      <a href="index.html#approach">approach</a>
+      <a href="index.html#toolkit">toolkit</a>
+      <a href="index.html#profile">profile</a>
+    </div>
+    <a href="contact.html" class="nav-cta">연락하기</a>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="wrap c-hero" id="reach">
+  <div class="c-eyebrow reveal"><span>Contact</span><b>·</b><span>Workflow</span><b>·</b><span>Identity</span></div>
+  <h1 class="reveal" data-d="1">Reach <em>Out</em></h1>
+  <div class="c-ping reveal" data-d="2">Ping <b>·</b> Build <b>·</b> Ship</div>
+</header>
+
+<!-- ============ MAIN ============ -->
+<section class="wrap" style="padding-top:40px;">
+  <div class="c-grid">
+    <!-- left: copy + cards -->
+    <div>
+      <div class="c-lead reveal">
+        <h2>만들고 싶은 걸 알려주세요.</h2>
+        <p>API, 대시보드, 인증·예약 시스템, 자동화 흐름, 또는 AI 연동 기능이 필요하다면 브리프를 보내주세요. 대화는 직접적이고, 기술적이며, 실제로 동작하는 결과물을 만드는 데 집중합니다.</p>
+      </div>
+      <div class="c-cards reveal" data-d="1">
+        <div class="c-card">
+          <span class="ix">01</span>
+          <div><h3>백엔드 빌드</h3><p>REST API, 데이터베이스, 인증, 그리고 운영 가능한 서버 로직.</p></div>
+        </div>
+        <div class="c-card">
+          <span class="ix">02</span>
+          <div><h3>동시성 · 실시간</h3><p>중복 예약을 막는 동시성 제어와 SSE·WebSocket 기반 실시간 처리.</p></div>
+        </div>
+        <div class="c-card">
+          <span class="ix">03</span>
+          <div><h3>AI 연동</h3><p>Spring AI·RAG로 실제 제품에 녹여 넣는 실용적인 AI 기능.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: meta + form -->
+    <div>
+      <div class="c-meta reveal">
+        <div class="row"><span class="k">Response</span><span class="v">보통 24–48시간 내</span></div>
+        <div class="row"><span class="k">Best fit</span><span class="v">백엔드 · 스타트업 · 팀 프로젝트</span></div>
+        <div class="row"><span class="k">Location</span><span class="v acc">경기 양주</span></div>
+      </div>
+
+      <div class="c-form reveal" data-d="1">
+        <div class="h">Contact form</div>
+        <form id="contactForm" action="mailto:leeco6578@naver.com" method="post" enctype="text/plain" novalidate>
+          <div class="field" id="f-name">
+            <label for="name">이름 / Your Name</label>
+            <input type="text" id="name" name="name" placeholder="홍길동" required />
+            <span class="err">이름을 입력해 주세요.</span>
+          </div>
+          <div class="field" id="f-email">
+            <label for="email">이메일 / Email Address</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required />
+            <span class="err">올바른 이메일을 입력해 주세요.</span>
+          </div>
+          <div class="field" id="f-msg">
+            <label for="message">메시지 / Your Message</label>
+            <textarea id="message" name="message" placeholder="어떤 걸 만들고 싶으신가요?" required></textarea>
+            <span class="err">메시지를 입력해 주세요.</span>
+          </div>
+          <button type="submit" class="btn btn-primary c-submit" data-cursor>메시지 보내기 <span class="ic">↗</span></button>
+          <div class="c-note" id="formNote">메일 앱으로 열립니다 · 또는 leeco6578@naver.com</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKFLOW MARQUEE ============ -->
+<section class="wrap wf">
+  <div class="wf-title reveal">My Workflow</div>
+  <div class="wf-marquee reveal" data-d="1" aria-hidden="true">
+    <div class="wf-track">
+      <span class="step"><span class="n">01</span>Idea</span><span class="step"><span class="n">02</span>Plan</span><span class="step"><span class="n">03</span>Design</span><span class="step"><span class="n">04</span>Build</span><span class="step"><span class="n">05</span>Review</span><span class="step"><span class="n">06</span>Test</span><span class="step"><span class="n">07</span>Ship</span>
+      <span class="step"><span class="n">01</span>Idea</span><span class="step"><span class="n">02</span>Plan</span><span class="step"><span class="n">03</span>Design</span><span class="step"><span class="n">04</span>Build</span><span class="step"><span class="n">05</span>Review</span><span class="step"><span class="n">06</span>Test</span><span class="step"><span class="n">07</span>Ship</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HIT ME UP ============ -->
+<section class="wrap hmu">
+  <h2 class="reveal">Hit Me <em>Up</em></h2>
+  <div class="hmu-links reveal" data-d="1">
+    <a class="hmu-link" href="mailto:leeco6578@naver.com" data-cursor>Mail ↗</a>
+    <a class="hmu-link" href="https://github.com/Leeuswa" target="_blank" rel="noopener" data-cursor>GitHub ↗</a>
+    <a class="hmu-link" href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" data-cursor>이력서 ↗</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 이수환</span>
+    <div class="footer-links">
+      <a href="index.html#work">work</a>
+      <a href="index.html#profile">profile</a>
+      <a href="contact.html">contact</a>
+    </div>
+    <span>Built with care · GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  // cursor
+  const cur=document.getElementById('cursor');
+  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  if(cur&&fine){let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y;addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});(function loop(){x+=(tx-x)*.2;y+=(ty-y)*.2;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();document.querySelectorAll('[data-cursor]').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});}else if(cur){cur.remove();}
+
+  // reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // mobile menu
+  const tg=document.getElementById('navToggle'),pill=document.getElementById('navPill');
+  tg?.addEventListener('click',()=>{const o=pill.classList.toggle('open');tg.textContent=o?'close':'menu';});
+  document.querySelectorAll('.nav-links a, .nav-cta').forEach(a=>a.addEventListener('click',()=>{pill.classList.remove('open');if(tg)tg.textContent='menu';}));
+
+  // form validation
+  const form=document.getElementById('contactForm'), note=document.getElementById('formNote');
+  function setInvalid(id,bad){ document.getElementById(id).classList.toggle('invalid',bad); }
+  form?.addEventListener('submit',(e)=>{
+    const name=document.getElementById('name').value.trim();
+    const email=document.getElementById('email').value.trim();
+    const msg=document.getElementById('message').value.trim();
+    const emailOk=/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+    setInvalid('f-name',!name); setInvalid('f-email',!emailOk); setInvalid('f-msg',!msg);
+    if(!name||!emailOk||!msg){ e.preventDefault(); note.textContent='입력값을 확인해 주세요.'; note.classList.remove('ok'); return; }
+    note.textContent='메일 앱을 여는 중…'; note.classList.add('ok');
+  });
+</script>
+</body>
+</html>
