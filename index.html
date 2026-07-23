@@ -3,327 +3,395 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>이수환 — 백엔드 개발자</title>
-<meta name="description" content="인증, 동시성 제어, 실시간 알림, AI 연동까지. 서버의 어려운 부분을 직접 설계하는 백엔드 개발자 이수환의 작업 모음." />
-
-<meta property="og:type" content="website" />
-<meta property="og:title" content="이수환 — 백엔드 개발자" />
-<meta property="og:description" content="서버의 어려운 부분을 직접 설계하는 백엔드 개발자." />
-<meta property="og:image" content="/og-image.png" />
-<meta property="og:url" content="https://leeuswa.github.io/" />
-
-<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<title>이수환 포트폴리오 :: Leeuswa's Portfolio</title>
+<meta name="description" content="본질에 집중하는 백엔드 개발자 이수환의 포트폴리오입니다." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F7F6F3; --card:#FFFFFF; --ink:#1A1A18; --sub:#57544D; --muted:#8B877D;
+    --line:#E6E3DC; --line2:#D8D4CB; --accent:#2B59FF; --accent-soft:#EAEEFF;
+    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
+    --serif:'Gowun Batang',serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+
+  /* ============ LAYOUT: fixed sidebar + content ============ */
+  .layout{display:grid;grid-template-columns:280px 1fr;max-width:1240px;margin:0 auto;min-height:100vh}
+  .side{position:sticky;top:0;height:100vh;padding:48px 40px;border-right:1px solid var(--line);display:flex;flex-direction:column}
+  .content{padding:0 56px}
+  @media(max-width:900px){
+    .layout{grid-template-columns:1fr}
+    .side{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);padding:28px 24px}
+    .content{padding:0 24px}
+  }
+
+  /* sidebar */
+  .brand{font-family:var(--serif);font-weight:700;font-size:1.4rem;letter-spacing:-.01em;margin-bottom:6px}
+  .brand .en{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.08em;display:block;margin-top:4px}
+  .side-nav{margin-top:52px;display:flex;flex-direction:column;gap:2px}
+  .side-nav a{font-family:var(--mono);font-size:.82rem;letter-spacing:.02em;color:var(--muted);padding:9px 0;display:flex;align-items:center;gap:12px;transition:color .2s;border-left:2px solid transparent;padding-left:14px;margin-left:-16px}
+  .side-nav a .no{font-size:.7rem;opacity:.6}
+  .side-nav a:hover,.side-nav a.active{color:var(--ink)}
+  .side-nav a.active{border-left-color:var(--accent);color:var(--accent)}
+  .side-foot{margin-top:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.9}
+  .side-foot .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:7px;animation:pulse 2s infinite}
+  @keyframes pulse{50%{opacity:.35}}
+  .side-foot a{color:var(--sub);border-bottom:1px solid var(--line2)}
+  .side-foot a:hover{color:var(--accent)}
+  @media(max-width:900px){.side-nav{display:none}.side-foot{display:none}}
+
+  /* ============ HERO ============ */
+  .hero{padding:120px 0 90px;border-bottom:1px solid var(--line)}
+  .hero .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:30px}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(2.2rem,5.2vw,3.7rem);line-height:1.32;letter-spacing:-.02em}
+  .hero h1 .u{background:linear-gradient(transparent 62%,var(--accent-soft) 62%);padding:0 2px}
+  .hero .scroll-hint{margin-top:56px;font-family:var(--mono);font-size:.8rem;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
+  .hero .scroll-hint .arw{animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(5px)}}
+
+  /* ============ SECTION scaffold ============ */
+  section{padding:88px 0;border-bottom:1px solid var(--line)}
+  .sec-title{display:flex;align-items:baseline;gap:16px;margin-bottom:44px}
+  .sec-title .idx{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.06em}
+  .sec-title h2{font-family:var(--mono);font-size:1.02rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+  .sec-title .rule{flex:1;height:1px;background:var(--line);align-self:center;margin-left:8px}
+
+  /* ABOUT — facts grid */
+  .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .fact{background:var(--card);padding:22px 24px;display:flex;flex-direction:column;gap:5px}
+  .fact .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+  .fact .v{font-size:1.02rem;font-weight:500}
+  .fact .v.accent{color:var(--accent)}
+  .about-lead{font-family:var(--serif);font-size:1.28rem;line-height:1.7;color:var(--ink);margin-bottom:30px;max-width:680px}
+  .about-lead b{color:var(--accent)}
+  @media(max-width:560px){.facts{grid-template-columns:1fr}}
+
+  /* SKILLS — category rows */
+  .skill-block{display:grid;grid-template-columns:150px 1fr;gap:26px;padding:24px 0;border-top:1px solid var(--line)}
+  .skill-block:last-child{border-bottom:1px solid var(--line)}
+  .skill-block .cat{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.98rem}
+  .skill-block .cat .sq{width:10px;height:10px;background:var(--accent);border-radius:2px}
+  .skill-block .items{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+  .chip{font-family:var(--mono);font-size:.78rem;color:var(--sub);background:var(--card);border:1px solid var(--line2);border-radius:100px;padding:6px 14px;transition:.15s}
+  .chip:hover{border-color:var(--accent);color:var(--accent)}
+  @media(max-width:560px){.skill-block{grid-template-columns:1fr;gap:12px}}
+
+  /* PROJECTS — detailed cards */
+  .proj{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px 36px;margin-bottom:22px;transition:box-shadow .25s,transform .25s,border-color .25s}
+  .proj:hover{box-shadow:0 12px 40px -20px rgba(26,26,24,.28);border-color:var(--line2);transform:translateY(-2px)}
+  .proj-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:6px}
+  .proj-head h3{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
+  .proj-head .meta{font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:right;white-space:nowrap;padding-top:8px}
+  .proj .role{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 10px;margin-bottom:16px}
+  .proj .summary{font-family:var(--serif);font-size:1.12rem;color:var(--ink);margin-bottom:18px;line-height:1.55}
+  .proj ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .proj ul li{position:relative;padding-left:22px;color:var(--sub);font-size:.96rem;line-height:1.6}
+  .proj ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
+  .proj ul li code{font-family:var(--mono);font-size:.84em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--ink)}
+  .proj-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:7px}
+  .proj-tags span{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .proj-tags span::after{content:"·";margin-left:7px;color:var(--line2)}
+  .proj-tags span:last-child::after{content:""}
+  .proj-links{display:flex;gap:12px}
+  .proj-links a{font-family:var(--mono);font-size:.76rem;color:var(--sub);border:1px solid var(--line2);border-radius:6px;padding:6px 13px;transition:.15s;display:inline-flex;align-items:center;gap:6px}
+  .proj-links a:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .mini-title{font-family:var(--mono);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:38px 0 18px}
+  .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .mini{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;transition:border-color .2s,transform .2s}
+  .mini:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .mini .mh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
+  .mini .mh h4{font-size:1.02rem;font-weight:600}
+  .mini .mh .d{font-family:var(--mono);font-size:.68rem;color:var(--muted);white-space:nowrap}
+  .mini p{font-size:.9rem;color:var(--sub);margin-bottom:10px}
+  .mini .mt{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+  @media(max-width:640px){.mini-grid{grid-template-columns:1fr}.proj{padding:26px 22px}}
+
+  /* CAREER timeline */
+  .tl{border-left:2px solid var(--line);margin-left:6px;padding-left:0}
+  .tl-item{position:relative;padding:0 0 40px 34px}
+  .tl-item:last-child{padding-bottom:0}
+  .tl-item::before{content:"";position:absolute;left:-8px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+  .tl-item .date{font-family:var(--mono);font-size:.76rem;color:var(--accent);margin-bottom:4px}
+  .tl-item h3{font-size:1.2rem;font-weight:700;margin-bottom:2px}
+  .tl-item .org{font-size:.92rem;color:var(--muted);margin-bottom:10px}
+  .tl-item p{color:var(--sub);font-size:.96rem}
+
+  /* CREDENTIALS */
+  .cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start}
+  .cred{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 28px}
+  .cred.wide{grid-column:1 / -1}
+  .cred h3{font-family:var(--mono);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+  .cred h3 .cnt{font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:100px;padding:2px 9px;letter-spacing:.02em}
+  .cred ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  .cred li{display:flex;justify-content:space-between;gap:12px;font-size:.96rem;padding-bottom:11px;border-bottom:1px solid var(--line)}
+  .cred li:last-child{padding-bottom:0;border-bottom:0}
+  .cred li .nm{display:flex;align-items:center;gap:9px}
+  .cred li .rk{font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;padding:2px 8px;border-radius:5px;white-space:nowrap;flex-shrink:0}
+  .cred li .rk.gold{color:#8a5a00;background:#FBF0D5;border:1px solid #EAD9A6}
+  .cred li .rk.silver{color:#4a4f5c;background:#EEF0F4;border:1px solid #D9DEE7}
+  .cred li .rk.base{color:var(--sub);background:var(--bg);border:1px solid var(--line2)}
+  .cred li .dt{font-family:var(--mono);font-size:.78rem;color:var(--accent);white-space:nowrap;flex-shrink:0;align-self:center}
+  .awards-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+  @media(max-width:640px){.cred-grid{grid-template-columns:1fr}.awards-grid{grid-template-columns:1fr}}
+
+  /* CONTACT */
+  .contact{text-align:center;padding:110px 0}
+  .contact .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:24px}
+  .contact h2{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:-.02em;line-height:1.3;margin-bottom:36px}
+  .contact h2 .u{color:var(--accent)}
+  .contact .btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:.86rem;padding:14px 30px;border-radius:8px;transition:.18s;border:1px solid var(--ink)}
+  .btn-solid{background:var(--ink);color:#fff}
+  .btn-solid:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  footer{padding:34px 0 60px;font-family:var(--mono);font-size:.74rem;color:var(--muted);text-align:center}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.side-foot .dot,.hero .scroll-hint .arw{animation:none}}
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
 </head>
 <body>
-<a class="skip" href="#work">본문으로 건너뛰기</a>
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-
-<nav>
-  <div class="nav-pill" id="navPill">
-    <a href="#top" class="brand"><span class="blob"></span>이수환</a>
-    <div class="nav-links" id="navLinks">
-      <a href="#work">work</a>
-      <a href="#approach">approach</a>
-      <a href="#toolkit">toolkit</a>
-      <a href="#profile">profile</a>
-    </div>
-    <a href="contact.html" class="nav-cta">연락하기</a>
-    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
-  </div>
-</nav>
-
-<!-- ============ HERO ============ -->
-<header class="hero wrap" id="top">
-  <div class="hero-top">
-    <span class="hero-avail"><span class="pulse"></span>채용 중 · 협업 가능 · 경기 양주</span>
-    <span class="mono" style="color:var(--fg-faint);font-size:.78rem;">BACKEND ENGINEER — 2026</span>
-  </div>
-
-  <h1>
-    <span class="l"><span>서버의 <em>어려운</em></span></span>
-    <span class="l"><span class="out">부분을</span> 설계</span>
-    <span class="l"><span>합니다</span></span>
-  </h1>
-
-  <div class="hero-lower">
+<div class="layout">
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="side">
     <div>
-      <p class="hero-desc">인증과 <b>동시성 제어</b>, 실시간 알림, AI 연동. 눈에 잘 안 보이지만 무너지면 서비스 전체가 멈추는 지점을 Java와 Spring Boot로 다룹니다.</p>
-      <div class="hero-cta">
-        <a href="#work" class="btn btn-primary" data-cursor>작업 보기 <span class="ic">↓</span></a>
-        <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener" class="btn btn-ghost" data-cursor>이력서 <span class="ic">↗</span></a>
+      <div class="brand">이수환<span class="en">LEEUSWA — BACKEND</span></div>
+      <nav class="side-nav" id="sideNav">
+        <a href="#about"><span class="no">01</span> About</a>
+        <a href="#skills"><span class="no">02</span> Skills</a>
+        <a href="#projects"><span class="no">03</span> Projects</a>
+        <a href="#career"><span class="no">04</span> Career</a>
+        <a href="#credentials"><span class="no">05</span> Credentials</a>
+        <a href="#contact"><span class="no">06</span> Contact</a>
+      </nav>
+    </div>
+    <div class="side-foot">
+      <div><span class="dot"></span>채용 중 · 협업 가능</div>
+      <div style="margin-top:14px">
+        <a href="mailto:leeco6578@naver.com">leeco6578@naver.com</a><br>
+        <a href="https://github.com/Leeuswa" target="_blank" rel="noopener">github.com/Leeuswa</a>
       </div>
     </div>
-    <div class="hero-stats">
-      <div class="s"><div class="n">8<span class="u">+</span></div><div class="k">Projects</div></div>
-      <div class="s"><div class="n">3<span class="u">×</span></div><div class="k">수상</div></div>
-      <div class="s"><div class="n">4.33</div><div class="k">GPA / 4.5</div></div>
-    </div>
-  </div>
-</header>
+  </aside>
 
-<!-- ============ MARQUEE ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>Spring Boot</span><span>동시성 제어</span><span>JWT · OAuth2</span><span>SSE 실시간 알림</span><span>QueryDSL</span><span>Spring AI · RAG</span><span>REST API</span><span>MariaDB</span>
-    <span>Spring Boot</span><span>동시성 제어</span><span>JWT · OAuth2</span><span>SSE 실시간 알림</span><span>QueryDSL</span><span>Spring AI · RAG</span><span>REST API</span><span>MariaDB</span>
-  </div>
+  <!-- ============ CONTENT ============ -->
+  <main class="content">
+    <header class="hero" id="top">
+      <div class="eyebrow">Backend Engineer · Java / Spring Boot</div>
+      <h1 class="reveal">안녕하세요.<br><span class="u">안정적인 서버</span>와 <span class="u">API</span>를<br>고민하는 개발자 <b>이수환</b>입니다.</h1>
+      <div class="scroll-hint reveal">더 알아보기 <span class="arw">↓</span></div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="sec-title reveal"><span class="idx">01</span><h2>About me</h2><span class="rule"></span></div>
+      <p class="about-lead reveal">Java와 Spring Boot 기반 백엔드 개발을 중심으로 <b>REST API 설계, JPA, MariaDB</b>를 활용한 웹 서비스 개발 경험을 쌓아왔습니다. 인증·인가 처리와 데이터 흐름 설계에 관심이 많으며, 최근에는 Spring AI와 RAG 구조로 역량을 넓히고 있습니다.</p>
+      <div class="facts reveal">
+        <div class="fact"><span class="k">Name</span><span class="v">이수환 (Leeuswa)</span></div>
+        <div class="fact"><span class="k">Role</span><span class="v">Backend Engineer</span></div>
+        <div class="fact"><span class="k">Experience</span><span class="v">신입 / New Grad</span></div>
+        <div class="fact"><span class="k">Location</span><span class="v">경기 양주</span></div>
+        <div class="fact"><span class="k">Education</span><span class="v">인덕대 컴퓨터소프트웨어 · 4.33/4.5</span></div>
+        <div class="fact"><span class="k">Status</span><span class="v accent">채용 중 · 협업 가능</span></div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="sec-title reveal"><span class="idx">02</span><h2>Skills</h2><span class="rule"></span></div>
+      <div class="reveal">
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Language</div><div class="items"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">SQL</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Backend</div><div class="items"><span class="chip">Spring Boot</span><span class="chip">Spring Data JPA</span><span class="chip">Spring Security</span><span class="chip">QueryDSL</span><span class="chip">REST API</span><span class="chip">Laravel</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>AI</div><div class="items"><span class="chip">Spring AI</span><span class="chip">OpenAI API</span><span class="chip">LLM</span><span class="chip">RAG</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Database</div><div class="items"><span class="chip">MariaDB</span><span class="chip">MySQL</span><span class="chip">H2</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Tools</div><div class="items"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Postman</span><span class="chip">IntelliJ IDEA</span><span class="chip">Gradle</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Frontend</div><div class="items"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Thymeleaf</span></div></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="sec-title reveal"><span class="idx">03</span><h2>Projects</h2><span class="rule"></span></div>
+
+      <article class="proj reveal">
+        <div class="proj-head">
+          <h3>펫밀리데이 (petmilyday)</h3>
+          <div class="meta">2026.05 – 2026.06<br>팀 프로젝트 (4人)</div>
+        </div>
+        <span class="role">동물병원·예약 · 인증 · SSE · AI</span>
+        <p class="summary">동물병원 예약·진료기록부터 쇼핑·중고거래·커뮤니티·AI 자가진단까지 아우르는 반려동물 통합 케어 플랫폼</p>
+        <ul>
+          <li>키워드·진료과목·응급여부를 <code>BooleanExpression</code>으로 조합한 QueryDSL 동적 검색과 하버사인 거리 정렬 구현</li>
+          <li>동일 슬롯 중복 예약 방지를 위해 <code>@Lock(PESSIMISTIC_WRITE)</code> 비관적 락으로 예약 정합성 보장</li>
+          <li>JWT 발급·검증(HMAC-SHA)과 OAuth2(Google·Kakao) 소셜 로그인, HttpOnly 쿠키 기반 인증 처리</li>
+          <li><code>SseEmitter</code> 기반 실시간 알림 — 사용자별 다중 연결을 동시성 안전하게 관리하고 dead emitter 자동 정리</li>
+          <li>Anthropic Claude(Spring AI) 기반 맞춤 사료추천 기능 연동</li>
+        </ul>
+        <div class="proj-foot">
+          <div class="proj-tags"><span>Java 21</span><span>Spring Boot 3.5</span><span>QueryDSL</span><span>MariaDB</span><span>Spring Security</span><span>Thymeleaf</span></div>
+          <div class="proj-links"><a href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a><a href="projects/petmilyday.html">상세 →</a></div>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-head">
+          <h3>LMS 학습 관리 시스템</h3>
+          <div class="meta">2025.05 – 2025.12<br>팀 프로젝트</div>
+        </div>
+        <span class="role">관리자 · 교사 파트 (Backend)</span>
+        <p class="summary">학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API</p>
+        <ul>
+          <li>회원가입·로그인, 강의 관리, 수강 신청, 학습 진행도 관리 기능 구현</li>
+          <li>과제 등록·제출·채점 흐름과 게시판·댓글 기능 개발</li>
+          <li>Controller–Service–Repository 계층을 분리하고 REST API로 프론트엔드 연동 구조 설계</li>
+        </ul>
+        <div class="proj-foot">
+          <div class="proj-tags"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>H2</span><span>REST API</span><span>Gradle</span></div>
+          <div class="proj-links"><a href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a><a href="projects/lms.html">상세 →</a></div>
+        </div>
+      </article>
+
+      <div class="mini-title reveal">기타 프로젝트</div>
+      <div class="mini-grid reveal">
+        <div class="mini">
+          <div class="mh"><h4>Spring Boot 게시판</h4><span class="d">2025.12–2026.03</span></div>
+          <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링 기반 게시판 애플리케이션.</p>
+          <div class="mt">Java · Spring Boot · JPA · Thymeleaf</div>
+        </div>
+        <div class="mini">
+          <div class="mh"><h4>Laravel 판매관리 시스템</h4><span class="d">2025.09–11</span></div>
+          <p>상품·재고·입출고 관리와 매출 분석·차트 시각화. 경진대회 최우수상.</p>
+          <div class="mt">PHP · Laravel · MariaDB</div>
+        </div>
+        <div class="mini">
+          <div class="mh"><h4>Laravel 중고마켓</h4><span class="d">2025.10–12</span></div>
+          <p>상품 등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지를 갖춘 중고거래 플랫폼.</p>
+          <div class="mt">PHP · Laravel · JavaScript</div>
+        </div>
+        <div class="mini">
+          <div class="mh"><h4>Spring AI · RAG 실습</h4><span class="d">2026.04–05</span></div>
+          <p>PDF 로딩·임베딩·VectorStore·검색 기반 응답 생성 구조 실습.</p>
+          <div class="mt">Spring AI · OpenAI API</div>
+        </div>
+        <div class="mini">
+          <div class="mh"><h4>PHP 의류 쇼핑몰</h4><span class="d">2025.03–06</span></div>
+          <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리 기능을 구현한 쇼핑몰.</p>
+          <div class="mt">PHP · MariaDB · Bootstrap</div>
+        </div>
+        <div class="mini">
+          <div class="mh"><h4>지하철 혼잡도 분석·예측</h4><span class="d">2026.05–06</span></div>
+          <p>K-Means·다중회귀·KNN을 활용한 지하철 혼잡도 패턴 분석 및 예측.</p>
+          <div class="mt">RStudio · MySQL · Python</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAREER -->
+    <section id="career">
+      <div class="sec-title reveal"><span class="idx">04</span><h2>Career</h2><span class="rule"></span></div>
+      <div class="tl reveal">
+        <div class="tl-item">
+          <div class="date">2025.11 — 2026.08</div>
+          <h3>대우능력개발원</h3>
+          <div class="org">Java/Spring Boot 백엔드 웹 개발 과정</div>
+          <p>Java와 Spring Boot 기반 백엔드 개발 과정을 이수하며 실무형 팀 프로젝트 경험을 쌓았습니다.</p>
+        </div>
+        <div class="tl-item">
+          <div class="date">2025.01 — 2025.12</div>
+          <h3>인덕대학교 타닥타닥 동아리</h3>
+          <div class="org">팀 프로젝트 활동</div>
+          <p>Spring Boot와 React를 활용한 LMS(학습 관리 시스템) 팀 프로젝트를 진행했습니다.</p>
+        </div>
+        <div class="tl-item">
+          <div class="date">졸업예정</div>
+          <h3>인덕대학교 컴퓨터소프트웨어학과</h3>
+          <div class="org">학점 4.33 / 4.5</div>
+          <p>컴퓨터소프트웨어를 전공하며 백엔드 개발의 기초와 협업 경험을 다졌습니다.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDENTIALS -->
+    <section id="credentials">
+      <div class="sec-title reveal"><span class="idx">05</span><h2>Credentials</h2><span class="rule"></span></div>
+      <div class="cred-grid reveal">
+        <div class="cred">
+          <h3>자격증 <span class="cnt">2</span></h3>
+          <ul>
+            <li><span class="nm">정보처리산업기사</span><span class="dt">2026.06</span></li>
+            <li><span class="nm">네트워크관리사 2급</span><span class="dt">2024.12</span></li>
+          </ul>
+        </div>
+        <div class="cred">
+          <h3>활동 · 장학 <span class="cnt">2</span></h3>
+          <ul>
+            <li><span class="nm">자바프로그래밍 전공멘토 위촉</span><span class="dt">2026.03</span></li>
+            <li><span class="nm">성적장학금 <span class="rk gold">최우수</span></span><span class="dt">2026.02</span></li>
+          </ul>
+        </div>
+        <div class="cred wide">
+          <h3>수상 <span class="cnt">7</span></h3>
+          <div class="awards-grid">
+            <ul>
+              <li><span class="nm">Laravel 웹 솔루션 경진대회 <span class="rk gold">최우수상</span></span><span class="dt">2025.12</span></li>
+              <li><span class="nm">PHP 쇼핑몰 경진대회 <span class="rk gold">최우수상</span></span><span class="dt">2025.06</span></li>
+              <li><span class="nm">React 웹 프론트엔드 <span class="rk silver">우수상</span></span><span class="dt">2026.06</span></li>
+              <li><span class="nm">2026 빅데이터분석 경진대회 (메타버스 오딧세이)</span><span class="dt">2026.06</span></li>
+            </ul>
+            <ul>
+              <li><span class="nm">데이터분석 온라인 메타버스 경진대회 <span class="rk base">장려상</span></span><span class="dt">2025.12</span></li>
+              <li><span class="nm">AWS 서비스 활용능력 경진대회 <span class="rk base">입상</span></span><span class="dt">2025.11</span></li>
+              <li><span class="nm">C++ 언어 사용설명서 경진대회 <span class="rk base">입상</span></span><span class="dt">2024.12</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+      <div class="eyebrow">Get in touch</div>
+      <h2 class="reveal">새로운 기회나 협업 제안은<br>언제든 <span class="u">환영합니다.</span></h2>
+      <div class="btns reveal">
+        <a class="btn btn-solid" href="mailto:leeco6578@naver.com">이메일 보내기</a>
+        <a class="btn btn-ghost" href="https://github.com/Leeuswa" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </section>
+
+    <footer>© 2026 이수환 (Leeuswa). Backend Engineer · Built with code.</footer>
+  </main>
 </div>
 
-<!-- ============ WORK ============ -->
-<section id="work" class="wrap">
-  <div class="sec-head reveal">
-    <span class="num">01</span>
-    <div>
-      <h2>Selected Work</h2>
-      <p class="sub">기능 목록이 아니라, 어떤 문제를 어떻게 풀었는지로 정리한 프로젝트. 행을 누르면 케이스 스터디로 이어집니다.</p>
-    </div>
-  </div>
-
-  <div class="work reveal" data-d="1">
-    <a class="work-item" href="projects/petmilyday.html" data-cursor>
-      <span class="no">(01)</span>
-      <span class="mid">
-        <h3>펫밀리데이</h3>
-        <span class="meta"><span class="yr">2026</span><span>동물병원·예약 도메인</span><span>인증 · SSE · AI</span></span>
-        <span class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span><span class="tag">동시성 제어</span><span class="tag">SSE</span></span>
-      </span>
-      <span class="go" aria-hidden="true">↗</span>
-      <span class="preview"><span class="ph">preview</span><img src="assets/projects/petmilyday/01-main.png" alt="" loading="lazy" onerror="this.remove()" /></span>
-    </a>
-    <a class="work-item" href="projects/lms.html" data-cursor>
-      <span class="no">(02)</span>
-      <span class="mid">
-        <h3>LMS 학습 관리</h3>
-        <span class="meta"><span class="yr">2025</span><span>관리자·교사 파트</span><span>강의·수강·과제·채점</span></span>
-        <span class="tags"><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">REST API</span></span>
-      </span>
-      <span class="go" aria-hidden="true">↗</span>
-      <span class="preview"><span class="ph">preview</span><img src="assets/projects/lms-backend-springboot.png" alt="" loading="lazy" onerror="this.remove()" /></span>
-    </a>
-  </div>
-
-  <div class="other-title reveal">그 외 작업 / experiments</div>
-  <div class="bento reveal" data-d="1">
-    <div class="cell w3">
-      <div class="top"><h4>Laravel 판매관리 시스템</h4><span class="date">2025.09–11</span></div>
-      <p>상품·재고·입출고 관리와 매출 분석·차트 시각화. <em>경진대회 최우수상.</em></p>
-      <div class="tags"><span class="tag">PHP</span><span class="tag">Laravel</span><span class="tag">MariaDB</span></div>
-    </div>
-    <div class="cell w3">
-      <div class="top"><h4>PHP 의류 쇼핑몰</h4><span class="date">2025.03–06</span></div>
-      <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리. <em>경진대회 최우수상.</em></p>
-      <div class="tags"><span class="tag">PHP</span><span class="tag">MariaDB</span></div>
-    </div>
-    <div class="cell w2">
-      <div class="top"><h4>Spring Boot 게시판</h4><span class="date">2025.12–2026.03</span></div>
-      <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링.</p>
-      <div class="tags"><span class="tag">Spring Boot</span><span class="tag">JPA</span></div>
-    </div>
-    <div class="cell w2">
-      <div class="top"><h4>Laravel 중고마켓</h4><span class="date">2025.10–12</span></div>
-      <p>등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지.</p>
-      <div class="tags"><span class="tag">Laravel</span><span class="tag">JS</span></div>
-    </div>
-    <div class="cell w2">
-      <div class="top"><h4>지하철 혼잡도 예측</h4><span class="date">2026.05–06</span></div>
-      <p>K-Means·다중회귀·KNN 기반 패턴 분석·예측.</p>
-      <div class="tags"><span class="tag">RStudio</span><span class="tag">Python</span></div>
-    </div>
-    <div class="cell w6">
-      <div class="top"><h4>Spring AI · RAG 문서 질의응답 실습</h4><span class="date">2026.04–05</span></div>
-      <p>PDF 로딩 → 임베딩 → VectorStore → 검색 기반 응답 생성까지 RAG 파이프라인 구조를 직접 구성하며 <em>AI 서비스 개발</em>로 역량을 확장 중.</p>
-      <div class="tags"><span class="tag">Spring AI</span><span class="tag">OpenAI API</span><span class="tag">RAG</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ APPROACH ============ -->
-<section id="approach" class="wrap">
-  <div class="sec-head reveal">
-    <span class="num">02</span>
-    <div>
-      <h2>Approach</h2>
-      <p class="sub">기능을 바로 짜기 전에, 어디서 무너질지를 먼저 찾습니다. 프로젝트를 진행할 때 실제로 거치는 순서.</p>
-    </div>
-  </div>
-  <div class="approach reveal" data-d="1">
-    <div class="step" data-n="01">
-      <span class="st-k">UNDERSTAND</span>
-      <h3>어디서 무너질지 먼저 본다</h3>
-      <p>동일 슬롯 중복 예약처럼 "동시에 요청이 몰리면?"을 요구사항 단계에서 미리 짚습니다.</p>
-    </div>
-    <div class="step" data-n="02">
-      <span class="st-k">DESIGN</span>
-      <h3>데이터와 계층을 설계한다</h3>
-      <p>회원·병원·예약·리뷰의 연관관계를 JPA로 모델링하고 Controller-Service-Repository로 관심사를 나눕니다.</p>
-    </div>
-    <div class="step" data-n="03">
-      <span class="st-k">BUILD</span>
-      <h3>정합성을 코드로 보장한다</h3>
-      <p>비관적 락, HttpOnly 쿠키 기반 JWT, 동시성 안전한 컬렉션처럼 안전장치를 기능과 함께 구현합니다.</p>
-    </div>
-    <div class="step" data-n="04">
-      <span class="st-k">VERIFY</span>
-      <h3>경계값과 권한을 검증한다</h3>
-      <p>과거 날짜 예약 차단, 병원 소유권 검증 등 예외 흐름을 확인하고 버그를 정리합니다.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============ TOOLKIT ============ -->
-<section id="toolkit" class="wrap">
-  <div class="sec-head reveal">
-    <span class="num">03</span>
-    <div>
-      <h2>Toolkit</h2>
-      <p class="sub">아이콘 나열 대신, 각 기술을 실제로 어떤 문제를 푸는 데 썼는지로.</p>
-    </div>
-  </div>
-  <div class="toolkit reveal" data-d="1">
-    <div class="tool"><div class="nm"><span class="k">Language / Framework</span>Java · Spring Boot</div><div class="use">REST API와 서버 구조 설계. 계층형 아키텍처로 <b>관심사를 분리</b>하고 모놀리식 서비스의 뼈대를 잡는다.</div></div>
-    <div class="tool"><div class="nm"><span class="k">Persistence</span>JPA · QueryDSL</div><div class="use"><b>관계형 데이터 모델링</b>과 동적 쿼리. null 조건이 자동 무시되는 검색과 연관관계 매핑을 다룬다.</div></div>
-    <div class="tool"><div class="nm"><span class="k">Auth</span>Spring Security · JWT · OAuth2</div><div class="use"><b>Stateless 인증</b>과 역할별 접근제어. 소셜 로그인 성공 시 JWT를 HttpOnly 쿠키로 발급한다.</div></div>
-    <div class="tool"><div class="nm"><span class="k">Concurrency / Realtime</span>비관적 락 · SSE · WebSocket</div><div class="use">동일 슬롯 <b>중복 예약을 막는 동시성 제어</b>와 사용자별 다중 연결 실시간 알림.</div></div>
-    <div class="tool"><div class="nm"><span class="k">Database</span>MariaDB · MySQL · H2</div><div class="use">운영·테스트 환경에 맞춘 <b>관계형 데이터 저장</b>과 HikariCP 커넥션 풀 운용.</div></div>
-    <div class="tool"><div class="nm"><span class="k">AI</span>Spring AI · LLM · RAG</div><div class="use">Anthropic Claude 기반 <b>맞춤 추천·자가진단</b> 연동. 최근 임베딩·VectorStore 구조로 확장 중.</div></div>
-  </div>
-</section>
-
-<!-- ============ PROFILE ============ -->
-<section id="profile" class="wrap">
-  <div class="sec-head reveal">
-    <span class="num">04</span>
-    <div>
-      <h2>Profile</h2>
-      <p class="sub">긴 자기소개 대신, 지금 어디에 집중하고 어떻게 일하는지.</p>
-    </div>
-  </div>
-
-  <div class="profile-grid">
-    <div class="reveal">
-      <p class="profile-lead">눈에 잘 안 보이는 <em>인증·동시성·정합성</em>이 결국 서비스의 신뢰를 만든다고 믿는 백엔드 개발자입니다.</p>
-      <div class="profile-body">
-        <p>Java와 Spring Boot 기반으로 REST API 설계, JPA, MariaDB를 활용한 웹 서비스를 만들어 왔습니다. Controller-Service-Repository 계층을 나누어 기능을 구현하고, 인증·인가와 데이터 흐름을 설계하는 데 관심이 많습니다.</p>
-        <p>최근에는 Spring AI, OpenAI API, RAG 구조를 학습하며 AI 서비스 개발로 역량을 넓히고 있습니다. 코드 리뷰와 문서화로 지식을 나누는 문화를 지향합니다.</p>
-      </div>
-    </div>
-    <div class="side-card reveal" data-d="1">
-      <div class="h">at a glance</div>
-      <div class="r"><span>직무</span><span>Backend Engineer</span></div>
-      <div class="r"><span>경력</span><span>신입</span></div>
-      <div class="r"><span>위치</span><span>경기 양주</span></div>
-      <div class="r"><span>학력</span><span>인덕대 · 4.33/4.5</span></div>
-      <div class="r"><span>주력</span><span>Java · Spring Boot</span></div>
-    </div>
-  </div>
-
-  <div class="timeline reveal" data-d="1">
-    <div class="tl">
-      <div class="d">2025.11 — 2026.08</div>
-      <div><h3>대우능력개발원</h3><div class="role">Java / Spring Boot 백엔드 웹 개발 과정</div><p>백엔드 개발 과정을 이수하며 실무형 팀 프로젝트 경험을 쌓았습니다.</p></div>
-      <span class="tag">교육</span>
-    </div>
-    <div class="tl">
-      <div class="d">2025.01 — 2025.12</div>
-      <div><h3>인덕대 타닥타닥 동아리</h3><div class="role">팀 프로젝트 활동</div><p>Spring Boot와 React를 활용한 LMS 팀 프로젝트를 진행했습니다.</p></div>
-      <span class="tag">동아리</span>
-    </div>
-    <div class="tl">
-      <div class="d">졸업예정</div>
-      <div><h3>인덕대학교</h3><div class="role">컴퓨터소프트웨어학과 (2·3년제)</div><p>학점 4.33/4.5로 졸업 예정입니다.</p></div>
-      <span class="tag">학력</span>
-    </div>
-  </div>
-
-  <div class="cred reveal" data-d="1">
-    <div>
-      <h4>자격증</h4>
-      <ul>
-        <li><span>정보처리산업기사</span><span class="date">2026.06</span></li>
-        <li><span>네트워크관리사 2급</span><span class="date">2024.12</span></li>
-      </ul>
-    </div>
-    <div>
-      <h4>수상</h4>
-      <ul>
-        <li><span>Laravel 웹 솔루션 경진대회 최우수상</span></li>
-        <li><span>PHP 쇼핑몰 경진대회 최우수상</span></li>
-        <li><span>React 웹 프론트엔드 우수상</span></li>
-        <li><span>성적장학금 최우수</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CONNECT ============ -->
-<section id="connect" class="wrap connect">
-  <div class="sec-head reveal">
-    <span class="num">05</span>
-    <div><h2>Connect</h2></div>
-  </div>
-
-  <h3 class="connect-huge reveal" data-d="1">같이 만들<br><span class="out">사람을</span> <em>찾습니다</em></h3>
-
-  <div class="connect-grid reveal" data-d="1">
-    <div class="connect-cell"><div class="h">What I build</div><p>인증·예약·알림처럼 정합성이 중요한 도메인의 백엔드 API와 서버 구조.</p></div>
-    <div class="connect-cell"><div class="h">How I work</div><p>무너질 지점을 먼저 찾고, 계층을 나누고, 안전장치를 기능과 함께 구현합니다.</p></div>
-    <div class="connect-cell"><div class="h">Interested in</div><p>Spring AI·RAG 기반 AI 서비스, 동시성/실시간 처리, 코드 리뷰 문화.</p></div>
-  </div>
-
-  <div class="connect-cta reveal" data-d="2">
-    <a href="mailto:leeco6578@naver.com" class="btn btn-primary" data-cursor>이메일 보내기 <span class="ic">↗</span></a>
-    <a href="https://github.com/Leeuswa" target="_blank" rel="noopener" class="tlink" data-cursor>GitHub / Leeuswa →</a>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 이수환</span>
-    <div class="footer-links">
-      <a href="mailto:leeco6578@naver.com">이메일</a>
-      <a href="https://github.com/Leeuswa" target="_blank" rel="noopener">GitHub</a>
-      <a href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener">이력서</a>
-    </div>
-    <span>Built with care · GitHub Pages</span>
-  </div>
-</footer>
-
 <script>
-  // ---- custom cursor (magnetic-ish) ----
-  const cur = document.getElementById('cursor');
-  const fine = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if (cur && fine) {
-    let x=innerWidth/2, y=innerHeight/2, tx=x, ty=y;
-    addEventListener('mousemove', e => { tx=e.clientX; ty=e.clientY; });
-    (function loop(){ x+=(tx-x)*.2; y+=(ty-y)*.2; cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`; requestAnimationFrame(loop); })();
-    document.querySelectorAll('[data-cursor]').forEach(el=>{
-      el.addEventListener('mouseenter',()=>cur.classList.add('big'));
-      el.addEventListener('mouseleave',()=>cur.classList.remove('big'));
-    });
-  } else if (cur) { cur.remove(); }
-
-  // ---- reveal ----
-  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // ---- mobile menu ----
-  const tg=document.getElementById('navToggle'), pill=document.getElementById('navPill');
-  tg?.addEventListener('click',()=>{const o=pill.classList.toggle('open');tg.textContent=o?'close':'menu';});
-  document.querySelectorAll('.nav-links a, .nav-cta').forEach(a=>a.addEventListener('click',()=>{pill.classList.remove('open');if(tg)tg.textContent='menu';}));
-
-  // ---- active nav link ----
-  const items=[...document.querySelectorAll('.nav-links a')];
-  const secs=items.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-  addEventListener('scroll',()=>{
-    let cr=secs[0];
-    for(const s of secs){ if(s.getBoundingClientRect().top<=140) cr=s; }
-    items.forEach(a=>a.classList.toggle('active', a.getAttribute('href')==='#'+cr?.id));
-  },{passive:true});
+  // active nav highlight
+  const navLinks=[...document.querySelectorAll('#sideNav a')];
+  const secs=navLinks.map(a=>document.querySelector(a.getAttribute('href')));
+  const so=new IntersectionObserver((es)=>{
+    es.forEach(e=>{
+      if(e.isIntersecting){
+        const id='#'+e.target.id;
+        navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')===id));
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  secs.forEach(s=>s&&so.observe(s));
 </script>
 </body>
 </html>
