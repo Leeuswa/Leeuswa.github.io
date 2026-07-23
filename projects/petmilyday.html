@@ -3,185 +3,223 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>펫밀리데이 — 반려동물 통합 케어 플랫폼 | 이수환</title>
-<meta name="description" content="반려동물 통합 케어 플랫폼 펫밀리데이 상세 소개. 동물병원·예약·인증·SSE 알림·AI 사료추천 백엔드 담당." />
+<title>펫밀리데이 — 케이스 스터디 | 이수환</title>
+<meta name="description" content="반려동물 통합 케어 플랫폼 펫밀리데이. 동물병원·예약 도메인과 인증·SSE 알림·AI 연동 백엔드 케이스 스터디." />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="../styles.css" />
 </head>
 <body>
+<a class="skip" href="#context">본문으로 건너뛰기</a>
+
+<nav>
+  <div class="nav-inner">
+    <a href="../index.html#top" class="brand">이수환<em>.</em></a>
+    <div class="nav-links" id="navLinks">
+      <a href="../index.html#work"><span class="n">01</span>work</a>
+      <a href="../index.html#approach"><span class="n">02</span>approach</a>
+      <a href="../index.html#toolkit"><span class="n">03</span>toolkit</a>
+      <a href="../index.html#profile"><span class="n">04</span>profile</a>
+      <a href="../index.html#connect"><span class="n">05</span>connect</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
+  </div>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgress"></div></div>
+</nav>
 
 <div class="wrap">
-  <a class="detail-back" href="../index.html#projects">← 프로젝트 목록으로</a>
-
-  <div class="detail-header">
-    <span class="project-index mono">P.01</span>
-    <h1>펫밀리데이 — 반려동물 통합 케어 플랫폼</h1>
-    <p class="detail-meta">팀 프로젝트 (4인) · Spring Boot 모놀리식 · 2026.05 – 2026.06</p>
-    <div class="tags">
-      <span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">Spring Data JPA</span><span class="tag">QueryDSL</span><span class="tag">MariaDB</span><span class="tag">Spring Security</span><span class="tag">Thymeleaf</span>
-    </div>
-  </div>
-
-  <div class="detail-body">
-    <h2>개요</h2>
-    <p>동물병원 예약·진료기록 관리부터 반려용품 쇼핑몰, 중고거래, 커뮤니티, AI 자가진단까지 하나의 서비스에서 제공하는 <b>반려동물 통합 케어 플랫폼</b>입니다. Spring Boot 기반 모놀리식 웹 애플리케이션으로, 계층형 아키텍처로 관심사를 분리하고 서비스는 인터페이스와 구현체를 나누어 결합도를 낮췄습니다.</p>
-    <p>저는 <b>동물병원 및 예약 도메인을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능</b>을 담당했습니다.</p>
-  </div>
-
-  <!-- ============ 스크린샷 갤러리 ============
-       캡쳐본을 ../assets/projects/petmilyday/ 아래에 파일명 그대로 넣으면 자동으로 표시됩니다.
-       이미지가 없으면 점선 슬롯(라벨)만 보입니다. -->
-  <div class="detail-body">
-    <h2>화면</h2>
-  </div>
-  <div class="detail-gallery">
-    <figure class="shot">
-      <div class="shot-frame" data-label="메인 페이지">
-        <img src="../assets/projects/petmilyday/01-main.png" alt="메인 페이지" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>메인 페이지</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="동물병원 검색 · 카카오맵">
-        <img src="../assets/projects/petmilyday/02-hospital-search.png" alt="동물병원 검색·지도" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>동물병원 검색 · 카카오맵</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="예약 신청">
-        <img src="../assets/projects/petmilyday/03-reservation.png" alt="예약 신청" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>예약 신청 (동시성 제어)</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="진료기록">
-        <img src="../assets/projects/petmilyday/04-medical.png" alt="진료기록" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>진료기록</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="로그인 · 소셜 로그인">
-        <img src="../assets/projects/petmilyday/05-login.png" alt="로그인·소셜 로그인" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>로그인 · 소셜 로그인 (Google·Kakao)</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="AI 사료추천">
-        <img src="../assets/projects/petmilyday/06-ai.png" alt="AI 사료추천" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>AI 맞춤 사료추천 (Claude)</figcaption>
-    </figure>
-    <figure class="shot">
-      <div class="shot-frame" data-label="관리자 대시보드">
-        <img src="../assets/projects/petmilyday/08-admin.png" alt="관리자 대시보드" loading="lazy" onerror="this.remove()" />
-      </div>
-      <figcaption>관리자 대시보드</figcaption>
-    </figure>
-  </div>
-
-  <div class="detail-body">
-    <h2>기술 스택</h2>
-    <table class="detail-table">
-      <tr><td>Language / Runtime</td><td>Java 21</td></tr>
-      <tr><td>Framework</td><td>Spring Boot 3.5.14 (Web MVC, Data JPA, Validation)</td></tr>
-      <tr><td>Persistence</td><td>Spring Data JPA, QueryDSL, MariaDB, HikariCP</td></tr>
-      <tr><td>View</td><td>Thymeleaf, Spring Security 6 연동</td></tr>
-      <tr><td>Auth</td><td>Spring Security, OAuth2 Client(Google·Kakao), JWT</td></tr>
-      <tr><td>Realtime</td><td>WebSocket(1:1 채팅), SSE(실시간 알림)</td></tr>
-      <tr><td>External</td><td>AWS S3, Kakao Map/지오코딩, KakaoPay, Anthropic Claude(Spring AI)</td></tr>
-      <tr><td>Build</td><td>Gradle</td></tr>
-    </table>
-
-    <h2>담당 파트 (Leeuswa)</h2>
-
-    <div class="detail-feature">
-      <h3><span class="num">01</span>동물병원 검색 (QueryDSL 동적 쿼리)</h3>
-      <ul>
-        <li>키워드·진료과목·응급여부 조건을 <code>BooleanExpression</code>으로 조합해 null 조건은 자동 무시되는 동적 검색 구현</li>
-        <li>좌표가 있으면 하버사인(Haversine) 거리 계산으로 가까운 병원 순 정렬, 없으면 기본 정렬로 분기</li>
-        <li>카카오 지오코딩 API로 주소 → 좌표 변환 후 카카오맵에 병원 위치 표시, 목록 페이징 처리</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">02</span>예약 시스템 (동시성 제어)</h3>
-      <ul>
-        <li>예약 신청·취소·내역 조회 및 병원 관리자 승인 흐름 구현</li>
-        <li>동일 슬롯 중복 예약을 막기 위해 <code>@Lock(PESSIMISTIC_WRITE)</code> 비관적 락 적용 — 등록 시 병원 엔티티를 락으로 조회(<code>findByIdForUpdate</code>)해 동시 요청 경합에서 정합성 보장</li>
-        <li>과거 날짜·시간 예약 차단, 승인 과정에서 병원 소유권 검증</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">03</span>진료 / 건강 기록</h3>
-      <ul>
-        <li>진료기록·예방접종 이력 조회 기능</li>
-        <li>진료기록 미래 날짜 작성 방지 등 입력 검증</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">04</span>인증 / 권한 (JWT + OAuth2)</h3>
-      <ul>
-        <li>JWT 토큰 발급·검증 구현 (HMAC-SHA 서명, <code>role</code> 커스텀 클레임, 30분 만료)</li>
-        <li>소셜 로그인 성공 시 JWT를 발급해 HttpOnly 쿠키(SameSite=Lax)로 저장하는 <code>OAuth2SuccessHandler</code> 구현</li>
-        <li>일반회원 → 병원관리자 전환 시 재로그인 처리</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">05</span>실시간 알림 (SSE)</h3>
-      <ul>
-        <li><code>SseEmitter</code> 기반 실시간 알림 구현</li>
-        <li>사용자별 다중 연결을 <code>ConcurrentHashMap</code> + <code>CopyOnWriteArrayList</code>로 관리해 동시성 안전 확보</li>
-        <li>연결 종료·타임아웃·에러 및 전송 실패한(dead) emitter 자동 정리</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">06</span>AI 연동</h3>
-      <ul>
-        <li>Anthropic Claude(Spring AI) 기반 맞춤 사료 추천 기능</li>
-        <li>기존 AI 로직을 Claude 모델로 교체</li>
-      </ul>
-    </div>
-
-    <div class="detail-feature">
-      <h3><span class="num">07</span>그 외</h3>
-      <ul>
-        <li>마이페이지(내가 작성한 병원 리뷰, 진료기록, 예방접종 이력)</li>
-        <li>주요 목록 화면 페이징, 관리자 검색 기능, 다수 버그 수정, 메인·병원 페이지 UI 개선</li>
-      </ul>
-    </div>
-
-    <h2>주요 기능 (서비스 전체)</h2>
-    <ul>
-      <li><b>회원 / 인증</b> — 일반·소셜 로그인, JWT 인증, 역할별 접근제어(USER / 병원관리자 / ADMIN)</li>
-      <li><b>동물병원 · 예약</b> — 병원 검색·필터·리뷰, 예약 승인 흐름, 슬롯 동시성 제어</li>
-      <li><b>커뮤니티</b> — 자유·모임 게시판, 댓글·대댓글·좋아요, 익명 처리, 신고</li>
-      <li><b>쇼핑몰</b> — 상품·장바구니·주문·결제(KakaoPay)·정기구독·리뷰·QnA·위시리스트</li>
-      <li><b>중고거래</b> — 게시글 CRUD, 1:1 실시간 채팅(WebSocket), 매너 점수, 신고</li>
-      <li><b>AI · 알림</b> — Claude 기반 자가진단·사료추천, SSE 실시간 알림</li>
-      <li><b>관리자</b> — 대시보드, 회원·병원·예약·콘텐츠 관리, 검색·페이징</li>
-    </ul>
-
-    <h2>팀 구성</h2>
-    <table class="detail-table">
-      <tr><td>Leeuswa (본인)</td><td>동물병원·예약·진료기록, 인증(JWT/OAuth2), SSE 알림, 카카오맵, AI 사료추천, 관리자</td></tr>
-      <tr><td>endy</td><td>회원가입/로그인, 커뮤니티 게시판, 댓글·좋아요, 반려동물 프로필, 신고</td></tr>
-      <tr><td>n1mppp</td><td>쇼핑몰(상품·장바구니·주문·정기구독·리뷰·QnA·위시리스트), KakaoPay 결제</td></tr>
-      <tr><td>jungwonseok</td><td>중고거래(게시글·1:1 채팅), KakaoPay, AI 자가진단·가이드</td></tr>
-    </table>
-
-    <div class="detail-links">
-      <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn btn-ghost" href="../index.html#projects">← 목록으로</a>
-    </div>
-  </div>
+  <a class="cs-back" href="../index.html#work">← 작업 목록으로</a>
 </div>
 
+<!-- CASE STUDY HERO -->
+<header class="wrap cs-hero">
+  <span class="idx">P.01 — Case Study · 팀 4인 · 2026.05–2026.06</span>
+  <h1>펫밀리데이</h1>
+  <p class="lede">동물병원 예약·진료기록부터 쇼핑·중고거래·커뮤니티·AI 자가진단까지 하나로 묶은 <b>반려동물 통합 케어 플랫폼</b>. 저는 동물병원·예약 도메인과 인증·알림·AI 같은 서비스 공통 기능을 맡았습니다.</p>
+  <div class="tags">
+    <span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">Spring Data JPA</span><span class="tag">QueryDSL</span><span class="tag">MariaDB</span><span class="tag">Spring Security</span><span class="tag">Thymeleaf</span>
+  </div>
+  <div class="cs-facts">
+    <div class="f"><div class="k">Role</div><div class="v">동물병원·예약 / 인증·알림·AI</div></div>
+    <div class="f"><div class="k">Team</div><div class="v">백엔드 4인 · 모놀리식</div></div>
+    <div class="f"><div class="k">Period</div><div class="v">2026.05 – 2026.06</div></div>
+    <div class="f"><div class="k">Repo</div><div class="v"><a class="tlink" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a></div></div>
+  </div>
+</header>
+
+<!-- CONTEXT -->
+<section id="context" class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">01</span><div class="lname">Context</div></div>
+    <div class="cs-prose reveal" data-d="1">
+      <p>반려동물 보호자는 병원 예약, 진료기록, 용품 구매, 정보 공유를 서로 다른 서비스에서 처리합니다. 펫밀리데이는 이 흐름을 <b>하나의 플랫폼</b>으로 합치는 것을 목표로 한 팀 프로젝트입니다.</p>
+      <p>Spring Boot 기반 모놀리식 웹 애플리케이션으로, 계층형 아키텍처로 관심사를 분리하고 서비스는 인터페이스와 구현체를 나누어 결합도를 낮췄습니다. 저는 그중 <b class="muted">동물병원·예약 도메인을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능</b>을 담당했습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">02</span><div class="lname">Problem</div></div>
+    <div class="cs-prose reveal" data-d="1">
+      <p>예약 도메인에는 조용히 무너지는 지점들이 있었습니다.</p>
+      <ul>
+        <li><b>중복 예약</b> — 같은 병원의 동일 시간 슬롯에 요청이 동시에 몰리면 정합성이 깨진다.</li>
+        <li><b>인증 상태 관리</b> — 일반·소셜 로그인을 함께 지원하면서 토큰을 안전하게 저장하고 권한을 분리해야 한다.</li>
+        <li><b>실시간성</b> — 예약 승인 같은 이벤트를 새로고침 없이 사용자에게 전달해야 한다.</li>
+        <li><b>검색</b> — 키워드·진료과목·응급여부·거리 등 여러 조건이 있으나 없을 수도 있는 검색을 유연하게 처리해야 한다.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">03</span><div class="lname">Approach</div></div>
+    <div class="cs-prose reveal" data-d="1">
+      <p>기능마다 "언제 깨지는가"를 먼저 정하고, 그에 맞는 안전장치를 함께 설계했습니다. 중복 예약은 비관적 락으로, 인증은 Stateless JWT + HttpOnly 쿠키로, 실시간성은 SSE로, 유연한 검색은 QueryDSL 동적 쿼리로 접근했습니다. AI 추천은 기존 로직을 Anthropic Claude 모델로 교체해 품질을 끌어올렸습니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE / IMPLEMENTATION -->
+<section class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">04</span><div class="lname">Implementation</div></div>
+    <div class="cs-prose reveal" data-d="1">
+      <div class="feat">
+        <h3><span class="fn">01</span>동물병원 검색 · QueryDSL 동적 쿼리</h3>
+        <ul>
+          <li>키워드·진료과목·응급여부 조건을 <code>BooleanExpression</code>으로 조합해 null 조건은 자동 무시되는 동적 검색 구현.</li>
+          <li>좌표가 있으면 하버사인(Haversine) 거리 계산으로 가까운 병원 순 정렬, 없으면 기본 정렬로 분기.</li>
+          <li>카카오 지오코딩으로 주소 → 좌표 변환 후 카카오맵에 위치 표시, 목록 페이징 처리.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">02</span>예약 시스템 · 동시성 제어</h3>
+        <ul>
+          <li>예약 신청·취소·내역 조회와 병원 관리자 승인 흐름 구현.</li>
+          <li>동일 슬롯 중복 예약을 막기 위해 <code>@Lock(PESSIMISTIC_WRITE)</code> 비관적 락 적용 — 등록 시 병원 엔티티를 락으로 조회(<code>findByIdForUpdate</code>)해 동시 요청 경합에서 정합성 보장.</li>
+          <li>과거 날짜·시간 예약 차단, 승인 과정에서 병원 소유권 검증.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">03</span>진료 / 건강 기록</h3>
+        <ul>
+          <li>진료기록·예방접종 이력 조회 기능.</li>
+          <li>진료기록 미래 날짜 작성 방지 등 입력 검증.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">04</span>인증 / 권한 · JWT + OAuth2</h3>
+        <ul>
+          <li>JWT 토큰 발급·검증 구현 (HMAC-SHA 서명, <code>role</code> 커스텀 클레임, 30분 만료).</li>
+          <li>소셜 로그인 성공 시 JWT를 발급해 HttpOnly 쿠키(SameSite=Lax)로 저장하는 <code>OAuth2SuccessHandler</code> 구현.</li>
+          <li>일반회원 → 병원관리자 전환 시 재로그인 처리.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">05</span>실시간 알림 · SSE</h3>
+        <ul>
+          <li><code>SseEmitter</code> 기반 실시간 알림 구현.</li>
+          <li>사용자별 다중 연결을 <code>ConcurrentHashMap</code> + <code>CopyOnWriteArrayList</code>로 관리해 동시성 안전 확보.</li>
+          <li>연결 종료·타임아웃·에러 및 전송 실패한(dead) emitter 자동 정리.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">06</span>AI 연동</h3>
+        <ul>
+          <li>Anthropic Claude(Spring AI) 기반 맞춤 사료 추천 기능.</li>
+          <li>기존 AI 로직을 Claude 모델로 교체.</li>
+        </ul>
+      </div>
+      <div class="feat">
+        <h3><span class="fn">07</span>그 외</h3>
+        <ul>
+          <li>마이페이지(내가 작성한 병원 리뷰, 진료기록, 예방접종 이력).</li>
+          <li>주요 목록 화면 페이징, 관리자 검색, 다수 버그 수정, 메인·병원 페이지 UI 개선.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCREENS -->
+<section class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">05</span><div class="lname">Screens</div></div>
+    <div class="reveal" data-d="1" style="min-width:0;">
+      <div class="cs-gallery">
+        <figure class="shot"><div class="shot-frame" data-label="메인 페이지"><img src="../assets/projects/petmilyday/01-main.png" alt="펫밀리데이 메인 페이지" loading="lazy" onerror="this.remove()" /></div><figcaption>메인 페이지</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="동물병원 검색 · 카카오맵"><img src="../assets/projects/petmilyday/02-hospital-search.png" alt="동물병원 검색·지도" loading="lazy" onerror="this.remove()" /></div><figcaption>동물병원 검색 · 카카오맵</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="예약 신청"><img src="../assets/projects/petmilyday/03-reservation.png" alt="예약 신청" loading="lazy" onerror="this.remove()" /></div><figcaption>예약 신청 (동시성 제어)</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="진료기록"><img src="../assets/projects/petmilyday/04-medical.png" alt="진료기록" loading="lazy" onerror="this.remove()" /></div><figcaption>진료기록</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="로그인 · 소셜 로그인"><img src="../assets/projects/petmilyday/05-login.png" alt="로그인·소셜 로그인" loading="lazy" onerror="this.remove()" /></div><figcaption>로그인 · 소셜 로그인 (Google·Kakao)</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="AI 사료추천"><img src="../assets/projects/petmilyday/06-ai.png" alt="AI 사료추천" loading="lazy" onerror="this.remove()" /></div><figcaption>AI 맞춤 사료추천 (Claude)</figcaption></figure>
+        <figure class="shot"><div class="shot-frame" data-label="관리자 대시보드"><img src="../assets/projects/petmilyday/08-admin.png" alt="관리자 대시보드" loading="lazy" onerror="this.remove()" /></div><figcaption>관리자 대시보드</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULT / STACK / TEAM -->
+<section class="cs-section">
+  <div class="wrap cs-layout">
+    <div class="label reveal"><span class="eyebrow">06</span><div class="lname">Result</div></div>
+    <div class="cs-prose reveal" data-d="1">
+      <p>하나의 서비스 안에서 회원·인증부터 병원 예약, 커뮤니티, 쇼핑, 중고거래, AI 기능까지 동작하는 통합 플랫폼을 팀으로 완성했습니다. 제가 맡은 예약 도메인은 비관적 락으로 중복 예약을 막고, SSE로 상태 변화를 실시간 전달하도록 마무리했습니다.</p>
+
+      <h3>기술 스택</h3>
+      <table class="spec-table">
+        <tr><td>Language</td><td>Java 21</td></tr>
+        <tr><td>Framework</td><td>Spring Boot 3.5.14 (Web MVC, Data JPA, Validation)</td></tr>
+        <tr><td>Persistence</td><td>Spring Data JPA, QueryDSL, MariaDB, HikariCP</td></tr>
+        <tr><td>View</td><td>Thymeleaf, Spring Security 6 연동</td></tr>
+        <tr><td>Auth</td><td>Spring Security, OAuth2 Client(Google·Kakao), JWT</td></tr>
+        <tr><td>Realtime</td><td>WebSocket(1:1 채팅), SSE(실시간 알림)</td></tr>
+        <tr><td>External</td><td>AWS S3, Kakao Map/지오코딩, KakaoPay, Anthropic Claude(Spring AI)</td></tr>
+        <tr><td>Build</td><td>Gradle</td></tr>
+      </table>
+
+      <h3>팀 구성</h3>
+      <table class="spec-table">
+        <tr><td class="you">Leeuswa (본인)</td><td>동물병원·예약·진료기록, 인증(JWT/OAuth2), SSE 알림, 카카오맵, AI 사료추천, 관리자</td></tr>
+        <tr><td>endy</td><td>회원가입/로그인, 커뮤니티 게시판, 댓글·좋아요, 반려동물 프로필, 신고</td></tr>
+        <tr><td>n1mppp</td><td>쇼핑몰(상품·장바구니·주문·정기구독·리뷰·QnA·위시리스트), KakaoPay 결제</td></tr>
+        <tr><td>jungwonseok</td><td>중고거래(게시글·1:1 채팅), KakaoPay, AI 자가진단·가이드</td></tr>
+      </table>
+
+      <div class="cs-links">
+        <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub <span class="ic">↗</span></a>
+        <a class="btn btn-ghost" href="lms.html">다음 작업 <span class="ic">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <span>© 2026 이수환</span>
+    <div class="footer-links">
+      <a href="../index.html#work">작업</a>
+      <a href="https://github.com/Leeuswa" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:leeco6578@naver.com">이메일</a>
+    </div>
+    <span>Built with care · GitHub Pages</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const tg=document.getElementById('navToggle'),lk=document.getElementById('navLinks');
+  tg?.addEventListener('click',()=>{const o=lk.classList.toggle('open');tg.textContent=o?'close':'menu';});
+  const bar=document.getElementById('scrollProgress');
+  addEventListener('scroll',()=>{const sc=document.documentElement.scrollHeight-document.documentElement.clientHeight;if(bar)bar.style.width=(sc>0?(scrollY/sc)*100:0)+'%';},{passive:true});
+</script>
 </body>
 </html>
