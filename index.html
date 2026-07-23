@@ -113,7 +113,10 @@
   .mini .mh h4{font-size:1.02rem;font-weight:600}
   .mini .mh .d{font-family:var(--mono);font-size:.68rem;color:var(--muted);white-space:nowrap}
   .mini p{font-size:.9rem;color:var(--sub);margin-bottom:10px}
+  .mini .mfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:2px}
   .mini .mt{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+  .mini .glink{font-family:var(--mono);font-size:.7rem;color:var(--sub);border:1px solid var(--line2);border-radius:5px;padding:4px 9px;transition:.15s;white-space:nowrap;flex-shrink:0}
+  .mini .glink:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
   @media(max-width:640px){.mini-grid{grid-template-columns:1fr}.proj{padding:26px 22px}}
 
   /* CAREER timeline */
@@ -228,6 +231,27 @@
 
       <article class="proj reveal">
         <div class="proj-head">
+          <h3>COGI — AI 코드리뷰 · 성장분석 플랫폼</h3>
+          <div class="meta">2026<br>팀 프로젝트</div>
+        </div>
+        <span class="role">인증/보안 · 성장분석 · 프론트 연동</span>
+        <p class="summary">GitHub 웹훅으로 Pull Request를 받아 AI가 코드를 리뷰하고, 반복되는 약점을 통계로 쌓아 성장 추이까지 보여주는 개발자 코드리뷰 SaaS</p>
+        <ul>
+          <li>JWT를 <code>HttpOnly</code> 쿠키로 발급·검증하는 인증 방식으로 전환하고 로그아웃·401 응답 흐름 설계</li>
+          <li>GitHub·Kakao 소셜 로그인과 <b>TOTP 기반 2단계 인증(2FA)</b> 구현, OAuth state로 CSRF 방어 및 계정 충돌 거부 처리</li>
+          <li>이메일 유니크 계정 모델 + GitHub 계정 연동, 소셜 로그인 온보딩에 약관 동의 흐름 추가</li>
+          <li><b>성장 추이 대시보드</b> 구현 — 팀/개인 단위 이슈 발생·해결 추이 시각화</li>
+          <li>매주 월요일 9시 <b>주간 리포트를 자동 생성·메일 발송</b>하는 스케줄러 구현</li>
+          <li>React(Vite·TypeScript) 프론트엔드와 회원가입·로그인·온보딩 화면 연동</li>
+        </ul>
+        <div class="proj-foot">
+          <div class="proj-tags"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>JWT</span><span>OAuth2</span><span>TOTP</span><span>Redis</span><span>MariaDB</span><span>React</span><span>TypeScript</span></div>
+          <div class="proj-links"><a href="https://github.com/Leeuswa/COGI" target="_blank" rel="noopener">GitHub ↗</a><a href="projects/cogi.html">상세 →</a></div>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-head">
           <h3>펫밀리데이 (petmilyday)</h3>
           <div class="meta">2026.05 – 2026.06<br>팀 프로젝트 (4人)</div>
         </div>
@@ -246,55 +270,32 @@
         </div>
       </article>
 
-      <article class="proj reveal">
-        <div class="proj-head">
-          <h3>LMS 학습 관리 시스템</h3>
-          <div class="meta">2025.05 – 2025.12<br>팀 프로젝트</div>
-        </div>
-        <span class="role">관리자 · 교사 파트 (Backend)</span>
-        <p class="summary">학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API</p>
-        <ul>
-          <li>회원가입·로그인, 강의 관리, 수강 신청, 학습 진행도 관리 기능 구현</li>
-          <li>과제 등록·제출·채점 흐름과 게시판·댓글 기능 개발</li>
-          <li>Controller–Service–Repository 계층을 분리하고 REST API로 프론트엔드 연동 구조 설계</li>
-        </ul>
-        <div class="proj-foot">
-          <div class="proj-tags"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>H2</span><span>REST API</span><span>Gradle</span></div>
-          <div class="proj-links"><a href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a><a href="projects/lms.html">상세 →</a></div>
-        </div>
-      </article>
-
       <div class="mini-title reveal">기타 프로젝트</div>
       <div class="mini-grid reveal">
         <div class="mini">
-          <div class="mh"><h4>Spring Boot 게시판</h4><span class="d">2025.12–2026.03</span></div>
-          <p>게시글 CRUD, MVC 패턴, 서버 사이드 렌더링 기반 게시판 애플리케이션.</p>
-          <div class="mt">Java · Spring Boot · JPA · Thymeleaf</div>
+          <div class="mh"><h4>LMS 학습 관리 시스템</h4><span class="d">2025.05–12</span></div>
+          <p>학생·교사·관리자 역할을 구분한 온라인 학습 관리 백엔드 API. 관리자·교사 파트를 맡아 강의·수강·과제·게시판 기능 구현.</p>
+          <div class="mfoot"><span class="mt">Java · Spring Boot · Spring Security · REST API</span><a class="glink" href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
           <div class="mh"><h4>Laravel 판매관리 시스템</h4><span class="d">2025.09–11</span></div>
           <p>상품·재고·입출고 관리와 매출 분석·차트 시각화. 경진대회 최우수상.</p>
-          <div class="mt">PHP · Laravel · MariaDB</div>
+          <div class="mfoot"><span class="mt">PHP · Laravel · MariaDB</span><a class="glink" href="https://github.com/Leeuswa/laravel-sales-inventory" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
           <div class="mh"><h4>Laravel 중고마켓</h4><span class="d">2025.10–12</span></div>
           <p>상품 등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지를 갖춘 중고거래 플랫폼.</p>
-          <div class="mt">PHP · Laravel · JavaScript</div>
-        </div>
-        <div class="mini">
-          <div class="mh"><h4>Spring AI · RAG 실습</h4><span class="d">2026.04–05</span></div>
-          <p>PDF 로딩·임베딩·VectorStore·검색 기반 응답 생성 구조 실습.</p>
-          <div class="mt">Spring AI · OpenAI API</div>
+          <div class="mfoot"><span class="mt">PHP · Laravel · JavaScript</span><a class="glink" href="https://github.com/Leeuswa/laravel-used-marketplace" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
           <div class="mh"><h4>PHP 의류 쇼핑몰</h4><span class="d">2025.03–06</span></div>
           <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리 기능을 구현한 쇼핑몰.</p>
-          <div class="mt">PHP · MariaDB · Bootstrap</div>
+          <div class="mfoot"><span class="mt">PHP · MariaDB · Bootstrap</span><a class="glink" href="https://github.com/Leeuswa/php-shoppingmall" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
           <div class="mh"><h4>지하철 혼잡도 분석·예측</h4><span class="d">2026.05–06</span></div>
           <p>K-Means·다중회귀·KNN을 활용한 지하철 혼잡도 패턴 분석 및 예측.</p>
-          <div class="mt">RStudio · MySQL · Python</div>
+          <div class="mfoot"><span class="mt">RStudio · MySQL · Python</span><a class="glink" href="https://github.com/Leeuswa/subway-congestion-analysis-r" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
       </div>
     </section>
@@ -349,7 +350,7 @@
               <li><span class="nm">Laravel 웹 솔루션 경진대회 <span class="rk gold">최우수상</span></span><span class="dt">2025.12</span></li>
               <li><span class="nm">PHP 쇼핑몰 경진대회 <span class="rk gold">최우수상</span></span><span class="dt">2025.06</span></li>
               <li><span class="nm">React 웹 프론트엔드 <span class="rk silver">우수상</span></span><span class="dt">2026.06</span></li>
-              <li><span class="nm">2026 빅데이터분석 경진대회 (메타버스 오딧세이)</span><span class="dt">2026.06</span></li>
+              <li><span class="nm">2026 빅데이터분석 경진대회 (메타버스 오딧세이) <span class="rk gold">최우수상</span></span><span class="dt">2026.06</span></li>
             </ul>
             <ul>
               <li><span class="nm">데이터분석 온라인 메타버스 경진대회 <span class="rk base">장려상</span></span><span class="dt">2025.12</span></li>
