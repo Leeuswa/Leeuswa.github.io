@@ -110,7 +110,10 @@
   .mini{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px 22px;transition:border-color .2s,transform .2s}
   .mini:hover{border-color:var(--accent);transform:translateY(-2px)}
   .mini .mh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
-  .mini .mh h4{font-size:1.02rem;font-weight:600}
+  .mini .mh h4{font-size:1.02rem;font-weight:600;display:inline-flex;align-items:center;gap:8px}
+  .mini .mh h4 .kind{font-family:var(--mono);font-size:.62rem;font-weight:500;letter-spacing:.04em;padding:2px 7px;border-radius:5px;flex-shrink:0}
+  .mini .mh h4 .kind.team{color:#1d5a3a;background:#E4F3EA;border:1px solid #BFE3CD}
+  .mini .mh h4 .kind.solo{color:#5a4b1d;background:#F4EEDE;border:1px solid #E3D6B0}
   .mini .mh .d{font-family:var(--mono);font-size:.68rem;color:var(--muted);white-space:nowrap}
   .mini p{font-size:.9rem;color:var(--sub);margin-bottom:10px}
   .mini .mfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:2px}
@@ -125,7 +128,9 @@
   .tl-item:last-child{padding-bottom:0}
   .tl-item::before{content:"";position:absolute;left:-8px;top:5px;width:14px;height:14px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
   .tl-item .date{font-family:var(--mono);font-size:.76rem;color:var(--accent);margin-bottom:4px}
-  .tl-item h3{font-size:1.2rem;font-weight:700;margin-bottom:2px}
+  .tl-item h3{font-size:1.2rem;font-weight:700;margin-bottom:2px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tl-item h3 .live{font-family:var(--mono);font-size:.64rem;font-weight:500;letter-spacing:.04em;color:var(--accent);background:var(--accent-soft);border-radius:100px;padding:3px 10px;display:inline-flex;align-items:center;gap:6px}
+  .tl-item h3 .live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
   .tl-item .org{font-size:.92rem;color:var(--muted);margin-bottom:10px}
   .tl-item p{color:var(--sub);font-size:.96rem}
 
@@ -273,27 +278,27 @@
       <div class="mini-title reveal">기타 프로젝트</div>
       <div class="mini-grid reveal">
         <div class="mini">
-          <div class="mh"><h4>LMS 학습 관리 시스템</h4><span class="d">2025.05–12</span></div>
+          <div class="mh"><h4>LMS 학습 관리 시스템 <span class="kind team">팀</span></h4><span class="d">2025.05–12</span></div>
           <p>학생·교사·관리자 역할을 구분한 온라인 학습 관리 백엔드 API. 관리자·교사 파트를 맡아 강의·수강·과제·게시판 기능 구현.</p>
           <div class="mfoot"><span class="mt">Java · Spring Boot · Spring Security · REST API</span><a class="glink" href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
-          <div class="mh"><h4>Laravel 판매관리 시스템</h4><span class="d">2025.09–11</span></div>
+          <div class="mh"><h4>Laravel 판매관리 시스템 <span class="kind solo">개인</span></h4><span class="d">2025.09–11</span></div>
           <p>상품·재고·입출고 관리와 매출 분석·차트 시각화. 경진대회 최우수상.</p>
           <div class="mfoot"><span class="mt">PHP · Laravel · MariaDB</span><a class="glink" href="https://github.com/Leeuswa/laravel-sales-inventory" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
-          <div class="mh"><h4>Laravel 중고마켓</h4><span class="d">2025.10–12</span></div>
+          <div class="mh"><h4>Laravel 중고마켓 <span class="kind solo">개인</span></h4><span class="d">2025.10–12</span></div>
           <p>상품 등록·검색·필터, 찜·거래 채팅·리뷰, 관리자 페이지를 갖춘 중고거래 플랫폼.</p>
           <div class="mfoot"><span class="mt">PHP · Laravel · JavaScript</span><a class="glink" href="https://github.com/Leeuswa/laravel-used-marketplace" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
-          <div class="mh"><h4>PHP 의류 쇼핑몰</h4><span class="d">2025.03–06</span></div>
+          <div class="mh"><h4>PHP 의류 쇼핑몰 <span class="kind solo">개인</span></h4><span class="d">2025.03–06</span></div>
           <p>회원·장바구니·주문·결제와 관리자 상품/주문 관리 기능을 구현한 쇼핑몰.</p>
           <div class="mfoot"><span class="mt">PHP · MariaDB · Bootstrap</span><a class="glink" href="https://github.com/Leeuswa/php-shoppingmall" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
         <div class="mini">
-          <div class="mh"><h4>지하철 혼잡도 분석·예측</h4><span class="d">2026.05–06</span></div>
+          <div class="mh"><h4>지하철 혼잡도 분석·예측 <span class="kind solo">개인</span></h4><span class="d">2026.05–06</span></div>
           <p>K-Means·다중회귀·KNN을 활용한 지하철 혼잡도 패턴 분석 및 예측.</p>
           <div class="mfoot"><span class="mt">RStudio · MySQL · Python</span><a class="glink" href="https://github.com/Leeuswa/subway-congestion-analysis-r" target="_blank" rel="noopener">GitHub ↗</a></div>
         </div>
@@ -305,13 +310,31 @@
       <div class="sec-title reveal"><span class="idx">04</span><h2>Career</h2><span class="rule"></span></div>
       <div class="tl reveal">
         <div class="tl-item">
+          <div class="date">2026 —</div>
+          <h3>Indev <span class="live">개발 진행 중</span></h3>
+          <div class="org">소상공인을 위한 웹사이트 제작</div>
+          <p>소상공인을 위한 웹사이트를 기획·개발하고 있습니다. 현재 진행 중인 프로젝트입니다.</p>
+        </div>
+        <div class="tl-item">
           <div class="date">2025.11 — 2026.08</div>
           <h3>대우능력개발원</h3>
           <div class="org">Java/Spring Boot 백엔드 웹 개발 과정</div>
           <p>Java와 Spring Boot 기반 백엔드 개발 과정을 이수하며 실무형 팀 프로젝트 경험을 쌓았습니다.</p>
         </div>
         <div class="tl-item">
-          <div class="date">2025.01 — 2025.12</div>
+          <div class="date">2026.01 — 2026.02</div>
+          <h3>인덕대학교 코드어택</h3>
+          <div class="org">학과 동아리</div>
+          <p>Java 문법, 객체지향 개념, 알고리즘 문제 풀이, 자료구조 등 CS 기초를 학습하며 개발 기본기와 문제 해결 능력을 다졌습니다.</p>
+        </div>
+        <div class="tl-item">
+          <div class="date">2025.06 — 2025.12</div>
+          <h3>인덕대학교 DevUp</h3>
+          <div class="org">스터디그룹</div>
+          <p>Java, 데이터베이스, 운영체제, 네트워크, 소프트웨어공학 등 전공·CS 기초를 함께 학습하고, 정보처리산업기사 준비를 병행했습니다.</p>
+        </div>
+        <div class="tl-item">
+          <div class="date">2025.05 — 2025.12</div>
           <h3>인덕대학교 타닥타닥 동아리</h3>
           <div class="org">팀 프로젝트 활동</div>
           <p>Spring Boot와 React를 활용한 LMS(학습 관리 시스템) 팀 프로젝트를 진행했습니다.</p>
