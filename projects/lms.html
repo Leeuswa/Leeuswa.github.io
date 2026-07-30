@@ -3,150 +3,166 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LMS 학습 관리 시스템 — 케이스 스터디 | 이수환</title>
-<meta name="description" content="학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API. 관리자·교사 파트 케이스 스터디." />
+<title>LMS 학습 관리 시스템 — 역할 기반 학습 관리 백엔드 | 이수환</title>
+<meta name="description" content="학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API. 관리자·교사 파트를 맡아 강의·수강·과제·채점·게시판을 REST API로 설계." />
 <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../styles.css" />
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#F7F6F3; --card:#FFFFFF; --ink:#1A1A18; --sub:#57544D; --muted:#8B877D;
+    --line:#E6E3DC; --line2:#D8D4CB; --accent:#2B59FF; --accent-soft:#EAEEFF;
+    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
+    --serif:'Gowun Batang',serif;
+    --mono:'IBM Plex Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--accent);color:#fff}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+
+  .detail-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:40px;transition:color .2s}
+  .detail-back:hover{color:var(--accent)}
+
+  .detail-header{padding:44px 0 32px;border-bottom:1px solid var(--line)}
+  .project-index{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.06em;display:inline-block;margin-bottom:16px}
+  .detail-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1.28;letter-spacing:-.02em;margin-bottom:14px}
+  .detail-meta{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:22px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag{font-family:var(--mono);font-size:.74rem;color:var(--sub);background:var(--card);border:1px solid var(--line2);border-radius:100px;padding:6px 13px}
+
+  .detail-body{max-width:720px;padding:8px 0}
+  .detail-body h2{font-family:var(--mono);font-size:.92rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:48px 0 18px;display:flex;align-items:center;gap:14px}
+  .detail-body h2::after{content:"";flex:1;height:1px;background:var(--line)}
+  .detail-body p{color:var(--sub);font-size:1.02rem;margin-bottom:16px}
+  .detail-body p b{color:var(--ink);font-weight:600}
+  .detail-body code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--accent)}
+
+  .lead p{font-family:var(--serif);font-size:1.16rem;color:var(--ink);line-height:1.7}
+  .lead p b{color:var(--accent)}
+
+  .feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-bottom:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
+  .feature:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 10px 34px -22px rgba(26,26,24,.3)}
+  .feature h3{font-family:var(--sans);font-size:1.08rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:11px}
+  .feature h3 .num{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 9px}
+  .feature ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+  .feature ul li{position:relative;padding-left:20px;color:var(--sub);font-size:.97rem;line-height:1.6}
+  .feature ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
+  .feature ul li b{color:var(--ink);font-weight:600}
+
+  .plain-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px}
+  .plain-list li{position:relative;padding-left:20px;color:var(--sub);font-size:.99rem;line-height:1.6}
+  .plain-list li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
+  .plain-list li b{color:var(--ink);font-weight:600}
+
+  .spec{width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;border-collapse:collapse;background:var(--card)}
+  .spec td{padding:13px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.82rem;color:var(--sub);vertical-align:top}
+  .spec tr:last-child td{border-bottom:0}
+  .spec td:first-child{color:var(--ink);font-weight:500;white-space:nowrap;width:34%;background:var(--bg)}
+
+  .detail-links{display:flex;gap:12px;margin:44px 0 90px;flex-wrap:wrap}
+  .btn{font-family:var(--mono);font-size:.84rem;padding:13px 26px;border-radius:8px;transition:.18s;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:8px}
+  .btn-primary{background:var(--ink);color:#fff}
+  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
+  .btn-ghost:hover{background:var(--ink);color:#fff}
+  a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+</style>
 </head>
 <body>
-<a class="skip" href="#context">본문으로 건너뛰기</a>
-<div class="cursor" id="cursor" aria-hidden="true"></div>
-
-<nav>
-  <div class="nav-pill" id="navPill">
-    <a href="../index.html#top" class="brand"><span class="blob"></span>이수환</a>
-    <div class="nav-links" id="navLinks">
-      <a href="../index.html#about">about</a>
-      <a href="../index.html#skills">skills</a>
-      <a href="../index.html#projects">projects</a>
-      <a href="../index.html#career">career</a>
-    </div>
-    <a href="../index.html#contact" class="nav-cta">연락하기</a>
-    <button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">menu</button>
-  </div>
-</nav>
 
 <div class="wrap">
-  <a class="cs-back" href="../index.html#projects" data-cursor>← 작업 목록으로</a>
-</div>
+  <a class="detail-back" href="../index.html#projects">← 프로젝트 목록으로</a>
 
-<header class="wrap cs-hero">
-  <span class="idx">P.03 — CASE STUDY · 팀 프로젝트 · 2025.05–2025.12</span>
-  <h1>LMS 학습 관리 시스템</h1>
-  <p class="lede">학생·교사·관리자 역할을 구분한 온라인 학습 관리 시스템 백엔드 API. 저는 <b>관리자·교사 파트</b>를 맡아 강의·수강·과제·채점·게시판을 REST API로 설계했습니다.</p>
-  <div class="tags">
-    <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">H2</span><span class="tag">REST API</span><span class="tag">Gradle</span>
-  </div>
-  <div class="cs-facts">
-    <div class="f"><div class="k">Role</div><div class="v">관리자·교사 파트 백엔드</div></div>
-    <div class="f"><div class="k">Type</div><div class="v">팀 프로젝트 · REST API</div></div>
-    <div class="f"><div class="k">Period</div><div class="v">2025.05 – 2025.12</div></div>
-    <div class="f"><div class="k">Repo</div><div class="v"><a class="tlink" href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener" data-cursor>GitHub ↗</a></div></div>
-  </div>
-</header>
-
-<section id="context" class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">01</span><div class="lname">Context</div></div>
-    <div class="cs-prose reveal" data-d="1">
-      <p>학생·교사·관리자가 각기 다른 권한으로 움직이는 온라인 학습 관리 시스템입니다. 인덕대 타닥타닥 동아리에서 Spring Boot와 React로 진행한 팀 프로젝트로, 프론트엔드와 분리된 <b>REST API 백엔드</b>가 필요했습니다.</p>
+  <div class="detail-header">
+    <span class="project-index">P.03</span>
+    <h1>LMS 학습 관리 시스템</h1>
+    <p class="detail-meta">팀 프로젝트 · Spring Boot · 관리자·교사 파트 · 2025.05 – 2025.12</p>
+    <div class="tags">
+      <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">H2</span><span class="tag">REST API</span><span class="tag">Gradle</span>
     </div>
   </div>
-</section>
 
-<section class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">02</span><div class="lname">Problem</div></div>
-    <div class="cs-prose reveal" data-d="1">
-      <p>역할별로 접근할 수 있는 기능이 달랐고, 강의–수강–과제–채점이 서로 연결된 데이터 흐름을 이루고 있었습니다. 프론트엔드와 독립적으로 개발·연동하려면 계층과 응답 구조를 명확히 나눠야 했습니다.</p>
+  <div class="detail-body">
+    <h2>개요</h2>
+    <div class="lead">
+      <p>학생·교사·관리자가 각기 다른 권한으로 움직이는 <b>온라인 학습 관리 시스템(LMS)</b>입니다. 프론트엔드와 분리된 REST API 백엔드로, 저는 <b>관리자·교사 파트</b>를 맡았습니다.</p>
     </div>
+    <p>인덕대 타닥타닥 동아리에서 Spring Boot와 React로 진행한 팀 프로젝트입니다. Controller-Service-Repository 계층을 분리하고, Spring Security로 역할을 구분했으며, 강의–수강–과제–채점을 엔티티 연관관계로 모델링해 프론트엔드와 독립적으로 개발·연동할 수 있는 구조로 설계했습니다.</p>
   </div>
-</section>
 
-<section class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">03</span><div class="lname">Approach</div></div>
-    <div class="cs-prose reveal" data-d="1">
-      <p>Controller-Service-Repository 계층을 분리하고 REST API 방식으로 프론트엔드와 연동 가능한 구조를 설계했습니다. Spring Security로 역할을 구분하고, 강의·수강·과제·채점을 엔티티 연관관계로 모델링했습니다.</p>
-    </div>
+  <div class="detail-body">
+    <h2>링크</h2>
+    <!-- 링크 넣는 법: 아래 <span class="link-slot" ...> 을 <a class="link-slot" href="..." target="_blank" rel="noopener"> 로 바꾸면 클릭 가능한 링크가 됩니다. -->
+    <table class="spec">
+      <tr><td>GitHub</td><td><a href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener" style="color:var(--accent)">github.com/Leeuswa/lms-backend-springboot ↗</a></td></tr>
+      <tr><td>기간</td><td>2025.05 – 2025.12</td></tr>
+      <tr><td>담당</td><td>관리자·교사 파트 백엔드 (REST API)</td></tr>
+    </table>
   </div>
-</section>
 
-<section class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">04</span><div class="lname">Implementation</div></div>
-    <div class="cs-prose reveal" data-d="1">
-      <p>담당한 관리자·교사 파트 기능:</p>
+  <div class="detail-body">
+    <h2>기술 스택</h2>
+    <table class="spec">
+      <tr><td>Language</td><td>Java</td></tr>
+      <tr><td>Framework</td><td>Spring Boot (Web MVC, Data JPA)</td></tr>
+      <tr><td>Persistence</td><td>Spring Data JPA, H2</td></tr>
+      <tr><td>Auth</td><td>Spring Security (역할 기반 접근제어)</td></tr>
+      <tr><td>API</td><td>REST API</td></tr>
+      <tr><td>Build</td><td>Gradle</td></tr>
+    </table>
+
+    <h2>담당 파트 (관리자 · 교사)</h2>
+
+    <div class="feature">
+      <h3><span class="num">01</span>회원 · 인증</h3>
       <ul>
-        <li>회원가입 · 로그인</li>
-        <li>강의 관리</li>
-        <li>수강 신청</li>
-        <li>학습 진행도 관리</li>
-        <li>과제 등록 · 제출 · 채점</li>
-        <li>게시판 · 댓글</li>
+        <li>회원가입·로그인 구현, Spring Security로 학생·교사·관리자 역할별 접근제어</li>
+        <li>역할에 따라 접근 가능한 기능을 분리해 권한 경계를 명확히 처리</li>
       </ul>
     </div>
-  </div>
-</section>
 
-<section class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">05</span><div class="lname">Screens</div></div>
-    <div class="reveal" data-d="1" style="min-width:0;">
-      <div class="cs-gallery">
-        <figure class="shot"><div class="shot-frame" data-label="LMS 화면"><img src="../assets/projects/lms-backend-springboot.png" alt="LMS 학습 관리 시스템 화면" loading="lazy" onerror="this.remove()" /></div><figcaption>LMS 학습 관리 시스템</figcaption></figure>
-      </div>
+    <div class="feature">
+      <h3><span class="num">02</span>강의 · 수강</h3>
+      <ul>
+        <li>강의 등록·관리 기능과 학생 수강 신청 흐름 구현</li>
+        <li>학습 진행도 관리로 수강생별 진행 상태 추적</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3><span class="num">03</span>과제 · 채점</h3>
+      <ul>
+        <li>과제 등록 → 학생 제출 → 교사 채점으로 이어지는 흐름을 엔티티 연관관계로 모델링</li>
+        <li>강의–수강–과제–채점이 연결된 데이터 흐름을 REST API로 일관되게 제공</li>
+      </ul>
+    </div>
+
+    <div class="feature">
+      <h3><span class="num">04</span>게시판</h3>
+      <ul>
+        <li>게시판·댓글 기능 구현</li>
+        <li>목록 조회·작성 등 기본 CRUD를 API로 제공</li>
+      </ul>
+    </div>
+
+    <h2>주요 기능 (담당 범위)</h2>
+    <ul class="plain-list">
+      <li><b>회원 / 인증</b> — 회원가입·로그인, 역할별 접근제어(학생 / 교사 / 관리자)</li>
+      <li><b>강의 / 수강</b> — 강의 관리, 수강 신청, 학습 진행도 관리</li>
+      <li><b>과제 / 채점</b> — 과제 등록·제출·채점 흐름</li>
+      <li><b>게시판</b> — 게시글·댓글</li>
+    </ul>
+
+    <div class="detail-links">
+      <a class="btn btn-primary" href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn btn-ghost" href="../index.html#projects">← 목록으로</a>
     </div>
   </div>
-</section>
+</div>
 
-<section class="cs-section">
-  <div class="wrap cs-layout">
-    <div class="label reveal"><span class="kicker acc">06</span><div class="lname">Result</div></div>
-    <div class="cs-prose reveal" data-d="1">
-      <p>프론트엔드와 연동 가능한 역할 기반 학습 관리 백엔드를 팀으로 완성했습니다. 강의부터 채점, 게시판까지 관리자·교사 흐름을 REST API로 안정적으로 제공하도록 마무리했습니다.</p>
-
-      <h3>기술 스택</h3>
-      <table class="spec">
-        <tr><td>Language</td><td>Java</td></tr>
-        <tr><td>Framework</td><td>Spring Boot</td></tr>
-        <tr><td>Persistence</td><td>Spring Data JPA, H2</td></tr>
-        <tr><td>Auth</td><td>Spring Security</td></tr>
-        <tr><td>API</td><td>REST API</td></tr>
-        <tr><td>Build</td><td>Gradle</td></tr>
-      </table>
-
-      <div class="cs-links">
-        <a class="btn btn-primary" href="https://github.com/Leeuswa/lms-backend-springboot" target="_blank" rel="noopener" data-cursor>GitHub <span class="ic">↗</span></a>
-        <a class="btn btn-ghost" href="petmilyday.html" data-cursor>이전 작업 <span class="ic">→</span></a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="footer-inner">
-    <span>© 2026 이수환</span>
-    <div class="footer-links">
-      <a href="../index.html#projects">작업</a>
-      <a href="https://github.com/Leeuswa" target="_blank" rel="noopener">GitHub</a>
-      <a href="mailto:leeco6578@naver.com">이메일</a>
-    </div>
-    <span>Built with care · GitHub Pages</span>
-  </div>
-</footer>
-
-<script>
-  const cur=document.getElementById('cursor');
-  const fine=window.matchMedia('(hover:hover) and (pointer:fine)').matches;
-  if(cur&&fine){let x=innerWidth/2,y=innerHeight/2,tx=x,ty=y;addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;});(function loop(){x+=(tx-x)*.2;y+=(ty-y)*.2;cur.style.transform=`translate(${x}px,${y}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();document.querySelectorAll('[data-cursor]').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('big'));el.addEventListener('mouseleave',()=>cur.classList.remove('big'));});}else if(cur){cur.remove();}
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.1});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  const tg=document.getElementById('navToggle'),pill=document.getElementById('navPill');
-  tg?.addEventListener('click',()=>{const o=pill.classList.toggle('open');tg.textContent=o?'close':'menu';});
-</script>
 </body>
 </html>
