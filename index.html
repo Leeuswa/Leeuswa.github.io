@@ -87,6 +87,12 @@
   /* PROJECTS — detailed cards */
   .proj{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px 36px;margin-bottom:22px;transition:box-shadow .25s,transform .25s,border-color .25s}
   .proj:hover{box-shadow:0 12px 40px -20px rgba(26,26,24,.28);border-color:var(--line2);transform:translateY(-2px)}
+  .proj-cover{position:relative;aspect-ratio:16/9;border-radius:12px;overflow:hidden;margin-bottom:24px;border:1px dashed var(--line2);background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center}
+  .proj-cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top}
+  .proj-cover:has(img){border-style:solid;border-color:var(--line)}
+  .proj-cover .ico{font-size:1.9rem;line-height:1;opacity:.55}
+  .proj-cover .lbl{font-family:var(--mono);font-size:.86rem;font-weight:500;color:var(--sub)}
+  .proj-cover .hint{font-family:var(--mono);font-size:.7rem;color:var(--muted)}
   .proj-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:6px}
   .proj-head h3{font-size:1.5rem;font-weight:700;letter-spacing:-.01em}
   .proj-head .meta{font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:right;white-space:nowrap;padding-top:8px}
@@ -236,6 +242,14 @@
       <div class="sec-title reveal"><span class="idx">03</span><h2>Projects</h2><span class="rule"></span></div>
 
       <article class="proj reveal">
+        <div class="proj-cover">
+          <!-- 대표 이미지 넣는 법: 아래 <img> 주석을 풀고 src를 본인 이미지 경로로 바꾸세요.
+               예) <img src="assets/projects/cogi/cover.png" alt="COGI 대표 화면" loading="lazy"> -->
+          <!-- <img src="" alt="COGI 대표 화면" loading="lazy"> -->
+          <span class="ico">🖼</span>
+          <span class="lbl">대표 이미지</span>
+          <span class="hint">준비 중 · 나중에 추가</span>
+        </div>
         <div class="proj-head">
           <h3>COGI — AI 코드리뷰 · 성장분석 플랫폼</h3>
           <div class="meta">2026<br>팀 프로젝트</div>
@@ -257,6 +271,14 @@
       </article>
 
       <article class="proj reveal">
+        <div class="proj-cover">
+          <!-- 대표 이미지 넣는 법: 아래 <img> 주석을 풀고 src를 본인 이미지 경로로 바꾸세요.
+               예) <img src="assets/projects/petmilyday/01-main.png" alt="펫밀리데이 대표 화면" loading="lazy"> -->
+          <!-- <img src="assets/projects/petmilyday/01-main.png" alt="펫밀리데이 대표 화면" loading="lazy"> -->
+          <span class="ico">🖼</span>
+          <span class="lbl">대표 이미지</span>
+          <span class="hint">준비 중 · 나중에 추가</span>
+        </div>
         <div class="proj-head">
           <h3>펫밀리데이 (petmilyday)</h3>
           <div class="meta">2026.05 – 2026.06<br>팀 프로젝트 (4인)</div>
