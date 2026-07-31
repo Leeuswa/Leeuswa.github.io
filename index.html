@@ -156,9 +156,9 @@
   .skill-cat:last-child{border-bottom:1px solid var(--line)}
   .skill-cat .cat-h{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
   .skill-cat .cat-h .sq{width:9px;height:9px;background:var(--accent);border-radius:2px}
-  .srow{display:grid;grid-template-columns:150px 84px 1fr;gap:16px;align-items:center;padding:9px 0;border-top:1px dashed var(--line)}
+  .srow{display:grid;grid-template-columns:170px 1fr;gap:16px;align-items:baseline;padding:10px 0;border-top:1px dashed var(--line)}
   .srow:first-of-type{border-top:0}
-  @media(max-width:640px){.srow{grid-template-columns:1fr auto;gap:6px 12px}.srow .swhen{grid-column:1/-1;padding-left:0}}
+  @media(max-width:640px){.srow{grid-template-columns:1fr;gap:3px}}
   .srow .sname{font-weight:600;font-size:.92rem}
   .srow .swhen{font-size:.84rem;color:var(--fg-2)}
 
@@ -363,46 +363,44 @@
   <!-- ===== SKILLS ===== -->
   <section class="sec" id="skills">
     <div class="sec-h rv"><span class="n">03</span><h2>Skills</h2><span class="line"></span></div>
-    <div class="skills-note rv">
-      <span class="lvl-badge main">주력</span> 프로젝트 다수 적용
-      <span class="lvl-badge good">능숙</span> 프로젝트 적용
-      <span class="lvl-badge learn">학습 중</span>
-    </div>
+    <div class="skills-note rv">각 기술의 실제 구현 내용과 적용 프로젝트를 정리했습니다.</div>
 
     <div class="skill-cat rv">
       <div class="cat-h"><span class="sq"></span>Backend</div>
-      <div class="srow"><span class="sname">Spring Boot</span><span class="lvl-badge main">주력</span><span class="swhen">계층 분리(Controller–Service–Repository) 기반 REST API·웹 애플리케이션 구현 — 전 프로젝트</span></div>
-      <div class="srow"><span class="sname">Spring Security</span><span class="lvl-badge main">주력</span><span class="swhen">JWT·OAuth2·TOTP 2FA, 역할 기반 접근제어 — COGI · 펫밀리데이</span></div>
-      <div class="srow"><span class="sname">Spring Data JPA</span><span class="lvl-badge main">주력</span><span class="swhen">연관관계 설계, 비관적 락 동시성 제어, 소프트 삭제·익명화 — 펫밀리데이 · COGI</span></div>
-      <div class="srow"><span class="sname">QueryDSL</span><span class="lvl-badge good">능숙</span><span class="swhen">동적 검색 조건 조합(키워드·진료과목·응급여부) — 펫밀리데이 병원 검색</span></div>
-      <div class="srow"><span class="sname">REST API</span><span class="lvl-badge main">주력</span><span class="swhen">프론트엔드 분리형 API 설계 — 전 프로젝트</span></div>
+      <div class="srow"><span class="sname">Spring Boot</span><span class="swhen">계층 분리(Controller–Service–Repository) 기반 REST API·웹 애플리케이션 구현 — 전 프로젝트</span></div>
+      <div class="srow"><span class="sname">Spring Security</span><span class="swhen">JWT·OAuth2·TOTP 2FA, 역할 기반 접근제어 — COGI · 펫밀리데이</span></div>
+      <div class="srow"><span class="sname">Spring Data JPA</span><span class="swhen">연관관계 설계, 비관적 락 동시성 제어, 소프트 삭제·익명화 — 펫밀리데이 · COGI</span></div>
+      <div class="srow"><span class="sname">QueryDSL</span><span class="swhen">동적 검색 조건 조합(키워드·진료과목·응급여부) — 펫밀리데이 병원 검색</span></div>
+      <div class="srow"><span class="sname">REST API</span><span class="swhen">프론트엔드 분리형 API 설계 — 전 프로젝트</span></div>
     </div>
 
     <div class="skill-cat rv">
       <div class="cat-h"><span class="sq"></span>Database</div>
-      <div class="srow"><span class="sname">MariaDB / MySQL</span><span class="lvl-badge main">주력</span><span class="swhen">도메인 스키마·연관관계 설계, JOIN·집계 쿼리 — 운영 DB</span></div>
-      <div class="srow"><span class="sname">Redis</span><span class="lvl-badge good">능숙</span><span class="swhen">캐시·세션 등 보조 저장소 — COGI</span></div>
-      <div class="srow"><span class="sname">H2</span><span class="lvl-badge good">능숙</span><span class="swhen">개발·테스트용 인메모리 DB</span></div>
+      <div class="srow"><span class="sname">MariaDB / MySQL</span><span class="swhen">도메인 스키마·연관관계 설계, JOIN·집계 쿼리 — 운영 DB</span></div>
+      <div class="srow"><span class="sname">Redis</span><span class="swhen">캐시·세션 등 보조 저장소 — COGI</span></div>
+      <div class="srow"><span class="sname">H2</span><span class="swhen">개발·테스트용 인메모리 DB</span></div>
     </div>
 
     <div class="skill-cat rv">
       <div class="cat-h"><span class="sq"></span>DevOps</div>
-      <div class="srow"><span class="sname">Docker</span><span class="lvl-badge good">능숙</span><span class="swhen">Docker Compose로 애플리케이션 컨테이너화·환경 구성 — COGI</span></div>
-      <div class="srow"><span class="sname">AWS (EC2)</span><span class="lvl-badge good">능숙</span><span class="swhen">EC2 배포, Nginx 리버스 프록시·HTTPS 적용 — COGI</span></div>
-      <div class="srow"><span class="sname">Git / GitHub</span><span class="lvl-badge main">주력</span><span class="swhen">브랜치 협업, PR 코드리뷰·병합, 이슈 추적 — 전 팀 프로젝트</span></div>
+      <div class="srow"><span class="sname">Docker</span><span class="swhen">Docker Compose로 애플리케이션 컨테이너화·환경 구성 — COGI</span></div>
+      <div class="srow"><span class="sname">AWS (EC2)</span><span class="swhen">EC2 배포, Nginx 리버스 프록시·HTTPS 적용 — COGI</span></div>
+      <div class="srow"><span class="sname">Git / GitHub</span><span class="swhen">브랜치 협업, PR 코드리뷰·병합, 이슈 추적 — 전 팀 프로젝트</span></div>
     </div>
 
     <div class="skill-cat rv">
-      <div class="cat-h"><span class="sq"></span>AI</div>
-      <div class="srow"><span class="sname">Spring AI</span><span class="lvl-badge good">능숙</span><span class="swhen">ChatClient로 입력 전달·응답 활용, Claude 연동 사료추천 — 펫밀리데이</span></div>
-      <div class="srow"><span class="sname">LLM / OpenAI API</span><span class="lvl-badge learn">학습 중</span><span class="swhen">프롬프트 기반 응답 생성 구조 학습·실습</span></div>
+      <div class="cat-h"><span class="sq"></span>AI · LLM</div>
+      <div class="srow"><span class="sname">Spring AI</span><span class="swhen">ChatClient로 입력 전달·응답 활용, Anthropic Claude 연동 사료 추천 — 펫밀리데이</span></div>
+      <div class="srow"><span class="sname">LLM API</span><span class="swhen">프롬프트 기반 응답 생성 구조 구현·실습 — Spring AI(Claude)</span></div>
+      <div class="srow"><span class="sname">MCP</span><span class="swhen">Model Context Protocol 기반 도구·컨텍스트 연동 구조 학습·실습</span></div>
+      <div class="srow"><span class="sname">RAG</span><span class="swhen">문서 임베딩·검색 증강 생성(Retrieval-Augmented Generation) 파이프라인 학습·실습</span></div>
     </div>
 
     <div class="skill-cat rv">
       <div class="cat-h"><span class="sq"></span>Frontend · Tools</div>
-      <div class="srow"><span class="sname">React / TypeScript</span><span class="lvl-badge learn">학습 중</span><span class="swhen">Vite 기반 화면 구현, 성장 추이·리포트 화면 연동 — COGI</span></div>
-      <div class="srow"><span class="sname">Thymeleaf</span><span class="lvl-badge good">능숙</span><span class="swhen">서버 사이드 렌더링 뷰 — 펫밀리데이</span></div>
-      <div class="srow"><span class="sname">Postman · IntelliJ · Gradle</span><span class="lvl-badge good">능숙</span><span class="swhen">API 테스트·개발·빌드 도구</span></div>
+      <div class="srow"><span class="sname">React / TypeScript</span><span class="swhen">Vite 기반 화면 구현, 성장 추이·리포트 화면 연동 — COGI</span></div>
+      <div class="srow"><span class="sname">Thymeleaf</span><span class="swhen">서버 사이드 렌더링 뷰 — 펫밀리데이</span></div>
+      <div class="srow"><span class="sname">Postman · IntelliJ · Gradle</span><span class="swhen">API 테스트·개발·빌드 도구</span></div>
     </div>
   </section>
 
@@ -410,6 +408,12 @@
   <section class="sec" id="experience">
     <div class="sec-h rv"><span class="n">04</span><h2>Experience</h2><span class="line"></span></div>
     <div class="tl rv">
+      <div class="tl-item">
+        <div class="date">2026 — 현재</div>
+        <h3>Indev</h3>
+        <div class="org">소상공인 웹사이트 제작 · 진행 중</div>
+        <p>소상공인을 위한 웹사이트를 기획·개발하고 있습니다.</p>
+      </div>
       <div class="tl-item">
         <div class="date">2025.11 — 2026.08</div>
         <h3>대우능력개발원</h3>
