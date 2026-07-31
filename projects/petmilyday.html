@@ -36,11 +36,14 @@
     </div>
   </header>
 
-  <!-- 대표 이미지: 실제 스크린샷 적용됨 (교체 시 src만 변경) -->
-  <div class="media-slot">
-    <img src="../assets/projects/petmilyday/01-main.png" alt="펫밀리데이 메인 화면" loading="lazy" onerror="this.remove()">
-    <span class="ico">🖼</span><span class="ph">대표 화면</span>
-  </div>
+  <!-- 시연 영상 (최상단) -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
+    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
+    <div class="media-slot">
+      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
+    </div>
+  </section>
 
   <!-- 개요 -->
   <section class="dsec rv">
@@ -135,15 +138,6 @@ flowchart TD
       <div class="reason"><h4><span class="why">WHY</span>JWT + HttpOnly 쿠키</h4><p>localStorage 저장은 XSS로 토큰이 노출될 수 있어, JS 접근이 불가한 HttpOnly 쿠키에 저장하고 SameSite=Lax로 CSRF를 완화했습니다.</p></div>
       <div class="reason"><h4><span class="why">WHY</span>QueryDSL</h4><p>키워드·진료과목·응급여부처럼 선택적 조건이 조합되는 검색에서 null 조건 자동 무시가 필요해, 타입 안전한 동적 쿼리를 선택했습니다.</p></div>
       <div class="reason"><h4><span class="why">WHY</span>SSE (vs WebSocket)</h4><p>알림은 서버→클라이언트 단방향으로 충분해, 양방향 연결을 유지하는 WebSocket보다 가벼운 SSE를 선택했습니다.</p></div>
-    </div>
-  </section>
-
-  <!-- 시연 영상 -->
-  <section class="dsec rv">
-    <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
-    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
-    <div class="media-slot">
-      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
     </div>
   </section>
 
