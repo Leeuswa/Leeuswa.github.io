@@ -3,127 +3,126 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>연락하기 — 이수환 | Contact</title>
-<meta name="description" content="봇, API, 대시보드, 자동화, AI 연동 — 만들고 싶은 걸 알려주세요. 백엔드 개발자 이수환에게 연락하세요." />
+<title>Contact — 이수환 | Backend Developer</title>
+<meta name="description" content="백엔드 개발자 이수환에게 연락하세요. API·인증·예약 시스템·자동화·AI 연동 — 만들고 싶은 걸 알려주세요." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Contact — 이수환" />
+<meta property="og:description" content="백엔드 개발자 이수환에게 연락하세요." />
+<meta property="og:url" content="https://leeuswa.github.io/contact.html" />
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 <style>
   :root{
-    --bg:#F7F6F3; --card:#FFFFFF; --ink:#1A1A18; --sub:#57544D; --muted:#8B877D;
-    --line:#E6E3DC; --line2:#D8D4CB; --accent:#2B59FF; --accent-soft:#EAEEFF;
-    --danger:#C0392B;
-    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
-    --serif:'Gowun Batang',serif;
-    --mono:'IBM Plex Mono',monospace;
+    --bg:#FFFFFF; --bg-soft:#FAFAFA; --bg-2:#F4F4F5;
+    --fg:#09090B; --fg-2:#52525B; --fg-3:#A1A1AA;
+    --line:#EAEAEA; --line-2:#E4E4E7;
+    --accent:#2563EB; --accent-soft:#EFF4FF; --accent-line:#DCE6FF; --danger:#DC2626;
+    --sans:'Pretendard',-apple-system,BlinkMacSystemFont,system-ui,'Segoe UI',Roboto,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,monospace;
+    --maxw:960px;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--accent);color:#fff}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
   a{color:inherit;text-decoration:none}
-  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
+  ::selection{background:var(--accent);color:#fff}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
 
-  .detail-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:40px;transition:color .2s}
-  .detail-back:hover{color:var(--accent)}
+  .nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid var(--line)}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between}
+  .nav .mark{font-weight:700;font-size:1rem;display:flex;align-items:center;gap:9px}
+  .nav .mark .dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+  .nav .back{font-family:var(--mono);font-size:.82rem;color:var(--fg-2);padding:7px 12px;border-radius:8px;transition:.15s}
+  .nav .back:hover{background:var(--bg-2);color:var(--fg)}
 
-  .c-header{padding:44px 0 32px;border-bottom:1px solid var(--line)}
-  .c-eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:22px}
-  .c-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(2rem,5vw,3.2rem);line-height:1.28;letter-spacing:-.02em;margin-bottom:14px}
-  .c-header p{color:var(--sub);font-size:1.04rem;max-width:640px}
+  .c-header{padding:60px 0 12px}
+  .c-header .eyebrow{font-family:var(--mono);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px;display:flex;align-items:center;gap:9px}
+  .c-header .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent)}
+  .c-header h1{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
+  .c-header p{color:var(--fg-2);font-size:1.04rem;max-width:600px}
 
-  .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;padding:48px 0 20px;align-items:start}
-  @media(max-width:760px){.c-grid{grid-template-columns:1fr;gap:36px}}
+  .c-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:44px 0 8px;align-items:start}
+  @media(max-width:760px){.c-grid{grid-template-columns:1fr;gap:32px}}
+  h2.sec{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin-bottom:16px}
 
-  h2.sec{font-family:var(--mono);font-size:.92rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin-bottom:20px;display:flex;align-items:center;gap:14px}
-  h2.sec::after{content:"";flex:1;height:1px;background:var(--line)}
+  .c-cards{display:flex;flex-direction:column;gap:10px;margin-bottom:26px}
+  .c-card{border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;gap:15px;transition:.2s}
+  .c-card:hover{border-color:var(--line-2);box-shadow:0 8px 24px -18px rgba(9,9,11,.3);transform:translateY(-2px)}
+  .c-card .ix{font-family:var(--mono);font-size:.7rem;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:6px;padding:3px 8px;height:fit-content}
+  .c-card h3{font-size:1rem;font-weight:700;margin-bottom:3px}
+  .c-card p{color:var(--fg-2);font-size:.9rem;line-height:1.55}
 
-  .c-cards{display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
-  .c-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;gap:16px;transition:border-color .2s,transform .2s}
-  .c-card:hover{border-color:var(--line2);transform:translateY(-2px)}
-  .c-card .ix{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 9px;height:fit-content}
-  .c-card h3{font-size:1.02rem;font-weight:700;margin-bottom:4px}
-  .c-card p{color:var(--sub);font-size:.92rem;line-height:1.55}
-
-  .c-meta{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);margin-bottom:0}
-  .c-meta .row{display:flex;justify-content:space-between;gap:12px;padding:13px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.82rem}
+  .c-meta{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--bg-soft)}
+  .c-meta .row{display:flex;justify-content:space-between;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.82rem}
   .c-meta .row:last-child{border-bottom:0}
-  .c-meta .k{color:var(--muted)}
-  .c-meta .v{color:var(--ink);font-weight:500;text-align:right}
+  .c-meta .k{color:var(--fg-3)}
+  .c-meta .v{color:var(--fg);font-weight:500;text-align:right}
   .c-meta .v.acc{color:var(--accent)}
 
-  .c-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 26px 24px}
-  .c-form .h{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
-  .field{margin-bottom:16px}
-  .field label{display:block;font-family:var(--mono);font-size:.74rem;color:var(--sub);margin-bottom:7px}
-  .field input,.field textarea{width:100%;font-family:var(--sans);font-size:.96rem;color:var(--ink);background:var(--bg);border:1px solid var(--line2);border-radius:8px;padding:11px 13px;transition:border-color .18s}
-  .field textarea{min-height:120px;resize:vertical}
-  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent)}
+  .c-form{border:1px solid var(--line);border-radius:16px;padding:26px;background:var(--bg)}
+  .c-form .h{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);margin-bottom:18px}
+  .field{margin-bottom:15px}
+  .field label{display:block;font-size:.82rem;color:var(--fg-2);margin-bottom:7px}
+  .field input,.field textarea{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--fg);background:var(--bg-soft);border:1px solid var(--line-2);border-radius:9px;padding:11px 13px;transition:border-color .16s}
+  .field textarea{min-height:118px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--accent);background:var(--bg)}
   .field .err{display:none;font-family:var(--mono);font-size:.72rem;color:var(--danger);margin-top:6px}
   .field.invalid input,.field.invalid textarea{border-color:var(--danger)}
   .field.invalid .err{display:block}
-  .c-submit{width:100%;justify-content:center;margin-top:4px;cursor:pointer}
-  .c-note{font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:center;margin-top:12px}
+  .c-note{font-family:var(--mono);font-size:.72rem;color:var(--fg-3);text-align:center;margin-top:12px}
   .c-note.ok{color:var(--accent)}
 
-  .btn{font-family:var(--mono);font-size:.84rem;padding:13px 26px;border-radius:8px;transition:.18s;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:8px;background:none}
-  .btn-primary{background:var(--ink);color:#fff}
+  .btn{font-size:.9rem;font-weight:500;padding:12px 20px;border-radius:9px;border:1px solid var(--line-2);background:var(--bg);color:var(--fg);display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.16s;cursor:pointer;width:100%}
+  .btn-primary{background:var(--fg);color:#fff;border-color:var(--fg)}
   .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
 
-  .hmu{padding:40px 0 90px;border-top:1px solid var(--line);margin-top:20px}
-  .hmu-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
-  .hmu-link{font-family:var(--mono);font-size:.84rem;color:var(--sub);border:1px solid var(--line2);border-radius:8px;padding:12px 20px;transition:.15s}
-  .hmu-link:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .hmu{padding:44px 0 90px;border-top:1px solid var(--line);margin-top:36px}
+  .hmu-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .hmu-link{font-family:var(--mono);font-size:.84rem;color:var(--fg-2);border:1px solid var(--line-2);border-radius:9px;padding:11px 18px;transition:.15s}
+  .hmu-link:hover{background:var(--fg);color:#fff;border-color:var(--fg)}
 
-  a:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-
-  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  a:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  .rv{opacity:0;transform:translateY(16px);transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+  .rv.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 </style>
 </head>
 <body>
 
+<nav class="nav">
+  <div class="nav-in">
+    <a href="index.html#top" class="mark"><span class="dot"></span>이수환</a>
+    <a href="index.html#top" class="back">← Home</a>
+  </div>
+</nav>
+
 <div class="wrap">
-  <a class="detail-back" href="index.html#top">← 홈으로</a>
 
   <header class="c-header">
-    <div class="c-eyebrow">Get in touch</div>
-    <h1>만들고 싶은 걸 알려주세요.</h1>
-    <p>API, 대시보드, 인증·예약 시스템, 자동화 흐름, 또는 AI 연동 기능이 필요하다면 브리프를 보내주세요. 대화는 직접적이고 기술적이며, 실제로 동작하는 결과물을 만드는 데 집중합니다.</p>
+    <div class="eyebrow rv">Contact</div>
+    <h1 class="rv">만들고 싶은 걸 알려주세요.</h1>
+    <p class="rv">API, 대시보드, 인증·예약 시스템, 자동화 흐름, 또는 AI 연동 기능이 필요하다면 브리프를 보내주세요. 대화는 직접적이고 기술적이며, 실제로 동작하는 결과물을 만드는 데 집중합니다.</p>
   </header>
 
   <div class="c-grid">
-    <!-- 왼쪽: 무엇을 도와드릴 수 있는지 + 메타 -->
     <div>
-      <h2 class="sec reveal">What I build</h2>
-      <div class="c-cards reveal">
-        <div class="c-card">
-          <span class="ix">01</span>
-          <div><h3>백엔드 빌드</h3><p>REST API, 데이터베이스, 인증, 그리고 운영 가능한 서버 로직.</p></div>
-        </div>
-        <div class="c-card">
-          <span class="ix">02</span>
-          <div><h3>동시성 · 실시간</h3><p>중복 예약을 막는 동시성 제어와 SSE·WebSocket 기반 실시간 처리.</p></div>
-        </div>
-        <div class="c-card">
-          <span class="ix">03</span>
-          <div><h3>AI 연동</h3><p>Spring AI·RAG로 실제 제품에 녹여 넣는 실용적인 AI 기능.</p></div>
-        </div>
+      <h2 class="sec rv">What I build</h2>
+      <div class="c-cards rv">
+        <div class="c-card"><span class="ix">01</span><div><h3>백엔드 빌드</h3><p>REST API, 데이터베이스, 인증, 그리고 운영 가능한 서버 로직.</p></div></div>
+        <div class="c-card"><span class="ix">02</span><div><h3>동시성 · 실시간</h3><p>중복 예약을 막는 동시성 제어와 SSE·WebSocket 기반 실시간 처리.</p></div></div>
+        <div class="c-card"><span class="ix">03</span><div><h3>AI 연동</h3><p>Spring AI·RAG로 실제 제품에 녹여 넣는 실용적인 AI 기능.</p></div></div>
       </div>
-      <div class="c-meta reveal">
+      <div class="c-meta rv">
         <div class="row"><span class="k">Response</span><span class="v">보통 24–48시간 내</span></div>
-        <div class="row"><span class="k">Best fit</span><span class="v">백엔드 · 스타트업 · 팀 프로젝트</span></div>
+        <div class="row"><span class="k">Best fit</span><span class="v">백엔드 · 스타트업 · 팀</span></div>
         <div class="row"><span class="k">Location</span><span class="v acc">경기 양주</span></div>
       </div>
     </div>
 
-    <!-- 오른쪽: 폼 -->
     <div>
-      <h2 class="sec reveal">Contact form</h2>
-      <div class="c-form reveal">
+      <h2 class="sec rv">Contact form</h2>
+      <div class="c-form rv">
         <div class="h">메시지 보내기</div>
         <form id="contactForm" action="mailto:leeco6578@naver.com" method="post" enctype="text/plain" novalidate>
           <div class="field" id="f-name">
@@ -141,7 +140,7 @@
             <textarea id="message" name="message" placeholder="어떤 걸 만들고 싶으신가요?" required></textarea>
             <span class="err">메시지를 입력해 주세요.</span>
           </div>
-          <button type="submit" class="btn btn-primary c-submit">메시지 보내기 ↗</button>
+          <button type="submit" class="btn btn-primary">메시지 보내기 ↗</button>
           <div class="c-note" id="formNote">메일 앱으로 열립니다 · 또는 leeco6578@naver.com</div>
         </form>
       </div>
@@ -149,22 +148,22 @@
   </div>
 
   <section class="hmu">
-    <h2 class="sec reveal">Hit me up</h2>
-    <div class="hmu-links reveal">
-      <a class="hmu-link" href="mailto:leeco6578@naver.com">Mail ↗</a>
+    <h2 class="sec rv">Hit me up</h2>
+    <div class="hmu-links rv">
+      <a class="hmu-link" href="mailto:leeco6578@naver.com">Email ↗</a>
+      <a class="hmu-link" href="tel:+821066256569">010-6625-6569</a>
       <a class="hmu-link" href="https://github.com/Leeuswa" target="_blank" rel="noopener">GitHub ↗</a>
-      <!-- 이력서 PDF 준비되면 아래 주석을 풀고 파일을 resume/ 폴더에 넣으세요.
-      <a class="hmu-link" href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener">이력서 ↗</a> -->
+      <!-- 이력서 PDF 준비되면 resume/ 폴더에 넣고 아래 주석 해제
+      <a class="hmu-link" href="/resume/이수환_이력서.pdf" target="_blank" rel="noopener">Resume ↗</a> -->
     </div>
   </section>
+
 </div>
 
 <script>
-  // reveal
-  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:0.12});
-  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-  // form validation
   const form=document.getElementById('contactForm'), note=document.getElementById('formNote');
   function setInvalid(id,bad){ document.getElementById(id).classList.toggle('invalid',bad); }
   form?.addEventListener('submit',(e)=>{
