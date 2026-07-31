@@ -3,209 +3,181 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>COGI — AI 코드리뷰·성장분석 플랫폼 | 이수환</title>
-<meta name="description" content="GitHub 웹훅 기반 AI 코드리뷰·성장분석 SaaS COGI 상세 소개. 인증(JWT·OAuth2·TOTP 2FA)·성장 대시보드·주간 리포트 백엔드 담당." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --bg:#F7F6F3; --card:#FFFFFF; --ink:#1A1A18; --sub:#57544D; --muted:#8B877D;
-    --line:#E6E3DC; --line2:#D8D4CB; --accent:#2B59FF; --accent-soft:#EAEEFF;
-    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
-    --serif:'Gowun Batang',serif;
-    --mono:'IBM Plex Mono',monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--accent);color:#fff}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
-
-  .detail-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:40px;transition:color .2s}
-  .detail-back:hover{color:var(--accent)}
-
-  .detail-header{padding:44px 0 32px;border-bottom:1px solid var(--line)}
-  .project-index{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.06em;display:inline-block;margin-bottom:16px}
-  .detail-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1.28;letter-spacing:-.02em;margin-bottom:14px}
-  .detail-meta{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:22px}
-  .tags{display:flex;flex-wrap:wrap;gap:8px}
-  .tag{font-family:var(--mono);font-size:.74rem;color:var(--sub);background:var(--card);border:1px solid var(--line2);border-radius:100px;padding:6px 13px}
-
-  .detail-body{max-width:720px;padding:8px 0}
-  .detail-body h2{font-family:var(--mono);font-size:.92rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:48px 0 18px;display:flex;align-items:center;gap:14px}
-  .detail-body h2::after{content:"";flex:1;height:1px;background:var(--line)}
-  .detail-body p{color:var(--sub);font-size:1.02rem;margin-bottom:16px}
-  .detail-body p b{color:var(--ink);font-weight:600}
-  .detail-body code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--accent)}
-
-  .lead p{font-family:var(--serif);font-size:1.16rem;color:var(--ink);line-height:1.7}
-  .lead p b{color:var(--accent)}
-
-  .feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-bottom:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
-  .feature:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 10px 34px -22px rgba(26,26,24,.3)}
-  .feature h3{font-family:var(--sans);font-size:1.08rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:11px}
-  .feature h3 .num{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 9px}
-  .feature ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .feature ul li{position:relative;padding-left:20px;color:var(--sub);font-size:.97rem;line-height:1.6}
-  .feature ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
-  .feature ul li b{color:var(--ink);font-weight:600}
-
-  .plain-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px}
-  .plain-list li{position:relative;padding-left:20px;color:var(--sub);font-size:.99rem;line-height:1.6}
-  .plain-list li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
-  .plain-list li b{color:var(--ink);font-weight:600}
-
-  .spec{width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;border-collapse:collapse;background:var(--card)}
-  .spec td{padding:13px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.82rem;color:var(--sub);vertical-align:top}
-  .spec tr:last-child td{border-bottom:0}
-  .spec td:first-child{color:var(--ink);font-weight:500;white-space:nowrap;width:34%;background:var(--bg)}
-
-
-  /* 시연 영상 · 배포 링크 칸 */
-  .link-slots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
-  .link-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;aspect-ratio:16/9;border:1px dashed var(--line2);border-radius:12px;background:var(--card);color:var(--muted);font-family:var(--mono);transition:border-color .2s,color .2s,transform .2s}
-  a.link-slot:hover{border-color:var(--accent);color:var(--accent);border-style:solid;transform:translateY(-2px)}
-  .link-slot .ico{font-size:1.6rem;line-height:1}
-  .link-slot .lbl{font-size:.92rem;font-weight:500;letter-spacing:.02em;color:var(--ink)}
-  .link-slot .sub{font-size:.72rem;color:var(--muted)}
-  a.link-slot:hover .lbl{color:var(--accent)}
-  @media(max-width:560px){.link-slots{grid-template-columns:1fr}}
-
-  .detail-links{display:flex;gap:12px;margin:44px 0 90px;flex-wrap:wrap}
-  .btn{font-family:var(--mono);font-size:.84rem;padding:13px 26px;border-radius:8px;transition:.18s;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:8px}
-  .btn-primary{background:var(--ink);color:#fff}
-  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
-  .btn-ghost:hover{background:var(--ink);color:#fff}
-  a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-</style>
+<title>COGI — AI 코드리뷰 · 성장분석 플랫폼 | 이수환</title>
+<meta name="description" content="GitHub 웹훅 기반 AI 코드리뷰·성장분석 SaaS COGI. 인증(JWT·OAuth2·TOTP 2FA)·회원 탈퇴 정책·성장 리포트·AWS 배포 담당. API 30개·단위 테스트." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="COGI — AI 코드리뷰 · 성장분석 플랫폼" />
+<meta property="og:description" content="인증/보안·회원 탈퇴·성장 리포트·배포 | 백엔드 담당" />
+<meta property="og:url" content="https://leeuswa.github.io/projects/cogi.html" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="../styles-detail.css" />
 </head>
 <body>
 
+<nav class="dnav">
+  <div class="dnav-in">
+    <a href="../index.html#top" class="mark"><span class="dot"></span>이수환</a>
+    <a href="../index.html#projects" class="back">← Projects</a>
+  </div>
+</nav>
+
 <div class="wrap">
-  <a class="detail-back" href="../index.html#projects">← 프로젝트 목록으로</a>
 
-  <div class="detail-header">
-    <span class="project-index">P.01</span>
+  <header class="dhead">
+    <span class="idx">P.01</span>
     <h1>COGI — AI 코드리뷰 · 성장분석 플랫폼</h1>
-    <p class="detail-meta">팀 프로젝트 · Spring Boot + React · 2026 · 개발 진행 중</p>
+    <div class="meta">
+      <span>팀 프로젝트 · 4명</span><span>백엔드 (인증·성장리포트·배포)</span><span>2026.07 – 2026.08</span><span class="st">완료 · AWS EC2 배포</span>
+    </div>
     <div class="tags">
-      <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Spring Security</span><span class="tag">Spring Data JPA</span><span class="tag">JWT</span><span class="tag">OAuth2</span><span class="tag">TOTP</span><span class="tag">Redis</span><span class="tag">MariaDB</span><span class="tag">React</span><span class="tag">TypeScript</span>
+      <span class="t">Java</span><span class="t">Spring Boot</span><span class="t">Spring Security</span><span class="t">Spring Data JPA</span><span class="t">MariaDB</span><span class="t">Redis</span><span class="t">JUnit 5</span><span class="t">Docker</span><span class="t">AWS EC2</span><span class="t">React</span><span class="t">TypeScript</span>
     </div>
+  </header>
+
+  <!-- 대표 이미지: assets/projects/cogi/cover.png 넣고 아래 주석 해제 -->
+  <div class="media-slot">
+    <!-- <img src="../assets/projects/cogi/cover.png" alt="COGI 대표 화면" loading="lazy"> -->
+    <span class="ico">🖼</span><span class="ph">대표 화면 준비 중</span>
   </div>
 
-  <div class="detail-body">
-    <h2>개요</h2>
-    <div class="lead">
-      <p>GitHub 웹훅으로 Pull Request를 받아 <b>AI가 코드를 자동 리뷰</b>하고, 반복적으로 발견되는 약점을 통계로 누적해 <b>개인·팀의 성장 추이</b>까지 보여주는 개발자 코드리뷰 SaaS입니다.</p>
-    </div>
-    <p>Spring Boot 백엔드와 React(Vite·TypeScript) 프론트엔드로 구성되며, 도메인별로 패키지를 분리하고 서비스는 인터페이스와 구현체를 나눠 결합도를 낮춘 계층형 아키텍처로 설계했습니다. 저는 <b>인증/보안, 성장분석, 프론트엔드 연동</b>을 중심으로 담당했습니다.</p>
-  </div>
+  <!-- 개요 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Overview</span><h2>개요 · 왜 만들었는지</h2></div>
+    <p>GitHub 저장소를 연동해 <b>Pull Request 코드를 AI로 자동 리뷰</b>받고, 반복적으로 발견되는 약점을 통계로 누적해 <b>개인·팀의 성장 추이</b>로 연결하는 개발자 코드리뷰 SaaS입니다.</p>
+    <p>Spring Boot 백엔드 + React(Vite·TypeScript) 프론트로 구성했고, 저는 <b>회원 탈퇴·인증/보안·주간 성장 리포트·배포</b>를 담당하며 API 30개를 구현하고 주요 시나리오를 단위 테스트로 검증했습니다.</p>
+  </section>
 
-  <div class="detail-body">
-    <h2>링크</h2>
-    <!-- 링크 넣는 법: 아래 <span class="link-slot" ...> 을 아래처럼 <a> 로 바꾸면 클릭 가능한 링크가 됩니다.
-         <a class="link-slot" href="https://youtu.be/..." target="_blank" rel="noopener"> ... </a>
-         그리고 <span class="sub">준비 중</span> 문구는 지우거나 원하는 설명으로 바꾸면 됩니다. -->
-    <div class="link-slots">
-      <span class="link-slot" data-slot="demo">
-        <span class="ico">▶</span>
-        <span class="lbl">시연 영상</span>
-        <span class="sub">준비 중</span>
-      </span>
-      <span class="link-slot" data-slot="deploy">
-        <span class="ico">↗</span>
-        <span class="lbl">배포 사이트</span>
-        <span class="sub">준비 중</span>
-      </span>
+  <!-- 아키텍처 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Architecture</span><h2>시스템 구조</h2></div>
+    <div class="arch">
+      <pre class="mermaid">
+flowchart TD
+  GH["GitHub<br/>Webhook (PR)"] -->|서명 검증| C["Controller"]
+  U["사용자 · React"] -->|HTTPS| NG["Nginx"]
+  NG --> C
+  C --> SEC["Spring Security<br/>JWT · OAuth2 · TOTP"]
+  C --> S["Service"]
+  S --> AIC["AI 리뷰 클라이언트<br/>(멀티 프로바이더 추상화)"]
+  S --> R["Repository (JPA)"]
+  R --> DB[("MariaDB")]
+  S --> RE[("Redis")]
+  SCH["스케줄러"] -->|주간 리포트| MAIL["HTML 메일 발송"]
+  C -. "Docker Compose · AWS EC2" .- NG
+      </pre>
     </div>
-  </div>
+  </section>
 
-  <div class="detail-body">
-    <h2>기술 스택</h2>
-    <table class="spec">
-      <tr><td>Language / Runtime</td><td>Java</td></tr>
-      <tr><td>Framework</td><td>Spring Boot (Web MVC, Data JPA, Validation)</td></tr>
-      <tr><td>Persistence</td><td>Spring Data JPA, MariaDB, Redis</td></tr>
-      <tr><td>Auth</td><td>Spring Security, JWT(jjwt), OAuth2 Client(GitHub·Kakao), TOTP(2FA)</td></tr>
-      <tr><td>Integration</td><td>GitHub Webhook(서명 검증), JavaParser(코드 컨텍스트 추출), Mail</td></tr>
-      <tr><td>AI</td><td>AI 코드리뷰 클라이언트(멀티 프로바이더 추상화)</td></tr>
-      <tr><td>Payment</td><td>Toss Payments (구독 · 크레딧 · 빌링 스케줄러)</td></tr>
-      <tr><td>Frontend</td><td>React, TypeScript, Vite, React Router</td></tr>
-      <tr><td>Build</td><td>Gradle</td></tr>
+  <!-- ERD -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">ERD</span><h2>데이터 모델</h2></div>
+    <p>회원·팀·저장소·리뷰·이슈·리포트 도메인의 연관관계를 설계했습니다.</p>
+    <!-- ERD 이미지: assets/projects/cogi/erd.png 넣고 아래 주석 해제 -->
+    <div class="media-slot">
+      <!-- <img src="../assets/projects/cogi/erd.png" alt="COGI ERD" loading="lazy"> -->
+      <span class="ico">🗂</span><span class="ph">ERD 이미지 준비 중</span>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">API</span><h2>주요 API (담당 발췌)</h2></div>
+    <table class="spec api-table">
+      <tr><td>POST /webhooks/github</td><td>PR 웹훅 수신 — 서명 검증 후 AI 리뷰 트리거</td></tr>
+      <tr><td>POST /auth/2fa/verify</td><td><span class="m">TOTP</span> 기반 2단계 인증 발급·검증</td></tr>
+      <tr><td>DELETE /members/me</td><td>회원 탈퇴 — 팀장 권한 위임·익명화 소프트 삭제</td></tr>
+      <tr><td>GET /growth/trend</td><td>주차별 이슈 발생·해결 추이 집계 (소유자 검증)</td></tr>
+      <tr><td>GET /reports/weekly</td><td>주간 성장 리포트 조회 (스케줄러 자동 생성)</td></tr>
     </table>
+  </section>
 
-    <h2>담당 파트 (Leeuswa)</h2>
-
-    <div class="feature">
-      <h3><span class="num">01</span>인증 방식 설계 (JWT + HttpOnly 쿠키)</h3>
-      <ul>
-        <li>기존 토큰 방식을 <code>HttpOnly</code> 쿠키 기반 JWT 인증으로 전환해 XSS로부터 토큰 노출을 줄임</li>
-        <li>로그아웃 처리와 인증 실패 시 <code>401</code> 응답 흐름을 일관되게 설계</li>
-        <li>이메일을 유니크 키로 두는 계정 모델을 설계하고, 일반/소셜 회원 간 이메일 중복 검증 로직 정리</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">02</span>소셜 로그인 · 2단계 인증(2FA)</h3>
-      <ul>
-        <li>GitHub·Kakao OAuth2 소셜 로그인 구현</li>
-        <li><code>TOTP</code> 기반 2단계 인증(2FA)을 추가해 로그인 보안 강화</li>
-        <li>OAuth <code>state</code> 파라미터로 CSRF를 방어하고, 이미 연결된 계정과의 충돌 시 연동을 거부하도록 처리</li>
-        <li>GitHub 계정 연동 기능으로 사용자의 레포지토리와 서비스를 연결</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">03</span>온보딩 · 약관</h3>
-      <ul>
-        <li>소셜 로그인 최초 진입 시 온보딩 단계에서 약관 동의를 받을 수 있도록 흐름 구성</li>
-        <li>약관 조회 API와 마이페이지 프로필·닉네임 설정 기능 구현</li>
-        <li>인증 UX 개선 — 인증 코드 타이머·정지 문구, 에러 메시지 전달 정비</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">04</span>성장 추이 대시보드</h3>
-      <ul>
-        <li>AI 리뷰에서 누적된 약점 통계를 바탕으로 <b>팀/개인 단위 이슈 발생·해결 추이</b>를 보여주는 대시보드 구현</li>
-        <li>기간별 비교로 코드 품질이 개선되는 흐름을 시각적으로 확인하도록 설계</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">05</span>주간 리포트 (스케줄러 + 메일)</h3>
-      <ul>
-        <li>매주 월요일 오전 9시에 <b>주간 리포트를 자동 생성</b>하는 스케줄러 구현</li>
-        <li>생성된 리포트를 HTML 메일로 발송하는 흐름까지 연동</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">06</span>프론트엔드 연동</h3>
-      <ul>
-        <li>React(Vite·TypeScript) 화면과 회원가입·로그인·온보딩 API를 연동</li>
-        <li>쿠키 인증 방식에 맞춰 프론트 인증 흐름을 연결하고, 빌드·타입 에러 및 누락 훅 정리</li>
-      </ul>
-    </div>
-
-    <h2>주요 기능 (서비스 전체)</h2>
-    <ul class="plain-list">
-      <li><b>인증 / 보안</b> — 이메일 인증 회원가입, JWT 쿠키 로그인, GitHub·Kakao 소셜 로그인, TOTP 2FA</li>
-      <li><b>코드리뷰</b> — GitHub 웹훅으로 PR 수신, 코드 컨텍스트 추출(JavaParser), AI 자동 리뷰</li>
-      <li><b>성장 분석</b> — 약점 통계 누적, 성장 추이 대시보드, 주간 리포트 자동 발송</li>
-      <li><b>결제</b> — Toss Payments 구독·크레딧 사용량·빌링 스케줄러</li>
-      <li><b>관리자</b> — 회원·공지·약관·가이드라인 관리, AI 사용량 관리</li>
+  <!-- 담당 기능 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">My Work</span><h2>담당 기능</h2></div>
+    <ul class="flist">
+      <li><b>인증 / 보안</b> — JWT + HttpOnly 쿠키, GitHub·Kakao OAuth2, <code>TOTP</code>(RFC 6238) 2FA, 로그인 실패 잠금·비밀번호 재설정</li>
+      <li><b>회원 탈퇴</b> — 팀장 권한 자동 위임·팀 해체 정책, 개인정보 익명화 기반 소프트 삭제</li>
+      <li><b>성장 추이</b> — 주차별 이슈 발생·해결 집계 API, PR·이슈 단위 드릴다운, 리포트 소유자 검증</li>
+      <li><b>주간 리포트</b> — 스케줄러 기반 생성 + HTML 메일 자동 발송, 사용자 단위 예외 격리</li>
+      <li><b>배포</b> — Docker Compose 기반 AWS EC2 배포, 환경변수 분리·HTTPS 적용</li>
     </ul>
+  </section>
 
-    <div class="detail-links">
-      <a class="btn btn-primary" href="https://github.com/Leeuswa/COGI" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn btn-ghost" href="../index.html#projects">← 목록으로</a>
+  <!-- 문제 해결 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Problem Solving</span><h2>문제 해결</h2></div>
+
+    <div class="psr">
+      <div class="psr-t">① 회원 탈퇴 — "지우는 기능일수록 남는 데이터를 먼저"</div>
+      <div class="step"><span class="lab">Problem</span><span class="txt">팀장이 탈퇴하면 저장소를 관리할 사람이 사라지고, 팀을 함께 삭제하면 남은 팀원의 리뷰 이력이 모두 사라졌습니다.</span></div>
+      <div class="step"><span class="lab">Cause</span><span class="txt">단순히 회원 상태만 변경하는 방식으로는 권한 공백과 데이터 손실을 동시에 막을 수 없었습니다.</span></div>
+      <div class="step"><span class="lab">Solution</span><span class="txt">탈퇴자가 팀장인 팀마다 최선임 팀원에게 권한을 자동 위임하고, 팀원이 없을 때만 해체하도록 설계했습니다. 회원 정보는 물리 삭제 대신 닉네임·소셜·인증 정보를 비우는 익명화 소프트 삭제로 처리했습니다.</span></div>
+      <div class="step result"><span class="lab">Result</span><span class="txt">탈퇴 후에도 팀·리뷰 데이터 무결성을 유지했고, 해체된 저장소가 재연동을 거부하던 문제도 연동 정보·대기 초대를 함께 정리해 해결했습니다.</span></div>
     </div>
+
+    <div class="psr">
+      <div class="psr-t">② 한 명의 실패로 멈추던 주간 리포트 배치</div>
+      <div class="step"><span class="lab">Problem</span><span class="txt">주간 리포트 발송 중 한 사용자 처리에서 예외가 나면 배치 전체가 중단될 위험이 있었습니다.</span></div>
+      <div class="step"><span class="lab">Cause</span><span class="txt">사용자별 처리가 하나의 흐름에 묶여 있어 예외가 그대로 전파됐습니다.</span></div>
+      <div class="step"><span class="lab">Solution</span><span class="txt">사용자 단위로 예외를 격리해, 한 사용자가 실패해도 다음 사용자 처리가 계속되도록 했습니다.</span></div>
+      <div class="step result"><span class="lab">Result</span><span class="txt">일부 실패 상황에서도 리포트 발송 배치가 끝까지 완주하도록 안정성을 확보했습니다.</span></div>
+    </div>
+  </section>
+
+  <!-- 기술 선택 이유 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Why</span><h2>기술 선택 이유</h2></div>
+    <div class="reason-grid">
+      <div class="reason"><h4><span class="why">WHY</span>JWT + HttpOnly 쿠키</h4><p>기존 토큰 방식을 HttpOnly 쿠키 기반으로 전환해, JS로 접근할 수 없게 하여 XSS로부터 토큰 노출을 줄였습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>TOTP 2FA</h4><p>비밀번호가 유출돼도 계정을 지킬 2차 방어가 필요해, 표준(RFC 6238) 기반 TOTP 2단계 인증을 적용했습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>Docker Compose + EC2</h4><p>팀 전원이 동일한 환경에서 재현·운영할 수 있도록 컨테이너로 묶어 AWS EC2에 배포하고 환경변수를 분리했습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>AI 프로바이더 추상화</h4><p>특정 AI 제공자에 종속되지 않도록 리뷰 클라이언트를 멀티 프로바이더로 추상화해 교체 유연성을 확보했습니다.</p></div>
+    </div>
+  </section>
+
+  <!-- 시연 영상 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
+    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
+    <div class="media-slot">
+      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
+    </div>
+  </section>
+
+  <!-- 회고 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Retrospective</span><h2>회고</h2></div>
+    <div class="retro-grid">
+      <div class="retro good">
+        <div class="rh">배운 점</div>
+        <ul><li>기능 하나가 다른 도메인의 데이터에 주는 영향을 먼저 확인하는 습관</li><li>배치에서의 예외 격리로 부분 실패를 견디는 설계</li></ul>
+      </div>
+      <div class="retro bad">
+        <div class="rh">아쉬운 점</div>
+        <ul><li>대용량 PR·트래픽 상황의 성능은 검증하지 못함</li><li>AI 리뷰 응답 지연에 대한 처리 전략이 단순함</li></ul>
+      </div>
+      <div class="retro next">
+        <div class="rh">개선 방향</div>
+        <ul><li>조회 API 캐시 적용 및 응답 시간 비교</li><li>실행 계획·인덱스 학습으로 느린 쿼리 개선</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="dlinks">
+    <a class="btn btn-primary" href="https://github.com/Leeuswa/COGI" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn disabled" href="#" aria-disabled="true">Demo (준비 중)</a>
+    <a class="btn" href="../index.html#projects">← 목록으로</a>
   </div>
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'strict'});}
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>

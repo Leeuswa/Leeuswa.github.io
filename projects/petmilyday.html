@@ -4,217 +4,181 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>펫밀리데이 — 반려동물 통합 케어 플랫폼 | 이수환</title>
-<meta name="description" content="반려동물 통합 케어 플랫폼 펫밀리데이 상세 소개. 동물병원·예약·인증·SSE 알림·AI 사료추천 백엔드 담당." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --bg:#F7F6F3; --card:#FFFFFF; --ink:#1A1A18; --sub:#57544D; --muted:#8B877D;
-    --line:#E6E3DC; --line2:#D8D4CB; --accent:#2B59FF; --accent-soft:#EAEEFF;
-    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
-    --serif:'Gowun Batang',serif;
-    --mono:'IBM Plex Mono',monospace;
-  }
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-  ::selection{background:var(--accent);color:#fff}
-  a{color:inherit;text-decoration:none}
-  .wrap{max-width:900px;margin:0 auto;padding:0 24px}
-
-  .detail-back{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-top:40px;transition:color .2s}
-  .detail-back:hover{color:var(--accent)}
-
-  .detail-header{padding:44px 0 32px;border-bottom:1px solid var(--line)}
-  .project-index{font-family:var(--mono);font-size:.8rem;color:var(--accent);letter-spacing:.06em;display:inline-block;margin-bottom:16px}
-  .detail-header h1{font-family:var(--serif);font-weight:700;font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1.28;letter-spacing:-.02em;margin-bottom:14px}
-  .detail-meta{font-family:var(--mono);font-size:.82rem;color:var(--muted);margin-bottom:22px}
-  .tags{display:flex;flex-wrap:wrap;gap:8px}
-  .tag{font-family:var(--mono);font-size:.74rem;color:var(--sub);background:var(--card);border:1px solid var(--line2);border-radius:100px;padding:6px 13px}
-
-  .detail-body{max-width:720px;padding:8px 0}
-  .detail-body h2{font-family:var(--mono);font-size:.92rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:48px 0 18px;display:flex;align-items:center;gap:14px}
-  .detail-body h2::after{content:"";flex:1;height:1px;background:var(--line)}
-  .detail-body p{color:var(--sub);font-size:1.02rem;margin-bottom:16px}
-  .detail-body p b{color:var(--ink);font-weight:600}
-  .detail-body code{font-family:var(--mono);font-size:.85em;background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:1px 6px;color:var(--accent)}
-
-  .lead p{font-family:var(--serif);font-size:1.16rem;color:var(--ink);line-height:1.7}
-  .lead p b{color:var(--accent)}
-
-  .feature{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:24px 28px;margin-bottom:14px;transition:border-color .2s,transform .2s,box-shadow .2s}
-  .feature:hover{border-color:var(--line2);transform:translateY(-2px);box-shadow:0 10px 34px -22px rgba(26,26,24,.3)}
-  .feature h3{font-family:var(--sans);font-size:1.08rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:11px}
-  .feature h3 .num{font-family:var(--mono);font-size:.72rem;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 9px}
-  .feature ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-  .feature ul li{position:relative;padding-left:20px;color:var(--sub);font-size:.97rem;line-height:1.6}
-  .feature ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
-  .feature ul li b{color:var(--ink);font-weight:600}
-
-  .plain-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:4px}
-  .plain-list li{position:relative;padding-left:20px;color:var(--sub);font-size:.99rem;line-height:1.6}
-  .plain-list li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
-  .plain-list li b{color:var(--ink);font-weight:600}
-
-  .spec{width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;border-collapse:collapse;background:var(--card)}
-  .spec td{padding:13px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.82rem;color:var(--sub);vertical-align:top}
-  .spec tr:last-child td{border-bottom:0}
-  .spec td:first-child{color:var(--ink);font-weight:500;white-space:nowrap;width:34%;background:var(--bg)}
-
-
-  /* 시연 영상 · 배포 링크 칸 */
-  .link-slots{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
-  .link-slot{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;aspect-ratio:16/9;border:1px dashed var(--line2);border-radius:12px;background:var(--card);color:var(--muted);font-family:var(--mono);transition:border-color .2s,color .2s,transform .2s}
-  a.link-slot:hover{border-color:var(--accent);color:var(--accent);border-style:solid;transform:translateY(-2px)}
-  .link-slot .ico{font-size:1.6rem;line-height:1}
-  .link-slot .lbl{font-size:.92rem;font-weight:500;letter-spacing:.02em;color:var(--ink)}
-  .link-slot .sub{font-size:.72rem;color:var(--muted)}
-  a.link-slot:hover .lbl{color:var(--accent)}
-  @media(max-width:560px){.link-slots{grid-template-columns:1fr}}
-
-  .detail-links{display:flex;gap:12px;margin:44px 0 90px;flex-wrap:wrap}
-  .btn{font-family:var(--mono);font-size:.84rem;padding:13px 26px;border-radius:8px;transition:.18s;border:1px solid var(--ink);display:inline-flex;align-items:center;gap:8px}
-  .btn-primary{background:var(--ink);color:#fff}
-  .btn-primary:hover{background:var(--accent);border-color:var(--accent)}
-  .btn-ghost:hover{background:var(--ink);color:#fff}
-  a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
-</style>
+<meta name="description" content="반려동물 통합 케어 플랫폼 펫밀리데이. 예약 동시성 제어(비관적 락)·JWT/OAuth2 인증·SSE 실시간 알림·Spring AI 연동. 엔티티 37개·API 187개." />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="펫밀리데이 — 반려동물 통합 케어 플랫폼" />
+<meta property="og:description" content="예약 동시성 제어·인증·SSE·AI 연동 | 백엔드 담당" />
+<meta property="og:url" content="https://leeuswa.github.io/projects/petmilyday.html" />
+<link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<link rel="stylesheet" href="../styles-detail.css" />
 </head>
 <body>
 
+<nav class="dnav">
+  <div class="dnav-in">
+    <a href="../index.html#top" class="mark"><span class="dot"></span>이수환</a>
+    <a href="../index.html#projects" class="back">← Projects</a>
+  </div>
+</nav>
+
 <div class="wrap">
-  <a class="detail-back" href="../index.html#projects">← 프로젝트 목록으로</a>
 
-  <div class="detail-header">
-    <span class="project-index">P.02</span>
-    <h1>펫밀리데이 (petmilyday) — 반려동물 통합 케어 플랫폼</h1>
-    <p class="detail-meta">팀 프로젝트 (4인) · Spring Boot 모놀리식 · 2026.05 – 2026.06</p>
+  <header class="dhead">
+    <span class="idx">P.02</span>
+    <h1>펫밀리데이 — 반려동물 통합 케어 플랫폼</h1>
+    <div class="meta">
+      <span>팀 프로젝트 · 4명</span><span>백엔드 (동물병원·예약 도메인)</span><span>2026.05 – 2026.06</span><span class="st">완료</span>
+    </div>
     <div class="tags">
-      <span class="tag">Java 21</span><span class="tag">Spring Boot 3.5</span><span class="tag">Spring Data JPA</span><span class="tag">QueryDSL</span><span class="tag">MariaDB</span><span class="tag">Spring Security</span><span class="tag">Spring AI</span><span class="tag">Claude</span><span class="tag">Thymeleaf</span>
+      <span class="t">Java 21</span><span class="t">Spring Boot</span><span class="t">Spring Data JPA</span><span class="t">QueryDSL</span><span class="t">Spring Security</span><span class="t">OAuth2 · JWT</span><span class="t">MariaDB</span><span class="t">SSE</span><span class="t">Spring AI</span><span class="t">Kakao Map</span>
     </div>
+  </header>
+
+  <!-- 대표 이미지: 실제 스크린샷 적용됨 (교체 시 src만 변경) -->
+  <div class="media-slot">
+    <img src="../assets/projects/petmilyday/01-main.png" alt="펫밀리데이 메인 화면" loading="lazy" onerror="this.remove()">
+    <span class="ico">🖼</span><span class="ph">대표 화면</span>
   </div>
 
-  <div class="detail-body">
-    <h2>개요</h2>
-    <div class="lead">
-      <p>동물병원 예약·진료기록 관리부터 반려용품 쇼핑몰, 중고거래, 커뮤니티, AI 자가진단까지 하나의 서비스에서 제공하는 <b>반려동물 통합 케어 플랫폼</b>입니다.</p>
-    </div>
-    <p>Spring Boot 기반 모놀리식 웹 애플리케이션으로, 계층형 아키텍처로 관심사를 분리하고 서비스는 인터페이스와 구현체를 나누어 결합도를 낮췄습니다. 저는 <b>동물병원 및 예약 도메인을 중심으로 인증·알림·AI 연동 등 서비스 전반의 공통 기능</b>을 담당했습니다.</p>
-  </div>
+  <!-- 개요 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Overview</span><h2>개요 · 왜 만들었는지</h2></div>
+    <p>반려동물 보호자가 <b>동물병원 검색·예약</b>부터 쇼핑, 중고거래, 커뮤니티, AI 자가진단까지 하나의 서비스에서 이용할 수 있는 <b>반려동물 통합 케어 플랫폼</b>입니다. 흩어져 있던 반려동물 관련 서비스를 한곳으로 모으는 것을 목표로 했습니다.</p>
+    <p>전체 <b>엔티티 37개 · API 187개</b> 규모의 Spring Boot 모놀리식 웹 애플리케이션이며, 저는 <b>동물병원·예약 도메인</b>을 중심으로 인증·실시간 알림·AI 연동 등 서비스 전반의 공통 기능을 담당했습니다.</p>
+  </section>
 
-  <div class="detail-body">
-    <h2>링크</h2>
-    <!-- 링크 넣는 법: 아래 <span class="link-slot" ...> 을 아래처럼 <a> 로 바꾸면 클릭 가능한 링크가 됩니다.
-         <a class="link-slot" href="https://youtu.be/..." target="_blank" rel="noopener"> ... </a>
-         그리고 <span class="sub">준비 중</span> 문구는 지우거나 원하는 설명으로 바꾸면 됩니다. -->
-    <div class="link-slots">
-      <span class="link-slot" data-slot="demo">
-        <span class="ico">▶</span>
-        <span class="lbl">시연 영상</span>
-        <span class="sub">준비 중</span>
-      </span>
-      <span class="link-slot" data-slot="deploy">
-        <span class="ico">↗</span>
-        <span class="lbl">배포 사이트</span>
-        <span class="sub">준비 중</span>
-      </span>
+  <!-- 아키텍처 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Architecture</span><h2>시스템 구조</h2></div>
+    <div class="arch">
+      <pre class="mermaid">
+flowchart TD
+  U["사용자 브라우저<br/>(Thymeleaf)"]
+  U -->|HTTPS 요청| C["Controller"]
+  C --> SEC["Spring Security<br/>JWT · OAuth2"]
+  C --> S["Service<br/>(비즈니스 로직)"]
+  S --> R["Repository<br/>JPA · QueryDSL"]
+  R --> DB[("MariaDB")]
+  S -->|SSE 알림| U
+  S --> AI["Spring AI → Claude<br/>사료 추천"]
+  S --> KAKAO["Kakao 지도/지오코딩"]
+  S --> S3["AWS S3<br/>이미지 저장"]
+      </pre>
     </div>
-  </div>
+  </section>
 
-  <div class="detail-body">
-    <h2>기술 스택</h2>
-    <table class="spec">
-      <tr><td>Language / Runtime</td><td>Java 21</td></tr>
-      <tr><td>Framework</td><td>Spring Boot 3.5.14 (Web MVC, Data JPA, Validation)</td></tr>
-      <tr><td>Persistence</td><td>Spring Data JPA, QueryDSL, MariaDB, HikariCP</td></tr>
-      <tr><td>View</td><td>Thymeleaf, Spring Security 6 연동</td></tr>
-      <tr><td>Auth</td><td>Spring Security, OAuth2 Client(Google·Kakao), JWT</td></tr>
-      <tr><td>Realtime</td><td>WebSocket(1:1 채팅), SSE(실시간 알림)</td></tr>
-      <tr><td>External</td><td>AWS S3, Kakao Map/지오코딩, KakaoPay, Anthropic Claude(Spring AI)</td></tr>
-      <tr><td>Build</td><td>Gradle</td></tr>
+  <!-- ERD -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">ERD</span><h2>데이터 모델</h2></div>
+    <p>동물병원 · 예약 · 진료기록 · 알림 도메인을 중심으로 37개 엔티티의 연관관계를 설계했습니다.</p>
+    <!-- ERD 이미지: assets/projects/petmilyday/erd.png 넣고 아래 주석 해제 -->
+    <div class="media-slot">
+      <!-- <img src="../assets/projects/petmilyday/erd.png" alt="펫밀리데이 ERD" loading="lazy"> -->
+      <span class="ico">🗂</span><span class="ph">ERD 이미지 준비 중</span>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">API</span><h2>주요 API (담당 도메인 발췌)</h2></div>
+    <table class="spec api-table">
+      <tr><td>GET /hospitals</td><td>병원 검색 — 키워드·진료과목·응급여부 동적 조건 + 거리순 정렬</td></tr>
+      <tr><td>POST /reservations</td><td>예약 등록 — <span class="m">비관적 락</span>으로 동일 슬롯 중복 방지</td></tr>
+      <tr><td>PATCH /reservations/{id}/approve</td><td>병원 관리자 예약 승인 (소유권 검증)</td></tr>
+      <tr><td>GET /notifications/subscribe</td><td>SSE 실시간 알림 구독</td></tr>
+      <tr><td>POST /oauth2 · /auth/login</td><td>소셜(Google·Kakao)·이메일 로그인, JWT 발급</td></tr>
+      <tr><td>POST /ai/food-recommend</td><td>Spring AI(Claude) 기반 맞춤 사료 추천</td></tr>
     </table>
+  </section>
 
-    <h2>담당 파트 (Leeuswa)</h2>
-
-    <div class="feature">
-      <h3><span class="num">01</span>동물병원 검색 (QueryDSL 동적 쿼리)</h3>
-      <ul>
-        <li>키워드·진료과목·응급여부 조건을 <code>BooleanExpression</code>으로 조합해 null 조건은 자동 무시되는 동적 검색 구현</li>
-        <li>좌표가 있으면 하버사인(Haversine) 거리 계산으로 가까운 병원 순 정렬, 없으면 기본 정렬로 분기</li>
-        <li>카카오 지오코딩 API로 주소 → 좌표 변환 후 카카오맵에 병원 위치 표시, 목록 페이징 처리</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">02</span>예약 시스템 (동시성 제어)</h3>
-      <ul>
-        <li>예약 신청·취소·내역 조회 및 병원 관리자 승인 흐름 구현</li>
-        <li>동일 슬롯 중복 예약을 막기 위해 <code>@Lock(PESSIMISTIC_WRITE)</code> 비관적 락 적용 — 등록 시 병원 엔티티를 락으로 조회(<code>findByIdForUpdate</code>)해 동시 요청 경합에서 정합성 보장</li>
-        <li>과거 날짜·시간 예약 차단, 승인 과정에서 병원 소유권 검증</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">03</span>진료 / 건강 기록</h3>
-      <ul>
-        <li>진료기록·예방접종 이력 조회 기능</li>
-        <li>진료기록 미래 날짜 작성 방지 등 입력 검증</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">04</span>인증 / 권한 (JWT + OAuth2)</h3>
-      <ul>
-        <li>JWT 토큰 발급·검증 구현 (HMAC-SHA 서명, <code>role</code> 커스텀 클레임, 30분 만료)</li>
-        <li>소셜 로그인 성공 시 JWT를 발급해 HttpOnly 쿠키(SameSite=Lax)로 저장하는 <code>OAuth2SuccessHandler</code> 구현</li>
-        <li>일반회원 → 병원관리자 전환 시 재로그인 처리</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">05</span>실시간 알림 (SSE)</h3>
-      <ul>
-        <li><code>SseEmitter</code> 기반 실시간 알림 구현</li>
-        <li>사용자별 다중 연결을 <code>ConcurrentHashMap</code> + <code>CopyOnWriteArrayList</code>로 관리해 동시성 안전 확보</li>
-        <li>연결 종료·타임아웃·에러 및 전송 실패한(dead) emitter 자동 정리</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">06</span>AI 연동 (Claude)</h3>
-      <ul>
-        <li><b>Anthropic Claude</b> 모델을 Spring AI로 연동해 반려동물 맞춤 사료 추천 기능 구현</li>
-        <li>기존 AI 로직을 Claude 모델로 교체해 추천 품질 개선</li>
-      </ul>
-    </div>
-
-    <div class="feature">
-      <h3><span class="num">07</span>그 외</h3>
-      <ul>
-        <li>마이페이지(내가 작성한 병원 리뷰, 진료기록, 예방접종 이력)</li>
-        <li>주요 목록 화면 페이징, 관리자 검색 기능, 다수 버그 수정, 메인·병원 페이지 UI 개선</li>
-      </ul>
-    </div>
-
-    <h2>주요 기능 (서비스 전체)</h2>
-    <ul class="plain-list">
-      <li><b>회원 / 인증</b> — 일반·소셜 로그인, JWT 인증, 역할별 접근제어(USER / 병원관리자 / ADMIN)</li>
-      <li><b>동물병원 · 예약</b> — 병원 검색·필터·리뷰, 예약 승인 흐름, 슬롯 동시성 제어</li>
-      <li><b>커뮤니티</b> — 자유·모임 게시판, 댓글·대댓글·좋아요, 익명 처리, 신고</li>
-      <li><b>쇼핑몰</b> — 상품·장바구니·주문·결제(KakaoPay)·정기구독·리뷰·QnA·위시리스트</li>
-      <li><b>중고거래</b> — 게시글 CRUD, 1:1 실시간 채팅(WebSocket), 매너 점수, 신고</li>
-      <li><b>AI · 알림</b> — Claude 기반 자가진단·사료추천, SSE 실시간 알림</li>
-      <li><b>관리자</b> — 대시보드, 회원·병원·예약·콘텐츠 관리, 검색·페이징</li>
+  <!-- 담당 기능 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">My Work</span><h2>담당 기능</h2></div>
+    <ul class="flist">
+      <li><b>동물병원 검색</b> — <code>BooleanExpression</code> 기반 QueryDSL 동적 검색, 하버사인 거리 계산·근거리 정렬</li>
+      <li><b>예약 시스템</b> — 비관적 락 동시성 제어, 신청·취소·승인 흐름, 예약 상태 전이(대기·승인·취소)</li>
+      <li><b>인증 / 인가</b> — JWT + HttpOnly 쿠키, OAuth2(Google·Kakao), 역할 기반 접근제어(일반/병원관리자/관리자)</li>
+      <li><b>실시간 알림</b> — <code>SseEmitter</code> 기반, <code>ConcurrentHashMap</code>로 사용자별 다중 연결 관리·dead emitter 정리</li>
+      <li><b>지도 연동</b> — 카카오 지오코딩(주소→좌표)·지도에 병원 위치 시각화</li>
+      <li><b>AI 연동</b> — Spring AI로 Anthropic Claude 연동, 맞춤 사료 추천</li>
     </ul>
+  </section>
 
-    <div class="detail-links">
-      <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn btn-ghost" href="../index.html#projects">← 목록으로</a>
+  <!-- 문제 해결 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Problem Solving</span><h2>문제 해결</h2></div>
+
+    <div class="psr">
+      <div class="psr-t">① 동일 시간대 중복 예약</div>
+      <div class="step"><span class="lab">Problem</span><span class="txt">같은 시간대에 동시 요청이 들어오면 동일 슬롯에 중복 예약이 발생할 수 있었습니다.</span></div>
+      <div class="step"><span class="lab">Cause</span><span class="txt">예약 등록 시 동시성 제어가 없어, 여러 트랜잭션이 같은 슬롯을 함께 조회하고 각각 기록했습니다.</span></div>
+      <div class="step"><span class="lab">Solution</span><span class="txt">등록 시 병원 엔티티를 비관적 락(<code>PESSIMISTIC_WRITE</code>, <code>findByIdForUpdate</code>)으로 조회하도록 락 적용 순서를 설계했습니다.</span></div>
+      <div class="step result"><span class="lab">Result</span><span class="txt">동시 요청 경합 상황에서도 중복 예약을 방지하고 예약 정합성을 보장했습니다.</span></div>
     </div>
+
+    <div class="psr">
+      <div class="psr-t">② 승인해도 반영되지 않던 예약 — "성공 응답 ≠ 정상 동작"</div>
+      <div class="step"><span class="lab">Problem</span><span class="txt">병원 관리자가 예약을 승인해도 목록에는 계속 '대기'로 남았습니다. 화면은 오류 없이 넘어가고 에러 페이지도 없었습니다.</span></div>
+      <div class="step"><span class="lab">Cause</span><span class="txt">네트워크→DB→SQL 로그를 단계별로 좁혀, 조회한 엔티티 상태값은 바꿨지만 서비스 메서드에 <b>트랜잭션이 없어 변경 감지(dirty checking)</b>가 동작하지 않아 UPDATE가 실행되지 않음을 확인했습니다.</span></div>
+      <div class="step"><span class="lab">Solution</span><span class="txt">해당 서비스 메서드에 <code>@Transactional</code>을 적용해 변경 사항이 정상 반영되도록 수정했습니다.</span></div>
+      <div class="step result"><span class="lab">Result</span><span class="txt">승인 상태가 정상 반영됐고, 이후 "요청·쿼리·저장 결과를 단계별로 직접 확인하는" 습관을 갖게 됐습니다.</span></div>
+    </div>
+  </section>
+
+  <!-- 기술 선택 이유 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Why</span><h2>기술 선택 이유</h2></div>
+    <div class="reason-grid">
+      <div class="reason"><h4><span class="why">WHY</span>비관적 락</h4><p>예약은 충돌 시 재시도가 사용자 경험을 해치고 경합 빈도도 낮지 않아, 재시도 기반 낙관적 락보다 처음부터 직렬화하는 비관적 락이 적합하다고 판단했습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>JWT + HttpOnly 쿠키</h4><p>localStorage 저장은 XSS로 토큰이 노출될 수 있어, JS 접근이 불가한 HttpOnly 쿠키에 저장하고 SameSite=Lax로 CSRF를 완화했습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>QueryDSL</h4><p>키워드·진료과목·응급여부처럼 선택적 조건이 조합되는 검색에서 null 조건 자동 무시가 필요해, 타입 안전한 동적 쿼리를 선택했습니다.</p></div>
+      <div class="reason"><h4><span class="why">WHY</span>SSE (vs WebSocket)</h4><p>알림은 서버→클라이언트 단방향으로 충분해, 양방향 연결을 유지하는 WebSocket보다 가벼운 SSE를 선택했습니다.</p></div>
+    </div>
+  </section>
+
+  <!-- 시연 영상 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
+    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
+    <div class="media-slot">
+      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
+    </div>
+  </section>
+
+  <!-- 회고 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Retrospective</span><h2>회고</h2></div>
+    <div class="retro-grid">
+      <div class="retro good">
+        <div class="rh">배운 점</div>
+        <ul><li>트랜잭션 경계와 변경 감지 동작 원리를 몸으로 익힘</li><li>동시성 제어의 트레이드오프(락 vs 재시도) 판단</li></ul>
+      </div>
+      <div class="retro bad">
+        <div class="rh">아쉬운 점</div>
+        <ul><li>부하 테스트로 락 대기 시간을 수치로 검증하지 못함</li><li>조회 API 응답 시간을 개선 전후로 비교하지 못함</li></ul>
+      </div>
+      <div class="retro next">
+        <div class="rh">개선 방향</div>
+        <ul><li>조회 API에 캐시 적용 후 응답 시간 비교</li><li>동시 예약 부하 테스트로 락 성능 측정</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="dlinks">
+    <a class="btn btn-primary" href="https://github.com/Leeuswa/petmilyday-project" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn disabled" href="#" aria-disabled="true">Demo (준비 중)</a>
+    <a class="btn" href="../index.html#projects">← 목록으로</a>
   </div>
+
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>
+  if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'strict'});}
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
 </body>
 </html>
