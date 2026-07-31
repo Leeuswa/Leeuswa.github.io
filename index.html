@@ -56,6 +56,10 @@
   .hero .scroll-hint{margin-top:56px;font-family:var(--mono);font-size:.8rem;color:var(--muted);display:inline-flex;align-items:center;gap:10px}
   .hero .scroll-hint .arw{animation:bob 1.8s ease-in-out infinite}
   @keyframes bob{50%{transform:translateY(5px)}}
+  .hero-sub{font-size:1.05rem;color:var(--sub);line-height:1.75;margin-top:28px;max-width:640px}
+  .hero-sub b{color:var(--ink);font-weight:600}
+  .hero-core{display:flex;flex-wrap:wrap;gap:9px;margin-top:28px}
+  .hero-core .hc{font-family:var(--mono);font-size:.78rem;font-weight:500;color:var(--accent);background:var(--accent-soft);border:1px solid #D4DCFF;border-radius:100px;padding:7px 15px}
 
   /* ============ SECTION scaffold ============ */
   section{padding:88px 0;border-bottom:1px solid var(--line)}
@@ -82,6 +86,9 @@
   .skill-block .items{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
   .chip{font-family:var(--mono);font-size:.78rem;color:var(--sub);background:var(--card);border:1px solid var(--line2);border-radius:100px;padding:6px 14px;transition:.15s}
   .chip:hover{border-color:var(--accent);color:var(--accent)}
+  .chip.core{color:var(--accent);background:var(--accent-soft);border-color:#D4DCFF;font-weight:600}
+  .skill-legend{font-family:var(--mono);font-size:.74rem;color:var(--muted);margin-bottom:8px}
+  .skill-legend b{color:var(--accent);font-weight:600}
   @media(max-width:560px){.skill-block{grid-template-columns:1fr;gap:12px}}
 
   /* PROJECTS — detailed cards */
@@ -98,6 +105,9 @@
   .proj-head .meta{font-family:var(--mono);font-size:.76rem;color:var(--muted);text-align:right;white-space:nowrap;padding-top:8px}
   .proj .role{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--accent);background:var(--accent-soft);border-radius:6px;padding:3px 10px;margin-bottom:16px}
   .proj .summary{font-family:var(--serif);font-size:1.12rem;color:var(--ink);margin-bottom:18px;line-height:1.55}
+  .proj-metrics{display:flex;flex-wrap:wrap;gap:8px;margin:-4px 0 18px}
+  .proj-metrics .m{font-family:var(--mono);font-size:.72rem;color:var(--sub);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 11px}
+  .proj-metrics .m b{color:var(--accent);font-weight:600}
   .proj ul{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
   .proj ul li{position:relative;padding-left:22px;color:var(--sub);font-size:.96rem;line-height:1.6}
   .proj ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--accent);border-radius:50%}
@@ -196,6 +206,7 @@
     <div class="side-foot">
       <div><span class="dot"></span>채용 중 · 협업 가능</div>
       <div style="margin-top:14px">
+        <a href="tel:+821066256569">010-6625-6569</a><br>
         <a href="mailto:leeco6578@naver.com">leeco6578@naver.com</a><br>
         <a href="https://github.com/Leeuswa" target="_blank" rel="noopener">github.com/Leeuswa</a>
       </div>
@@ -207,13 +218,21 @@
     <header class="hero" id="top">
       <div class="eyebrow">Backend Engineer · Java / Spring Boot</div>
       <h1 class="reveal">안녕하세요.<br><span class="u">안정적인 서버</span>와 <span class="u">API</span>를<br>고민하는 개발자 <b>이수환</b>입니다.</h1>
+      <p class="hero-sub reveal">단순히 기능을 만드는 것을 넘어 <b>동시성·인증·데이터 정합성</b>처럼 눈에 보이지 않는 안정성을 고민합니다. 요청이 몰릴 때·권한이 어긋날 때·예외가 발생할 때를 함께 설계하는 백엔드 개발자입니다.</p>
+      <div class="hero-core reveal">
+        <span class="hc">동시성 제어</span>
+        <span class="hc">JWT · OAuth2 인증</span>
+        <span class="hc">SSE 실시간 알림</span>
+        <span class="hc">REST API · JPA/QueryDSL</span>
+        <span class="hc">Spring AI 연동</span>
+      </div>
       <div class="scroll-hint reveal">더 알아보기 <span class="arw">↓</span></div>
     </header>
 
     <!-- ABOUT -->
     <section id="about">
       <div class="sec-title reveal"><span class="idx">01</span><h2>About me</h2><span class="rule"></span></div>
-      <p class="about-lead reveal">Java와 Spring Boot 기반 백엔드 개발을 중심으로 <b>REST API 설계, JPA, MariaDB</b>를 활용한 웹 서비스 개발 경험을 쌓아왔습니다. 인증·인가 처리와 데이터 흐름 설계에 관심이 많으며, 최근에는 Spring AI와 RAG 구조로 역량을 넓히고 있습니다.</p>
+      <p class="about-lead reveal">Java와 Spring Boot로 <b>REST API를 설계</b>하는 백엔드 개발자입니다. 팀 프로젝트에서 예약 시스템의 동시 요청 문제를 <b>비관적 락</b>으로 해결하고, <b>JWT·OAuth2</b> 기반 인증/인가와 <b>SSE 실시간 알림</b>을 구현했습니다. Controller–Service–Repository 계층 분리와 JPA·QueryDSL 기반 데이터 설계에 익숙하며, 최근에는 Spring AI로 LLM 연동 기능을 안정적인 API 위에서 동작시키는 경험으로 역량을 넓히고 있습니다.</p>
       <div class="facts reveal">
         <div class="fact"><span class="k">Name</span><span class="v">이수환 (Leeuswa)</span></div>
         <div class="fact"><span class="k">Role</span><span class="v">Backend Engineer</span></div>
@@ -228,10 +247,12 @@
     <section id="skills">
       <div class="sec-title reveal"><span class="idx">02</span><h2>Skills</h2><span class="rule"></span></div>
       <div class="reveal">
-        <div class="skill-block"><div class="cat"><span class="sq"></span>Language</div><div class="items"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">SQL</span></div></div>
-        <div class="skill-block"><div class="cat"><span class="sq"></span>Backend</div><div class="items"><span class="chip">Spring Boot</span><span class="chip">Spring Data JPA</span><span class="chip">Spring Security</span><span class="chip">QueryDSL</span><span class="chip">REST API</span><span class="chip">Laravel</span></div></div>
-        <div class="skill-block"><div class="cat"><span class="sq"></span>AI</div><div class="items"><span class="chip">Spring AI</span><span class="chip">Claude API</span><span class="chip">OpenAI API</span><span class="chip">MCP</span><span class="chip">Ollama</span><span class="chip">LLM</span><span class="chip">RAG</span></div></div>
-        <div class="skill-block"><div class="cat"><span class="sq"></span>Database</div><div class="items"><span class="chip">MariaDB</span><span class="chip">MySQL</span><span class="chip">H2</span></div></div>
+        <p class="skill-legend">파란색으로 강조된 것이 <b>주력 기술</b>입니다.</p>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Language</div><div class="items"><span class="chip core">Java</span><span class="chip">Python</span><span class="chip">JavaScript</span><span class="chip">PHP</span><span class="chip">SQL</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Backend</div><div class="items"><span class="chip core">Spring Boot</span><span class="chip core">Spring Data JPA</span><span class="chip core">Spring Security</span><span class="chip core">QueryDSL</span><span class="chip core">REST API</span><span class="chip">Laravel</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>AI</div><div class="items"><span class="chip core">Spring AI</span><span class="chip">Claude API</span><span class="chip">OpenAI API</span><span class="chip">MCP</span><span class="chip">Ollama</span><span class="chip">LLM</span><span class="chip">RAG</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>Database</div><div class="items"><span class="chip core">MariaDB</span><span class="chip">MySQL</span><span class="chip">Redis</span><span class="chip">H2</span></div></div>
+        <div class="skill-block"><div class="cat"><span class="sq"></span>DevOps · Test</div><div class="items"><span class="chip">Docker</span><span class="chip">AWS EC2</span><span class="chip">Nginx</span><span class="chip">JUnit 5</span></div></div>
         <div class="skill-block"><div class="cat"><span class="sq"></span>Tools</div><div class="items"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Postman</span><span class="chip">IntelliJ IDEA</span><span class="chip">Gradle</span></div></div>
         <div class="skill-block"><div class="cat"><span class="sq"></span>Frontend</div><div class="items"><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Thymeleaf</span></div></div>
       </div>
@@ -256,6 +277,7 @@
         </div>
         <span class="role">인증/보안 · 성장분석 · 프론트 연동</span>
         <p class="summary">GitHub 웹훅으로 Pull Request를 받아 AI가 코드를 리뷰하고, 반복되는 약점을 통계로 쌓아 성장 추이까지 보여주는 개발자 코드리뷰 SaaS</p>
+        <div class="proj-metrics"><span class="m">API <b>30개</b> 구현</span><span class="m">단위 테스트 검증</span><span class="m">팀 4명 · 백엔드</span></div>
         <ul>
           <li>JWT를 <code>HttpOnly</code> 쿠키로 발급·검증하는 인증 방식으로 전환하고 로그아웃·401 응답 흐름 설계</li>
           <li>GitHub·Kakao 소셜 로그인과 <b>TOTP 기반 2단계 인증(2FA)</b> 구현, OAuth state로 CSRF 방어 및 계정 충돌 거부 처리</li>
@@ -285,6 +307,7 @@
         </div>
         <span class="role">동물병원·예약 · 인증 · SSE · AI</span>
         <p class="summary">동물병원 예약·진료기록부터 쇼핑·중고거래·커뮤니티·AI 자가진단까지 아우르는 반려동물 통합 케어 플랫폼</p>
+        <div class="proj-metrics"><span class="m">엔티티 <b>37개</b></span><span class="m">API <b>187개</b></span><span class="m">팀 4명 · 백엔드</span></div>
         <ul>
           <li>키워드·진료과목·응급여부를 <code>BooleanExpression</code>으로 조합한 QueryDSL 동적 검색과 하버사인 거리 정렬 구현</li>
           <li>동일 슬롯 중복 예약 방지를 위해 <code>@Lock(PESSIMISTIC_WRITE)</code> 비관적 락으로 예약 정합성 보장</li>
