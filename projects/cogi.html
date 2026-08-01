@@ -53,36 +53,33 @@
     <p>Spring Boot 백엔드 + React(Vite·TypeScript) 프론트로 구성했고, 저는 <b>회원 탈퇴·인증/보안·주간 성장 리포트·배포</b>를 담당하며 API 30개를 구현하고 주요 시나리오를 단위 테스트로 검증했습니다.</p>
   </section>
 
+  <!-- 서비스 흐름 -->
+  <section class="dsec rv">
+    <div class="dsec-h"><span class="k">Flow</span><h2>서비스 흐름 (한눈에)</h2></div>
+    <p>검사 → 오답노트 → 맞춤 공부 → 매일 습관으로 이어지는 서비스 전체 흐름입니다.</p>
+    <a class="diagram" href="../assets/projects/cogi/flow.png" target="_blank" rel="noopener">
+      <img src="../assets/projects/cogi/flow.png" alt="COGI 서비스 전체 흐름도" loading="lazy">
+    </a>
+    <p class="diagram-cap">이미지를 클릭하면 원본 크기로 볼 수 있습니다.</p>
+  </section>
+
   <!-- 아키텍처 -->
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">Architecture</span><h2>시스템 구조</h2></div>
-    <div class="arch">
-      <pre class="mermaid">
-flowchart TD
-  GH["GitHub<br/>Webhook (PR)"] -->|서명 검증| C["Controller"]
-  U["사용자 · React"] -->|HTTPS| NG["Nginx"]
-  NG --> C
-  C --> SEC["Spring Security<br/>JWT · OAuth2 · TOTP"]
-  C --> S["Service"]
-  S --> AIC["AI 리뷰 클라이언트<br/>(멀티 프로바이더 추상화)"]
-  S --> R["Repository (JPA)"]
-  R --> DB[("MariaDB")]
-  S --> RE[("Redis")]
-  SCH["스케줄러"] -->|주간 리포트| MAIL["HTML 메일 발송"]
-  C -. "Docker Compose · AWS EC2" .- NG
-      </pre>
-    </div>
+    <a class="diagram arch-img" href="../assets/projects/cogi/architecture.png" target="_blank" rel="noopener">
+      <img src="../assets/projects/cogi/architecture.png" alt="COGI 시스템 아키텍처 — 인증·저장소·외부 연동·비동기 처리" loading="lazy">
+    </a>
+    <p class="diagram-cap">이미지를 클릭하면 원본 크기로 볼 수 있습니다.</p>
   </section>
 
   <!-- ERD -->
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">ERD</span><h2>데이터 모델</h2></div>
     <p>회원·팀·저장소·리뷰·이슈·리포트 도메인의 연관관계를 설계했습니다.</p>
-    <!-- ERD 이미지: assets/projects/cogi/erd.png 넣고 아래 주석 해제 -->
-    <div class="media-slot">
-      <!-- <img src="../assets/projects/cogi/erd.png" alt="COGI ERD" loading="lazy"> -->
-      <span class="ico">🗂</span><span class="ph">ERD 이미지 준비 중</span>
-    </div>
+    <a class="diagram" href="../assets/projects/cogi/erd.png" target="_blank" rel="noopener">
+      <img src="../assets/projects/cogi/erd.png" alt="COGI ERD" loading="lazy">
+    </a>
+    <p class="diagram-cap">이미지를 클릭하면 원본 크기로 볼 수 있습니다.</p>
   </section>
 
   <!-- API -->
@@ -163,7 +160,7 @@ flowchart TD
 
   <div class="dlinks">
     <a class="btn btn-primary" href="https://github.com/Leeuswa/COGI" target="_blank" rel="noopener">GitHub ↗</a>
-    <a class="btn" href="http://43.202.36.123/" target="_blank" rel="noopener">Demo ↗</a>
+    <a class="btn" href="http://43.202.36.123/" target="_blank" rel="noopener">배포 사이트 ↗</a>
     <a class="btn" href="../index.html#projects">← 목록으로</a>
   </div>
 
