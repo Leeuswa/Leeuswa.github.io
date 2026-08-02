@@ -33,7 +33,7 @@
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
+  body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;letter-spacing:-.011em;word-break:keep-all;overflow-wrap:break-word}
   a{color:inherit;text-decoration:none}
   ::selection{background:var(--accent);color:#fff}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
@@ -147,11 +147,6 @@
 
   /* ===== SKILLS ===== */
   .skills-note{font-family:var(--mono);font-size:.74rem;color:var(--fg-3);margin-bottom:22px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-  .lvl-badge{font-family:var(--mono);font-size:.67rem;font-weight:600;letter-spacing:.02em;padding:3px 9px;border-radius:6px;white-space:nowrap}
-  .lvl-badge.main{color:#fff;background:var(--accent);border:1px solid var(--accent)}
-  .lvl-badge.good{color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent-line)}
-  .lvl-badge.learn{color:var(--fg-3);background:var(--bg-2);border:1px solid var(--line-2)}
-  .srow .lvl-badge{justify-self:start}
   .skill-cat{border-top:1px solid var(--line);padding:22px 0}
   .skill-cat:last-child{border-bottom:1px solid var(--line)}
   .skill-cat .cat-h{font-size:1rem;font-weight:700;margin-bottom:14px;display:flex;align-items:center;gap:9px}
