@@ -29,7 +29,7 @@
     <span class="idx">P.01</span>
     <h1>COGI — AI 코드리뷰 · 성장분석 플랫폼</h1>
     <div class="meta">
-      <span>팀 프로젝트 · 4명</span><span>백엔드 (인증·성장리포트·배포)</span><span>2026.07 – 2026.08</span><span class="st">완료 · AWS EC2 배포</span>
+      <span>팀 프로젝트 · 4명</span><span>백엔드 (인증·회원·성장·배포)</span><span>2026.07 – 2026.08</span><span class="st">완료 · AWS EC2 배포</span>
     </div>
     <div class="tags">
       <span class="t">Java</span><span class="t">Spring Boot</span><span class="t">Spring Security</span><span class="t">Spring Data JPA</span><span class="t">MariaDB</span><span class="t">Redis</span><span class="t">JUnit 5</span><span class="t">Docker</span><span class="t">AWS EC2</span><span class="t">React</span><span class="t">TypeScript</span>
@@ -50,7 +50,7 @@
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">Overview</span><h2>개요 · 왜 만들었는지</h2></div>
     <p>GitHub 저장소를 연동해 <b>Pull Request 코드를 AI로 자동 리뷰</b>받고, 반복적으로 발견되는 약점을 통계로 누적해 <b>개인·팀의 성장 추이</b>로 연결하는 개발자 코드리뷰 SaaS입니다.</p>
-    <p>Spring Boot 백엔드 + React(Vite·TypeScript) 프론트로 구성했고, 저는 <b>회원 탈퇴·인증/보안·주간 성장 리포트·배포</b>를 담당하며 API 30개를 구현하고 주요 시나리오를 단위 테스트로 검증했습니다.</p>
+    <p>Spring Boot 백엔드 + React(Vite·TypeScript) 프론트로 구성했고, 저는 <b>인증·회원·성장 리포트·배포</b> 전반을 담당하며 API 30개를 구현하고 주요 시나리오를 단위 테스트로 검증했습니다.</p>
   </section>
 
   <!-- 서비스 흐름 -->
@@ -98,11 +98,10 @@
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">My Work</span><h2>담당 기능</h2></div>
     <ul class="flist">
-      <li><b>인증 / 보안</b> — JWT + HttpOnly 쿠키, GitHub·Kakao OAuth2, <code>TOTP</code>(RFC 6238) 2FA, 로그인 실패 잠금·비밀번호 재설정</li>
-      <li><b>회원 탈퇴</b> — 팀장 권한 자동 위임·팀 해체 정책, 개인정보 익명화 기반 소프트 삭제</li>
-      <li><b>성장 추이</b> — 주차별 이슈 발생·해결 집계 API, PR·이슈 단위 드릴다운, 리포트 소유자 검증</li>
-      <li><b>주간 리포트</b> — 스케줄러 기반 생성 + HTML 메일 자동 발송, 사용자 단위 예외 격리</li>
-      <li><b>배포</b> — Docker Compose 기반 AWS EC2 배포, 환경변수 분리·HTTPS 적용</li>
+      <li><b>인증 · 계정 보안 전반</b> — 회원가입(이메일 코드 인증)부터 로그인(JWT + HttpOnly 쿠키 · OAuth2), <code>TOTP</code>(RFC 6238) 2FA, 로그인 실패 잠금, 비밀번호 재설정, 토큰 재발급까지 인증 라이프사이클 전체 설계·구현</li>
+      <li><b>회원 라이프사이클 관리</b> — 온보딩 · 약관 동의(버전 재동의) → 프로필 · 2FA 셀프 관리 → 탈퇴 시 팀장 권한 자동 위임 · 익명화 소프트 삭제로 데이터 무결성 보존</li>
+      <li><b>성장 분석 · 리포트</b> — 주차별 이슈 발생·해결 추이 집계 및 주차 간 비교, PR·이슈 단위 드릴다운(리포트 소유자 검증), 스케줄러 기반 주간 리포트 자동 생성 + HTML 메일 발송(사용자 단위 예외 격리)</li>
+      <li><b>배포 · 운영</b> — Docker Compose 기반 AWS EC2 배포, 환경변수 분리 · Nginx 리버스 프록시 · HTTPS 적용</li>
     </ul>
   </section>
 
