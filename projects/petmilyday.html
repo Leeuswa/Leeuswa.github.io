@@ -39,10 +39,14 @@
   <!-- 시연 영상 -->
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
-    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
     <div class="media-slot">
-      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
+      <video controls preload="metadata" playsinline
+             poster="../assets/projects/petmilyday/demo-poster.jpg">
+        <source src="../assets/projects/petmilyday/demo.mp4" type="video/mp4" />
+        브라우저가 video 태그를 지원하지 않습니다.
+      </video>
     </div>
+    <p class="diagram-cap">로그인 → AI 자가진단 → 병원 예약 → 실시간 승인·알림(SSE) → 용품샵 결제 → 중고거래 채팅·매너점수 → 커뮤니티까지, 실제 서비스 흐름을 담았습니다.</p>
   </section>
 
 
