@@ -41,10 +41,17 @@
   <!-- 시연 영상 -->
   <section class="dsec rv">
     <div class="dsec-h"><span class="k">Demo</span><h2>시연 영상</h2></div>
-    <!-- 유튜브 임베드: <iframe src="https://www.youtube.com/embed/영상ID" ...></iframe> 로 교체 -->
-    <div class="media-slot">
-      <span class="ico">▶</span><span class="ph">시연 영상 준비 중</span>
+    <div class="media-slot video-embed" data-video>
+      <video preload="metadata" playsinline controls
+             poster="../assets/projects/cogi/cover.png">
+        <source src="../assets/projects/cogi/demo.mp4" type="video/mp4" />
+        브라우저가 video 태그를 지원하지 않습니다.
+      </video>
+      <button class="video-play" type="button" aria-label="시연 영상 재생">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+      </button>
     </div>
+    <p class="diagram-cap">GitHub 저장소 연동 → PR 코드 AI 자동 리뷰 → 약점 추적·성장 리포트까지, 실제 서비스 흐름을 담았습니다.</p>
   </section>
 
 
@@ -172,6 +179,17 @@
   if(window.mermaid){mermaid.initialize({startOnLoad:true,theme:'neutral',securityLevel:'strict'});}
   const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  // 유튜브식 클릭-투-플레이 (자동재생 없음)
+  document.querySelectorAll('[data-video]').forEach((box)=>{
+    const v=box.querySelector('video'), btn=box.querySelector('.video-play');
+    if(!v||!btn) return;
+    btn.addEventListener('click', ()=>{ v.play(); });
+    v.addEventListener('play',  ()=> box.classList.add('is-playing'));
+    v.addEventListener('pause', ()=> box.classList.remove('is-playing'));
+    v.addEventListener('ended', ()=> box.classList.remove('is-playing'));
+    v.addEventListener('click', ()=>{ v.paused ? v.play() : v.pause(); });
+  });
 </script>
 </body>
 </html>
